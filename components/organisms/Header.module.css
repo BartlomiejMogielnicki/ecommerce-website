@@ -1,0 +1,27 @@
+.container {
+  width: 100%;
+  background-color: black;
+  color: white;
+}
+
+.topRow {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.topCol {
+  padding-top: 30px;
+  width: 33%;
+}
+
+.topColCart {
+  padding-top: 30px;
+  padding-right: 50px;
+  width: 33%;
+  text-align: right;
+}
+
+.logo {
+  height: 150px;
+}
