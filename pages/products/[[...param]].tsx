@@ -5,11 +5,15 @@ import Header from '../../components/organisms/Header'
 import ProductsList from '../../components/organisms/ProductsList'
 
 const Products: FC = () => {
-  const router = useRouter()
-  let categoryName = '';
-  if(router.query.param) {
-    categoryName = router.query.param[0]
-  } 
+const router = useRouter()
+const paramsArr = router.query.param
+
+let products = <ProductsList category={''}/>
+if (paramsArr && paramsArr.length === 1) {
+  products = <ProductsList category={paramsArr[0]}/>
+} else if (paramsArr && paramsArr.length === 2) {
+  products = <p>ProductPage</p>
+}
 
   return (
     <div>
@@ -17,7 +21,7 @@ const Products: FC = () => {
         <Header/>
       </header>
       <main>
-        <ProductsList category={categoryName}/>
+        {products}
       </main>
       <footer></footer>
     </div>

@@ -1,23 +1,26 @@
 import {FC} from 'react'
 import styles from './ProductsList.module.scss'
-import products from '../../data/products.json'
 
 import Categories from '../atoms/Categories'
 import ProductCard from '../atoms/ProductCard'
 
+import products from '../../data/products.json'
+
 type Props = {
-  category: string,
+  category: string
 }
 
 const ProductsList: FC<Props> = ({category}) => {
-  let filteredProducts = products;
-  
+  let filteredProducts;
   if (category !== '') {
-    filteredProducts =  products.filter((product) => {
-      return product.category === category
+    filteredProducts = products.filter((p) => {
+      return (
+        p.category === category
+      )
     })
+  } else {
+    filteredProducts = products
   }
- 
   return (
     <div className={styles.container}>
       <div className={styles.categoriesContainer}>
