@@ -1,15 +1,18 @@
-import { number, string } from 'prop-types'
 import {FC} from 'react'
 import styles from './ProductCard.module.scss'
+import Link from 'next/link'
 
 type Props = {
   title: string,
   image: string,
+  category: string,
   shortDescription: string,
   price: string,
 }
 
-const ProductCard:FC<Props> = ({title, image, shortDescription, price}) => {
+const ProductCard:FC<Props> = ({title, image, category, shortDescription, price}) => {
+  const linkTitle = title.split(' ').join('-').toLowerCase()
+
   return (
     <div className={styles.container}>
       <img src={image} alt={title}/>
@@ -17,7 +20,11 @@ const ProductCard:FC<Props> = ({title, image, shortDescription, price}) => {
       <p>{shortDescription}</p>
       <p>{price}</p>
       <div className={styles.btnsContainer}>
-        <button>Details</button>
+        <button>
+        <Link href={`/products/${category}/${linkTitle}`}>
+          <a>Details</a>
+        </Link>
+        </button>
         <button>Add to cart</button>
       </div>
     </div>
