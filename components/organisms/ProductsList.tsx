@@ -10,10 +10,14 @@ type Props = {
 }
 
 const ProductsList: FC<Props> = ({category}) => {
-  const filteredProducts = products.filter((product) => {
-    return product.category === category
-  })
-
+  let filteredProducts = products;
+  
+  if (category !== '') {
+    filteredProducts =  products.filter((product) => {
+      return product.category === category
+    })
+  }
+ 
   return (
     <div className={styles.container}>
       <div className={styles.categoriesContainer}>

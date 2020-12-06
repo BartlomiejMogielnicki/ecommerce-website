@@ -7,6 +7,11 @@ const Categories:FC = () => {
     <div className={styles.container}>
       <h3>Categories:</h3>
       <ul className={styles.list}>
+      <li className={styles.item}>
+          <Link href="/products">
+            <a>All</a>
+          </Link>
+        </li>
         <li className={styles.item}>
           <Link href="/products/cameras">
             <a>Cameras</a>
