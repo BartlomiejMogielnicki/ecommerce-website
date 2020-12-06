@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import styles from './Header.module.css'
+import styles from './Header.module.scss'
 import {faShoppingCart} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 

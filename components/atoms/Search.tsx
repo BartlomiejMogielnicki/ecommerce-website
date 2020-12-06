@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import styles from './Search.module.css'
+import styles from './Search.module.scss'
 import {faSearch} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 
