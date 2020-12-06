@@ -11,15 +11,45 @@
 }
 
 .topCol {
-  padding-top: 30px;
+  padding-top: 40px;
+  height: 100%;
   width: 33%;
 }
 
 .topColCart {
-  padding-top: 30px;
+  display: flex;
+  justify-content: flex-end;
   padding-right: 50px;
-  width: 33%;
   text-align: right;
+  font-size: 2rem;
+}
+
+.cart {
+  width: 155px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.cart:hover {
+  cursor: pointer;
+}
+
+.itemsNum {
+  height: 30px;
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: -20px;
+  right: 160px;
+  border: 2px solid white;
+  border-radius: 50%;
+  background-color: #00adef;
+  font-weight: bold;
+  font-size: 1.1rem;
 }
 
 .logo {

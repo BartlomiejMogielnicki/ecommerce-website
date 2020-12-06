@@ -26,6 +26,10 @@ button:hover {
   cursor: pointer;
 }
 
+button:focus {
+  outline: none;
+}
+
 * {
   margin: 0;
   padding: 0;

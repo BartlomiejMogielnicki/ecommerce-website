@@ -1,5 +1,7 @@
 import { FC } from 'react'
 import styles from './Search.module.css'
+import {faSearch} from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 
 const Search:FC = () => {
   return (
@@ -7,7 +9,7 @@ const Search:FC = () => {
       <form className={styles.form}>
         <label htmlFor="search"></label>
         <input type="text" id="search" placeholder="Enter your search..." className={styles.input}/>
-        <button type="submit" className={styles.button}>Submit</button>
+        <button type="submit" className={styles.button}><FontAwesomeIcon icon={faSearch}/></button>
       </form>
     </div>
   )

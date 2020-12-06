@@ -1,5 +1,7 @@
 import { FC } from 'react'
 import styles from './Header.module.css'
+import {faShoppingCart} from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 
 import Nav from '../atoms/Nav'
 import Search from '../atoms/Search'
@@ -14,8 +16,11 @@ const Header:FC = () => {
         <div className={styles.topCol}>
           <Search/>
         </div>
-        <div className={styles.topColCart}>
-          Cart
+        <div className={`${styles.topCol} ${styles.topColCart}`}>
+          <div className={styles.cart}><FontAwesomeIcon icon={faShoppingCart} />
+            My Cart
+            <div className={styles.itemsNum}>0</div>
+          </div>
         </div>
       </div>
       <Nav/>
