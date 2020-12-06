@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import styles from './Header.module.scss'
-import {faShoppingCart} from '@fortawesome/free-solid-svg-icons'
+import {faLockOpen, faShoppingCart, faUser} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 
 import Nav from '../atoms/Nav'
@@ -22,6 +22,16 @@ const Header:FC = () => {
             <div className={styles.itemsNum}>0</div>
           </div>
         </div>
+      </div>
+      <div className={styles.user}>
+        <button>
+          <FontAwesomeIcon icon={faUser}/>
+          <p>Register </p>
+        </button>
+        <button>
+          <FontAwesomeIcon icon={faLockOpen}/>
+          <p>Log In</p>
+        </button>
       </div>
       <Nav/>
     </div>

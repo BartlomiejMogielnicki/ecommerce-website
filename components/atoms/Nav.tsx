@@ -11,8 +11,8 @@ const Nav:FC = () => {
         </Link>
       </li>
       <li className={styles.item}>
-        <Link href="/about">
-          <a>About</a>
+        <Link href="/products">
+          <a>Products</a>
         </Link>
       </li>
       <li className={styles.item}>

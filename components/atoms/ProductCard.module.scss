@@ -1,0 +1,22 @@
+.container {
+  height: 300px;
+  width: 300px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border: 2px solid black;
+  text-align: center;
+
+  .btnsContainer {
+    display: flex;
+    justify-content: space-between;
+
+    button {
+      margin-left: 5px;
+      padding: 5px 10px;
+      border: 1px solid black;
+    }
+  }
+}

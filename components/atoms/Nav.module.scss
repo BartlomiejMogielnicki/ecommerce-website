@@ -6,7 +6,7 @@
   justify-content: space-evenly;
 
   .item {
-    width: 130px;
+    width: 160px;
     text-transform: uppercase;
     text-align: center;
     font-size: 1.5rem;
@@ -14,36 +14,6 @@
     a {
       display: block;
       transition: 0.2s;
-    }
-
-    &:nth-of-type(1),
-    &:nth-of-type(2) {
-      color: #00adef;
-      border: 2px solid #00adef;
-
-      :hover {
-        color: white;
-        background-color: #00adef;
-      }
-    }
-
-    &:nth-of-type(3) {
-      color: #005baa;
-      border: 2px solid #005baa;
-
-      :hover {
-        color: white;
-        background-color: #005baa;
-      }
-    }
-
-    &:nth-of-type(4) {
-      border: 2px solid #fff;
-
-      :hover {
-        color: black;
-        background-color: white;
-      }
     }
   }
 }

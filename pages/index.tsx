@@ -13,7 +13,8 @@ const Home: FC = () => {
       <header>
         <Header/>
       </header>
-      <main></main>
+      <main>
+      </main>
       <footer></footer>
     </div>
   );
