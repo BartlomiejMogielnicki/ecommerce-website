@@ -6,6 +6,7 @@ import { Product } from '../../types'
 
 import Header from '../../components/organisms/Header'
 import ProductsList from '../../components/organisms/ProductsList'
+import ProductDetails from '../../components/organisms/ProductDetails'
 
 interface Props {
   products: Product[]
@@ -22,7 +23,10 @@ if (paramsArr && paramsArr.length === 1) {
   ))
   productsEl = <ProductsList products={filteredProducts}/>
 } else if (paramsArr && paramsArr.length === 2) {
-  productsEl = <p>ProductPage</p>
+  const singleProduct = products.find(p => (
+    p.title.split(' ').join('-').toLowerCase() === paramsArr[1]
+  ))
+  productsEl = <ProductDetails product={singleProduct}/>
 }
 
   return (
