@@ -1,8 +1,9 @@
 import { FC } from 'react';
 import {useRouter} from 'next/router'
 
-import fetchedProducts from '../../data/products.json'
 import { Product } from '../../types'
+import {getProducts} from '../../db/products'
+import {connectToDB} from '../../db/connect'
 
 import Header from '../../components/organisms/Header'
 import ProductsList from '../../components/organisms/ProductsList'
@@ -42,7 +43,10 @@ if (paramsArr && paramsArr.length === 1) {
   );
 }
 
-export function getStaticPaths() {
+export async function getStaticPaths() {
+  const { db } = await connectToDB()
+  const fetchedProducts = await getProducts(db)
+
   return {
     paths: fetchedProducts.map((p) => ({
       params: { param: [p.category, p.title.split(' ').join('-').toLowerCase()] }
@@ -52,9 +56,20 @@ export function getStaticPaths() {
 }
 
 export async function getStaticProps(context) {
+  const { db } = await connectToDB()
+  const fetchedProducts = await getProducts(db)
+  const products = fetchedProducts.map(p => ({
+    title: p.title,
+    category: p.category,
+    shortDescription: p.shortDescription,
+    description: p.description,
+    price: p.price,
+    quantity: p.quantity
+  }))
+
   return {
     props: {
-      products: fetchedProducts,
+      products
     }
   }
 }

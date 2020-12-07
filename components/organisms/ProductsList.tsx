@@ -20,7 +20,7 @@ const ProductsList: FC<Props> = ({products}) => {
         {products && products.map(product => {
           return (
             <ProductCard 
-              key={product.id}
+              key={product.title}
               title={product.title}
               category={product.category}
               image={product.image}
