@@ -3,29 +3,35 @@ import styles from './blog.module.scss'
 import {connectToDB} from '../../db/connect'
 import {getPosts} from '../../db/posts'
 import { Post } from '../../types'
+import {useRouter} from 'next/router'
 
 import Header from '../../components/organisms/Header'
+import PostsList from '../../components/organisms/PostsList'
+import PostDetails from '../../components/atoms/PostDetails'
 
 interface Props {
   posts: Post[]
 }
 
 const Blog: FC<Props> = ({posts}) => {
+const router = useRouter()
+const paramsArr = router.query.param
+
+let postsEl = <PostsList posts={posts}/>
+if (paramsArr && paramsArr.length === 1) {
+  const singlePost = posts.find(p => (
+    p.title.split(' ').join('-').toLowerCase() === paramsArr[0]
+  ))
+  postsEl = <PostDetails post={singlePost}/>
+}
+
   return (
     <div>
       <header>
         <Header/>
       </header>
       <main>
-        <div className={styles.container}>
-          {posts.map(p => (
-            <div className={styles.post}>
-              <h2>{p.title}</h2>
-              <p>{`${p.post.substring(0, 300)}...`}</p>
-              <button>Read</button>
-            </div>
-          ))}
-        </div>
+        {postsEl}
       </main>
       <footer></footer>
     </div>
