@@ -10,3 +10,8 @@ export interface Product {
   price: string;
   quantity: number;
 }
+
+export interface Post {
+  title: string;
+  post: string;
+}
