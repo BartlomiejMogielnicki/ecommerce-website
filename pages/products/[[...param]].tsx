@@ -1,18 +1,28 @@
 import { FC } from 'react';
 import {useRouter} from 'next/router'
 
+import fetchedProducts from '../../data/products.json'
+import { Product } from '../../types'
+
 import Header from '../../components/organisms/Header'
 import ProductsList from '../../components/organisms/ProductsList'
 
-const Products: FC = () => {
+interface Props {
+  products: Product[]
+}
+
+const Products: FC<Props> = ({products}) => {
 const router = useRouter()
 const paramsArr = router.query.param
 
-let products = <ProductsList category={''}/>
+let productsEl = <ProductsList products={products}/>
 if (paramsArr && paramsArr.length === 1) {
-  products = <ProductsList category={paramsArr[0]}/>
+  const filteredProducts = products.filter(p => (
+    p.category.split(' ').join('-').toLowerCase() === paramsArr[0]
+  ))
+  productsEl = <ProductsList products={filteredProducts}/>
 } else if (paramsArr && paramsArr.length === 2) {
-  products = <p>ProductPage</p>
+  productsEl = <p>ProductPage</p>
 }
 
   return (
@@ -21,11 +31,28 @@ if (paramsArr && paramsArr.length === 1) {
         <Header/>
       </header>
       <main>
-        {products}
+        {productsEl}
       </main>
       <footer></footer>
     </div>
   );
+}
+
+export function getStaticPaths() {
+  return {
+    paths: fetchedProducts.map((p) => ({
+      params: { param: [p.category, p.title.split(' ').join('-').toLowerCase()] }
+    })),
+    fallback: true,
+  }
+}
+
+export async function getStaticProps(context) {
+  return {
+    props: {
+      products: fetchedProducts,
+    }
+  }
 }
 
 export default Products;
