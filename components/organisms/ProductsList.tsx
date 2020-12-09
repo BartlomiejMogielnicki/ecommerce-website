@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import Categories from 'components/atoms/Categories';
+import Categories from 'components/molecules/Categories';
 import ProductCard from 'components/atoms/ProductCard';
 import styles from './ProductsList.module.scss';
 

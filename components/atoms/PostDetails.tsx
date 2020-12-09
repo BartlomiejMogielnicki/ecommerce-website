@@ -8,22 +8,20 @@ interface Props {
   post: Post
 }
 
-const PostDetails:FC<Props> = ({ post }) => {
-  return (
-    <div className={styles.container}>
-      <div className={styles.post}>
-        <h1>{post.title}</h1>
-        <ReactMarkdown>
-          {post.content}
-        </ReactMarkdown>
-      </div>
-      <button type="button">
-        <Link href="/blog">
-          <a>Return to blog</a>
-        </Link>
-      </button>
+const PostDetails:FC<Props> = ({ post }) => (
+  <div className={styles.container}>
+    <div className={styles.post}>
+      <h1>{post.title}</h1>
+      <ReactMarkdown>
+        {post.content}
+      </ReactMarkdown>
     </div>
-  )
-}
+    <button type="button">
+      <Link href="/blog">
+        <a>Return to blog</a>
+      </Link>
+    </button>
+  </div>
+)
 
 export default PostDetails;
