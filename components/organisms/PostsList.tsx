@@ -1,29 +1,27 @@
-import {FC} from 'react'
-import styles from './PostsList.module.scss'
-import Link from 'next/link'
+import { FC } from 'react';
+import Link from 'next/link';
+import styles from './PostsList.module.scss';
 
-import { Post } from '../../types'
+import { Post } from '../../types';
 
 interface Props {
   posts: Post[]
 }
 
-const PostsList:FC<Props> = ({ posts }) => {
-  return (
-    <div className={styles.container}>
-      {posts && posts.map(p => (
-        <div className={styles.post} key={p.title}>
-          <h2>{p.title}</h2>
-          <p>{`${p.post.substring(0, 300)}...`}</p>
-          <button>
-            <Link href={`/blog/${p.title.split(' ').join('-').toLowerCase()}`}>
-              <a>Read more</a>
-            </Link>
-          </button>
-        </div>
-      ))}
+const PostsList:FC<Props> = ({ posts }) => (
+  <div className={styles.container}>
+    {posts && posts.map((p) => (
+      <div className={styles.post} key={p.title}>
+        <h2>{p.title}</h2>
+        <p>{`${p.post.substring(0, 300)}...`}</p>
+        <button type="button">
+          <Link href={`/blog/${p.title.split(' ').join('-').toLowerCase()}`}>
+            <a>Read more</a>
+          </Link>
+        </button>
+      </div>
+    ))}
   </div>
-  )
-}
+);
 
-export default PostsList
+export default PostsList;
