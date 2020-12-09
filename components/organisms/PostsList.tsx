@@ -13,7 +13,7 @@ const PostsList:FC<Props> = ({ posts }) => (
     {posts && posts.map((p) => (
       <div className={styles.post} key={p.title}>
         <h2>{p.title}</h2>
-        <p>{`${p.post.substring(0, 300)}...`}</p>
+        <p>{p.description}</p>
         <button type="button">
           <Link href={`/blog/${p.title.split(' ').join('-').toLowerCase()}`}>
             <a>Read more</a>
@@ -22,6 +22,6 @@ const PostsList:FC<Props> = ({ posts }) => (
       </div>
     ))}
   </div>
-);
+  )
 
 export default PostsList;
