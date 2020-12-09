@@ -1,5 +1,4 @@
 import { FC } from 'react';
-import styles from './blog.module.scss'
 import {connectToDB} from '../../db/connect'
 import {getPosts} from '../../db/posts'
 import { Post } from '../../types'
