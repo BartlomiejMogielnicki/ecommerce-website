@@ -1,10 +1,9 @@
 import { FC } from 'react';
+import Categories from 'components/atoms/Categories';
+import ProductCard from 'components/atoms/ProductCard';
 import styles from './ProductsList.module.scss';
 
 import { Product } from '../../types';
-
-import Categories from '../atoms/Categories';
-import ProductCard from '../atoms/ProductCard';
 
 interface Props {
   products: Product[]

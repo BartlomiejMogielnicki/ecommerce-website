@@ -1,5 +1,3 @@
-import { Db } from 'mongodb';
+import { Db } from 'mongodb'
 
-export const getPosts = async (db: Db) => {
-  return db.collection('posts').find().toArray();
-};
+export const getPosts = async (db: Db) => db.collection('posts').find().toArray()

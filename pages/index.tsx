@@ -1,7 +1,8 @@
 import Head from 'next/head';
 import { FC } from 'react';
 
-import Header from '../components/organisms/Header';
+import HomeContent from 'components/molecules/HomeContent'
+import Header from 'components/organisms/Header';
 
 const Home: FC = () => (
   <div>
@@ -12,7 +13,9 @@ const Home: FC = () => (
     <header>
       <Header />
     </header>
-    <main />
+    <main>
+      <HomeContent />
+    </main>
     <footer />
   </div>
 );

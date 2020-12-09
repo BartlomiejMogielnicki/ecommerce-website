@@ -1,13 +1,13 @@
 import { FC } from 'react';
 import { useRouter } from 'next/router';
 
-import { Product } from '../../types';
-import { getProducts } from '../../db/products';
-import { connectToDB } from '../../db/connect';
+import { Product } from 'types';
+import { getProducts } from 'db/products';
+import { connectToDB } from 'db/connect';
 
-import Header from '../../components/organisms/Header';
-import ProductsList from '../../components/organisms/ProductsList';
-import ProductDetails from '../../components/organisms/ProductDetails';
+import Header from 'components/organisms/Header';
+import ProductsList from 'components/organisms/ProductsList';
+import ProductDetails from 'components/organisms/ProductDetails';
 
 interface Props {
   products: Product[]

@@ -1,12 +1,12 @@
 import { FC } from 'react';
 import { useRouter } from 'next/router';
-import { connectToDB } from '../../db/connect';
-import { getPosts } from '../../db/posts';
-import { Post } from '../../types';
+import { connectToDB } from 'db/connect';
+import { getPosts } from 'db/posts';
+import { Post } from 'types';
 
-import Header from '../../components/organisms/Header';
-import PostsList from '../../components/organisms/PostsList';
-import PostDetails from '../../components/atoms/PostDetails';
+import Header from 'components/organisms/Header';
+import PostsList from 'components/organisms/PostsList';
+import PostDetails from 'components/atoms/PostDetails';
 
 interface Props {
   posts: Post[]

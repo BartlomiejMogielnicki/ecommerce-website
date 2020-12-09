@@ -1,10 +1,10 @@
 import { FC } from 'react';
 import { faLockOpen, faShoppingCart, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import styles from './Header.module.scss';
 
-import Nav from '../atoms/Nav';
-import Search from '../atoms/Search';
+import Nav from 'components/atoms/Nav';
+import Search from 'components/atoms/Search';
+import styles from './Header.module.scss';
 
 const Header:FC = () => (
   <div className={styles.container}>
