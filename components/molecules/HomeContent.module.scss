@@ -20,30 +20,57 @@
   .smallAdv {
     height: 50%;
     position: relative;
+    overflow: hidden;
+
+    img {
+      transition: 0.4s;
+    }
+
+    :hover img {
+      transform: scale(1.05);
+    }
   }
 
   .topLeftAdv {
     border-top: 5px solid #fff;
+
+    .advTitle {
+      top: 20px;
+      right: 20px;
+    }
   }
 
   .botLeftAdv {
     border-top: 5px solid #fff;
     border-bottom: 5px solid #fff;
+
+    .advTitle {
+      top: 20px;
+      left: 20px;
+    }
   }
 
   .topRightAdv {
     border-top: 5px solid #fff;
+
+    .advTitle {
+      top: 20px;
+      left: 20px;
+    }
   }
 
   .botRightAdv {
     border-top: 5px solid #fff;
     border-bottom: 5px solid #fff;
+
+    .advTitle {
+      top: 20px;
+      right: 20px;
+    }
   }
 
   .advTitle {
     position: absolute;
-    bottom: 20px;
-    left: 20px;
     font-size: 2rem;
     font-weight: bold;
     letter-spacing: 1px;
@@ -93,7 +120,7 @@
   .videoContainer {
     margin: 0 auto 10px;
     height: 800px;
-    width: 80%;
+    width: 75%;
     display: flex;
     justify-content: center;
   }
@@ -102,7 +129,7 @@
     margin-top: 40px;
     border: 2px solid #00adef;
     border-radius: 5px;
-    color: #00adef;
+    color: #fff;
 
     a {
       display: block;
