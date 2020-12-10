@@ -17,6 +17,7 @@
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-markdown": "^5.0.3",
+    "react-player": "^2.7.0",
     "sass": "^1.30.0"
   },
   "devDependencies": {

@@ -50,3 +50,16 @@
     color: #fff;
   }
 }
+
+.videoSection {
+  padding: 150px 0 20px;
+  background-color: black;
+
+  .videoContainer {
+    margin: 0 auto 20px;
+    height: 800px;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+  }
+}
