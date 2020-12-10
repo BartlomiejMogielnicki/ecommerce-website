@@ -1,0 +1,35 @@
+.container {
+  border: 1px solid black;
+
+  h3 {
+    padding: 10px;
+    background-color: #00adef;
+    color: #fff;
+  }
+
+  .list {
+    display: flex;
+    flex-direction: column;
+
+    .item {
+      border-top: 1px solid black;
+
+      :hover {
+        background-color: #00adef;
+        color: #fff;
+      }
+
+      a {
+        padding: 10px;
+        display: block;
+        transition: 0.2s;
+      }
+
+      &.active {
+        border-right: 10px solid #00adef;
+        color: #00adef;
+        font-weight: bold;
+      }
+    }
+  }
+}
