@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { FC } from 'react';
 
-import HomeContent from 'components/molecules/HomeContent'
+import HomeContent from 'components/organisms/HomeContent/HomeContent'
 import Header from 'components/organisms/Header';
 
 const Home: FC = () => (
