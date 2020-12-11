@@ -14,11 +14,14 @@
 
   .bestItem {
     height: 250px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     color: black;
     font-size: 1.3rem;
+
+    a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
     img {
       height: 150px;
