@@ -1,5 +1,3 @@
-import { ObjectId } from 'mongodb'
-
 export interface Product {
   _id: string
   title: string

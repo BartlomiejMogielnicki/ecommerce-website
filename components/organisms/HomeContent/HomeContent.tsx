@@ -3,20 +3,25 @@ import Link from 'next/link'
 import ReactPlayer from 'react-player'
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Product } from 'types';
 import HomeAdvGallery from 'components/organisms/HomeContent/HomeAdvGallery/HomeAdvGallery'
 import HomeBestsGallery from 'components/organisms/HomeContent/HomeBestsGallery/HomeBestsGallery'
 import styles from './HomeContent.module.scss'
 
-const HomeContent:FC = () => (
+interface Props {
+  bestsellers: Product[]
+}
+
+const HomeContent:FC<Props> = ({ bestsellers }) => (
   <div className={styles.wrapper}>
     <HomeAdvGallery />
     <div className={styles.advNavigateContainer}>
-      <a href="#videoSection">
+      <a href="#video">
         <FontAwesomeIcon icon={faAngleDown} />
         <p>Watch the trailer!</p>
       </a>
     </div>
-    <div className={styles.videoSection} id="videoSection">
+    <div className={styles.videoSection} id="video">
       <div className={styles.videoContainer}>
         <ReactPlayer url="https://www.youtube.com/watch?v=xYX6b1-9Coo" controls width="100%" height="100%" />
       </div>
@@ -26,7 +31,7 @@ const HomeContent:FC = () => (
         </Link>
       </button>
     </div>
-    <HomeBestsGallery />
+    <HomeBestsGallery bestsellers={bestsellers} />
   </div>
 )
 

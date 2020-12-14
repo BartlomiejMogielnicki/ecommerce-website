@@ -55,7 +55,7 @@ export async function getStaticProps() {
   const posts = fetchedPosts.map((p) => ({
     title: p.title,
     description: p.description,
-    content: p.content
+    content: p.content,
   }));
 
   return {
