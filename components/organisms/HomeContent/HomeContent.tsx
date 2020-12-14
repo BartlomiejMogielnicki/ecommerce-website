@@ -3,16 +3,18 @@ import Link from 'next/link'
 import ReactPlayer from 'react-player'
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Product } from 'types';
+import { Product, Post } from 'types';
 import HomeAdvGallery from 'components/organisms/HomeContent/HomeAdvGallery/HomeAdvGallery'
 import HomeBestsGallery from 'components/organisms/HomeContent/HomeBestsGallery/HomeBestsGallery'
+import HomeRecentPosts from 'components/organisms/HomeContent/HomeRecentPosts/HomeRecentPosts'
 import styles from './HomeContent.module.scss'
 
 interface Props {
-  bestsellers: Product[]
+  bestsellers: Product[],
+  recentPosts: Post[]
 }
 
-const HomeContent:FC<Props> = ({ bestsellers }) => (
+const HomeContent:FC<Props> = ({ bestsellers, recentPosts }) => (
   <div className={styles.wrapper}>
     <HomeAdvGallery />
     <div className={styles.advNavigateContainer}>
@@ -32,6 +34,7 @@ const HomeContent:FC<Props> = ({ bestsellers }) => (
       </button>
     </div>
     <HomeBestsGallery bestsellers={bestsellers} />
+    <HomeRecentPosts recentPosts={recentPosts} />
   </div>
 )
 

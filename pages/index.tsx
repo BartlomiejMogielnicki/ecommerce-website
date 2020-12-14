@@ -1,17 +1,19 @@
 import Head from 'next/head';
 import { FC } from 'react';
-import { Product } from 'types';
+import { Product, Post } from 'types';
 import { getProducts } from 'db/products';
+import { getPosts } from 'db/posts';
 import { connectToDB } from 'db/connect';
 
 import HomeContent from 'components/organisms/HomeContent/HomeContent'
 import Header from 'components/organisms/Header';
 
 interface Props {
-  bestsellers: Product[]
+  bestsellers: Product[],
+  recentPosts: Post[]
 }
 
-const Home: FC<Props> = ({ bestsellers }) => (
+const Home: FC<Props> = ({ bestsellers, recentPosts }) => (
   <div>
     <Head>
       <title>Ecommerce website</title>
@@ -21,7 +23,7 @@ const Home: FC<Props> = ({ bestsellers }) => (
       <Header />
     </header>
     <main>
-      <HomeContent bestsellers={bestsellers} />
+      <HomeContent bestsellers={bestsellers} recentPosts={recentPosts} />
     </main>
     <footer />
   </div>
@@ -41,9 +43,17 @@ export async function getStaticProps() {
     quantity: p.quantity,
   }));
 
+  const fetchedPosts = await getPosts(db);
+  const recentPosts = fetchedPosts.slice(-3).map((p) => ({
+    title: p.title,
+    description: p.description,
+    content: p.content,
+  }));
+
   return {
     props: {
       bestsellers,
+      recentPosts,
     },
   };
 }
