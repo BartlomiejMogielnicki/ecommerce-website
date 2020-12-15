@@ -7,6 +7,7 @@ import { Product, Post } from 'types';
 import HomeAdvGallery from 'components/organisms/HomeContent/HomeAdvGallery/HomeAdvGallery'
 import HomeBestsGallery from 'components/organisms/HomeContent/HomeBestsGallery/HomeBestsGallery'
 import HomeRecentPosts from 'components/organisms/HomeContent/HomeRecentPosts/HomeRecentPosts'
+import HomeAbout from 'components/organisms/HomeContent/HomeAbout/HomeAbout'
 import styles from './HomeContent.module.scss'
 
 interface Props {
@@ -35,6 +36,7 @@ const HomeContent:FC<Props> = ({ bestsellers, recentPosts }) => (
     </div>
     <HomeBestsGallery bestsellers={bestsellers} />
     <HomeRecentPosts recentPosts={recentPosts} />
+    <HomeAbout />
   </div>
 )
 

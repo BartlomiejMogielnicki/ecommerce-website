@@ -48,6 +48,7 @@
     "jsx-a11y/control-has-associated-label" : "off",
     "react/jsx-props-no-spreading": "off",
     "import/prefer-default-export": "off",
-    "import/no-unresolved": "off"
+    "import/no-unresolved": "off",
+    "max-len": "off"
   }
 }
