@@ -1,0 +1,33 @@
+.container {
+  padding: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  border-top: 5px solid white;
+  background-color: black;
+  color: white;
+
+  .shortcutsContainer {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    justify-content: space-evenly;
+
+    .shortcutsColumn {
+      display: flex;
+      flex-direction: column;
+
+      h4 {
+        margin-bottom: 10px;
+      }
+
+      .shortcutsItem {
+        margin-bottom: 5px;
+        color: #999;
+        :hover {
+          color: #00adef;
+        }
+      }
+    }
+  }
+}

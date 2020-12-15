@@ -8,6 +8,7 @@ import { connectToDB } from 'db/connect';
 import Header from 'components/organisms/Header';
 import ProductsList from 'components/organisms/ProductsList';
 import ProductDetails from 'components/organisms/ProductDetails';
+import Footer from 'components/atoms/Footer'
 
 interface Props {
   products: Product[]
@@ -38,7 +39,9 @@ const Products: FC<Props> = ({ products }) => {
       <main>
         {productsEl}
       </main>
-      <footer />
+      <footer>
+        <Footer />
+      </footer>
     </div>
   );
 };

@@ -7,6 +7,7 @@ import { connectToDB } from 'db/connect';
 
 import HomeContent from 'components/organisms/HomeContent/HomeContent'
 import Header from 'components/organisms/Header';
+import Footer from 'components/atoms/Footer'
 
 interface Props {
   bestsellers: Product[],
@@ -25,7 +26,9 @@ const Home: FC<Props> = ({ bestsellers, recentPosts }) => (
     <main>
       <HomeContent bestsellers={bestsellers} recentPosts={recentPosts} />
     </main>
-    <footer />
+    <footer>
+      <Footer />
+    </footer>
   </div>
 );
 
