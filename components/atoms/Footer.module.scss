@@ -1,21 +1,27 @@
 .container {
-  padding: 20px;
+  padding: 20px 10px 10px 10px;
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  border-top: 5px solid white;
+  align-items: center;
+  border-top: 2px solid #00adef;
   background-color: black;
   color: white;
 
   .shortcutsContainer {
+    padding-bottom: 20px;
     width: 100%;
-    max-width: 800px;
+    max-width: 600px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 
     .shortcutsColumn {
+      width: 33%;
       display: flex;
       flex-direction: column;
+      align-items: center;
 
       h4 {
         margin-bottom: 10px;
@@ -24,10 +30,51 @@
       .shortcutsItem {
         margin-bottom: 5px;
         color: #999;
+        transition: 0.2s;
         :hover {
           color: #00adef;
         }
       }
     }
+  }
+
+  .contactContainer {
+    padding: 20px 20px 10px 20px;
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    .contactInfo {
+      min-width: 350px;
+      display: flex;
+      justify-content: space-around;
+
+      a {
+        margin-right: 5px;
+      }
+    }
+
+    .socialContainer {
+      width: 100px;
+      display: flex;
+      justify-content: space-evenly;
+      font-size: 1.5rem;
+
+      a {
+        cursor: pointer;
+        transition: 0.2s;
+
+        :hover {
+          color: #00adef;
+        }
+      }
+    }
+  }
+
+  .copyrightContainer {
+    margin-top: 30px;
+    color: #999;
   }
 }
