@@ -6,8 +6,8 @@ import { getProducts } from 'db/products';
 import { connectToDB } from 'db/connect';
 
 import Header from 'components/organisms/Header';
-import ProductsList from 'components/organisms/ProductsList';
-import ProductDetails from 'components/organisms/ProductDetails';
+import ProductsList from 'components/organisms/ProductsList/ProductsList';
+import ProductDetails from 'components/molecules/ProductDetails';
 import Footer from 'components/atoms/Footer'
 
 interface Props {

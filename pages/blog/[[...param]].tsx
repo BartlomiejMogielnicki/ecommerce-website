@@ -6,7 +6,7 @@ import { Post } from 'types';
 
 import Header from 'components/organisms/Header';
 import PostsList from 'components/organisms/PostsList';
-import PostDetails from 'components/atoms/PostDetails';
+import PostDetails from 'components/molecules/PostDetails';
 import Footer from 'components/atoms/Footer'
 
 interface Props {

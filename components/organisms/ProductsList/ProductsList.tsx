@@ -1,9 +1,9 @@
 import { FC } from 'react';
-import Categories from 'components/molecules/Categories';
-import ProductCard from 'components/atoms/ProductCard';
+import Categories from 'components/organisms/ProductsList/Categories/Categories';
+import ProductCard from './ProductCard/ProductCard';
 import styles from './ProductsList.module.scss';
 
-import { Product } from '../../types';
+import { Product } from '../../../types';
 
 interface Props {
   products: Product[]
