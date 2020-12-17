@@ -9,7 +9,7 @@ interface Props {
 
 const HomeRecentPosts: FC<Props> = ({ recentPosts }) => (
   <div className={styles.recentPostsSection}>
-    <h2>Check our recent posts:</h2>
+    <h2>Check our recent blog posts:</h2>
     <ul className={styles.postsList}>
       {recentPosts.map((item) => (
         <li key={item.title} className={styles.post}>

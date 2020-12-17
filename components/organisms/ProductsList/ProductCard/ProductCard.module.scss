@@ -1,5 +1,5 @@
 .container {
-  height: 300px;
+  height: 400px;
   width: 300px;
   padding: 10px;
   display: flex;
@@ -8,6 +8,10 @@
   align-items: center;
   border: 2px solid black;
   text-align: center;
+
+  img {
+    height: 200px;
+  }
 
   .btnsContainer {
     display: flex;
