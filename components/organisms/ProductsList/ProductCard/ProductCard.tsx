@@ -27,7 +27,9 @@ const ProductCard:FC<Props> = ({
             <a>Details</a>
           </Link>
         </button>
-        <button type="button">Add to cart</button>
+        <button type="button">
+          <p>Add to cart</p>
+        </button>
       </div>
     </div>
   );
