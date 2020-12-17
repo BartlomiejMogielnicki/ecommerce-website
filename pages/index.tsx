@@ -30,7 +30,7 @@ const Home: FC<Props> = ({ bestsellers, recentPosts }) => (
       <Footer />
     </footer>
   </div>
-);
+)
 
 export async function getStaticProps() {
   const { db } = await connectToDB();

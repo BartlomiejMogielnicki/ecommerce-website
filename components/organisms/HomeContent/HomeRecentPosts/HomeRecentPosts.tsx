@@ -18,7 +18,7 @@ const HomeRecentPosts: FC<Props> = ({ recentPosts }) => (
           <button type="button">
             <Link href={`/blog/${item.title.split(' ').join('-').toLowerCase()}`}>
               <a>
-                Read
+                Read more
               </a>
             </Link>
           </button>

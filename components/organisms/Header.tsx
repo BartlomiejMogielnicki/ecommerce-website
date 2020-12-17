@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { faLockOpen, faShoppingCart, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Link from 'next/link'
 
 import Nav from 'components/atoms/Nav';
 import Search from 'components/atoms/Search';
@@ -16,11 +17,15 @@ const Header:FC = () => (
         <Search />
       </div>
       <div className={`${styles.topCol} ${styles.topColCart}`}>
-        <div className={styles.cart}>
-          <FontAwesomeIcon icon={faShoppingCart} />
-          My Cart
-          <div className={styles.itemsNum}>0</div>
-        </div>
+        <Link href="/cart">
+          <a>
+            <div className={styles.cart}>
+              <FontAwesomeIcon icon={faShoppingCart} />
+              My Cart
+              <div className={styles.itemsNum}>0</div>
+            </div>
+          </a>
+        </Link>
       </div>
     </div>
     <div className={styles.user}>
