@@ -20,7 +20,7 @@ const ProductsList: FC<Props> = ({ products }) => (
           key={product.title}
           title={product.title}
           category={product.category}
-          image={product.image}
+          image={product.images[0].url}
           price={product.price}
           shortDescription={product.shortDescription}
         />

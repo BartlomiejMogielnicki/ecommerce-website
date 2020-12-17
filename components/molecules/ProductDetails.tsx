@@ -15,10 +15,6 @@ const ProductDetails:FC<Props> = ({ product }) => (
       <h1>{product.title}</h1>
       <p>{product.description}</p>
       <p>{product.price}</p>
-      <p>
-        {product.quantity}
-        pcs
-      </p>
       <button type="button">Add to cart</button>
     </div>
   </div>

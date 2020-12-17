@@ -6,7 +6,12 @@ export interface Product {
   shortDescription: string
   description: string
   price: string
-  quantity: number
+  images: [
+    {
+      name: string
+      url: string
+    },
+  ]
 }
 
 export interface Post {

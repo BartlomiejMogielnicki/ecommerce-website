@@ -15,7 +15,7 @@ const HomeBestsGallery:FC<Props> = ({ bestsellers }) => (
         <li key={item.title} className={styles.bestItem}>
           <Link href={`/products/${item.category}/${item.title.split(' ').join('-').toLowerCase()}`}>
             <a>
-              <img src={item.image} alt={item.title} />
+              <img src={item.images[0].url} alt={item.title} />
               <p><strong>{item.title}</strong></p>
               <p>{item.price}</p>
             </a>
