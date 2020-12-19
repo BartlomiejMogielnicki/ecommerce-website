@@ -9,7 +9,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid black;
+
+    img {
+      height: 500px;
+    }
   }
 
   .panel {
@@ -18,8 +21,49 @@
     padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    border: 1px solid black;
+    text-align: center;
+
+    .description {
+      font-size: 1.3rem;
+    }
+
+    .price {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .btnsContainer {
+      width: 300px;
+      display: flex;
+      justify-content: space-around;
+
+      button {
+        margin-left: 5px;
+        margin-top: 15px;
+        color: #00adef;
+        border: 2px solid #00adef;
+        border-radius: 5px;
+
+        a {
+          display: block;
+          padding: 7px 15px;
+          font-size: 1rem;
+          transition: 0.2s;
+        }
+
+        p {
+          padding: 7px 15px;
+          font-size: 1rem;
+          transition: 0.2s;
+        }
+
+        :hover {
+          background-color: #00adef;
+          color: #fff;
+        }
+      }
+    }
   }
 }
