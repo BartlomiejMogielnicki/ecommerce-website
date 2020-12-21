@@ -15,7 +15,7 @@ const ProductsList: FC<Props> = ({ products }) => (
       <Categories />
     </div>
     <div className={styles.productsContainer}>
-      {products && products.map((product) => (
+      {products && products.sort((product) => (product.bestseller ? -1 : 1)).map((product) => (
         <ProductCard
           key={product.title}
           title={product.title}
