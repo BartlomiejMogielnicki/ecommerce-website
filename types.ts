@@ -6,6 +6,7 @@ export interface Product {
   shortDescription: string
   description: string
   price: string
+  bestseller: boolean
   images: [
     {
       name: string

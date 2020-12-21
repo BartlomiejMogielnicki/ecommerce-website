@@ -22,6 +22,7 @@ const ProductsList: FC<Props> = ({ products }) => (
           category={product.category}
           image={product.images[0].url}
           price={product.price}
+          bestseller={product.bestseller}
           shortDescription={product.shortDescription}
         />
       ))}

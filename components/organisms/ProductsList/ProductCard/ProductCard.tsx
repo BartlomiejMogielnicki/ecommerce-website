@@ -8,10 +8,11 @@ type Props = {
   category: string,
   shortDescription: string,
   price: string,
+  bestseller: boolean
 }
 
 const ProductCard:FC<Props> = ({
-  title, image, category, shortDescription, price,
+  title, image, category, shortDescription, price, bestseller,
 }) => {
   const linkTitle = title.split(' ').join('-').toLowerCase();
 
@@ -21,6 +22,7 @@ const ProductCard:FC<Props> = ({
       <h2>{title}</h2>
       <p>{shortDescription}</p>
       <p><strong>{price}</strong></p>
+      {bestseller && <div className={styles.ribbon}><span>Bestseller</span></div>}
       <div className={styles.btnsContainer}>
         <button type="button">
           <Link href={`/products/${category}/${linkTitle}`}>

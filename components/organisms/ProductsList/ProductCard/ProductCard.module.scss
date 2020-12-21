@@ -5,11 +5,60 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  position: relative;
   border: 1px solid black;
   text-align: center;
 
   img {
     height: 200px;
+  }
+
+  .ribbon {
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+  }
+  .ribbon::before,
+  .ribbon::after {
+    position: absolute;
+    z-index: -1;
+    content: '';
+    display: block;
+    border: 5px solid #2980b9;
+  }
+  .ribbon span {
+    position: absolute;
+    display: block;
+    width: 225px;
+    padding: 10px 0;
+    background-color: #00adef;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    color: #fff;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  .ribbon::before,
+  .ribbon::after {
+    border-top-color: transparent;
+    border-right-color: transparent;
+  }
+  .ribbon::before {
+    top: 0;
+    left: 23px;
+  }
+  .ribbon::after {
+    bottom: 23px;
+    right: 0;
+  }
+  .ribbon span {
+    left: -10px;
+    top: 30px;
+    transform: rotate(45deg);
   }
 
   .btnsContainer {
