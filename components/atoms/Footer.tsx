@@ -11,11 +11,11 @@ const shortCuts = [
     links: [
       {
         text: 'GoPro Hero 9 Black',
-        href: '/products/cameras/gopro-9-black',
+        href: '/products/cameras/gopro-hero-9-black',
       },
       {
         text: 'GoPro Hero 8 Black',
-        href: '/products/cameras/gopro-8-black',
+        href: '/products/cameras/gopro-hero-8-black',
       },
       {
         text: 'Blog',
@@ -93,17 +93,17 @@ const Footer:FC = () => (
           <a><FontAwesomeIcon icon={faEnvelope} /></a>
           shopgopro@fakemail.pl
         </div>
-      </div>
-      <div className={styles.socialContainer}>
-        <a>
-          <FontAwesomeIcon icon={faFacebookSquare} />
-        </a>
-        <a>
-          <FontAwesomeIcon icon={faInstagram} />
-        </a>
-        <a>
-          <FontAwesomeIcon icon={faTwitter} />
-        </a>
+        <div className={styles.socialContainer}>
+          <a>
+            <FontAwesomeIcon icon={faFacebookSquare} />
+          </a>
+          <a>
+            <FontAwesomeIcon icon={faInstagram} />
+          </a>
+          <a>
+            <FontAwesomeIcon icon={faTwitter} />
+          </a>
+        </div>
       </div>
     </div>
     <div className={styles.copyrightContainer}><p>Copyright &copy; 2020</p></div>

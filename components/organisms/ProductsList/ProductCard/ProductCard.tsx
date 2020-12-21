@@ -20,7 +20,7 @@ const ProductCard:FC<Props> = ({
       <img src={image} alt={title} />
       <h2>{title}</h2>
       <p>{shortDescription}</p>
-      <p>{price}</p>
+      <p><strong>{price}</strong></p>
       <div className={styles.btnsContainer}>
         <button type="button">
           <Link href={`/products/${category}/${linkTitle}`}>
