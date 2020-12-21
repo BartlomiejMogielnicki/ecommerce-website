@@ -5,13 +5,20 @@
   justify-content: space-around;
 
   .imageContainer {
-    width: 80%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 50%;
 
-    img {
-      height: 500px;
+    .activeImage {
+      margin: 0 auto;
+      height: 400px;
+      width: 400px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        height: 100%;
+        width: auto;
+      }
     }
   }
 

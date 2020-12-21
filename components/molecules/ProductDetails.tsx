@@ -1,5 +1,7 @@
 import { FC } from 'react';
 import Link from 'next/link'
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import { Carousel } from 'react-responsive-carousel';
 import styles from './ProductDetails.module.scss';
 import { Product } from '../../types';
 
@@ -9,8 +11,17 @@ interface Props {
 
 const ProductDetails:FC<Props> = ({ product }) => (
   <div className={styles.container}>
-    <div className={styles.imageContainer}>
+    {/* <div className={styles.imageContainer}>
       <img src={product.images[0].url} alt={product.title} />
+    </div> */}
+    <div className={styles.imageContainer}>
+      <Carousel>
+        {product.images.map((image) => (
+          <div className={styles.activeImage}>
+            <img src={image.url} alt={image.name} />
+          </div>
+        ))}
+      </Carousel>
     </div>
     <div className={styles.panel}>
       <h1>{product.title}</h1>
