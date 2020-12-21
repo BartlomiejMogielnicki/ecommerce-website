@@ -33,6 +33,39 @@ button:hover {
   cursor: pointer;
 }
 
-button:focus {
+button:focus,
+li:focus {
   outline: none;
+}
+
+.carousel-style {
+  .carousel .slide {
+    background: white;
+  }
+
+  .carousel .control-dots .dot {
+    height: 12px;
+    width: 12px;
+  }
+
+  .carousel .thumb {
+    width: 100px !important;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      height: 100px;
+      width: auto;
+      padding: 5px;
+    }
+  }
+
+  .carousel .thumb:hover {
+    border: 3px solid #00adef;
+    cursor: pointer;
+  }
+
+  .carousel .thumb.selected {
+    border: 3px solid #00adef;
+  }
 }

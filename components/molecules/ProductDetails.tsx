@@ -15,7 +15,7 @@ const ProductDetails:FC<Props> = ({ product }) => (
       <img src={product.images[0].url} alt={product.title} />
     </div> */}
     <div className={styles.imageContainer}>
-      <Carousel>
+      <Carousel className="carousel-style" showStatus={false} showArrows={false}>
         {product.images.map((image) => (
           <div className={styles.activeImage}>
             <img src={image.url} alt={image.name} />

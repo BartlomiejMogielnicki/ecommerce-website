@@ -5,10 +5,13 @@
   justify-content: space-around;
 
   .imageContainer {
+    margin-top: 80px;
     width: 50%;
+    text-align: center;
 
     .activeImage {
       margin: 0 auto;
+      padding: 35px 10px 35px 10px;
       height: 400px;
       width: 400px;
       display: flex;
