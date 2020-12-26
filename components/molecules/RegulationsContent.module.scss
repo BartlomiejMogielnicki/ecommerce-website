@@ -1,0 +1,31 @@
+.container {
+  background-color: black;
+  border-top: 2px solid #00adef;
+  border-bottom: 2px solid #00adef;
+  color: white;
+  text-align: justify;
+
+  h2 {
+    color: #00adef;
+  }
+
+  .wrapper {
+    margin: 0 auto;
+    padding: 20px 10px;
+    max-width: 1200px;
+
+    .section {
+      margin: 20px 0px;
+
+      h3,
+      h4 {
+        margin: 10px 0px;
+        color: #00adef;
+      }
+
+      li {
+        margin-top: 5px;
+      }
+    }
+  }
+}

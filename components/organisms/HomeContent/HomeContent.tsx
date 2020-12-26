@@ -29,7 +29,7 @@ const HomeContent:FC<Props> = ({ bestsellers, recentPosts }) => (
         <ReactPlayer url="https://www.youtube.com/watch?v=xYX6b1-9Coo" controls width="100%" height="100%" />
       </div>
       <button type="button">
-        <Link href="/products/cameras/gopro-9-black">
+        <Link href="/products/cameras/gopro-hero-9-black">
           <a>GoPro HERO9 Black - Details</a>
         </Link>
       </button>
