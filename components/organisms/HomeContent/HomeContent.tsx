@@ -30,7 +30,7 @@ const HomeContent:FC<Props> = ({ bestsellers, recentPosts }) => (
       </div>
       <button type="button">
         <Link href="/products/cameras/gopro-hero-9-black">
-          <a>GoPro HERO9 Black - Details</a>
+          <a>GoPro HERO 9 Black - Details</a>
         </Link>
       </button>
     </div>

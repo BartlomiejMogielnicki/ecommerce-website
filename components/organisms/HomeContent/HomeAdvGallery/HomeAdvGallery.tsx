@@ -23,7 +23,7 @@ const HomeAdvGallery:FC = () => (
       </div>
     </div>
     <div className={styles.mainAdv}>
-      <Link href="/products/cameras/gopro-9-black">
+      <Link href="/products/cameras/gopro-hero-9-black">
         <a><img src="/homehero9.jpg" alt="" /></a>
       </Link>
     </div>
