@@ -1,8 +1,6 @@
 import { FC } from 'react';
 import Link from 'next/link';
-import { faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons'
-import { faFacebookSquare, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ContactDetails from 'components/atoms/ContactDetails'
 import styles from './Footer.module.scss'
 
 const shortCuts = [
@@ -83,29 +81,7 @@ const Footer:FC = () => (
         </ul>
       ))}
     </div>
-    <div className={styles.contactContainer}>
-      <div className={styles.contactInfo}>
-        <div>
-          <a><FontAwesomeIcon icon={faPhone} /></a>
-          111-222-333
-        </div>
-        <div>
-          <a><FontAwesomeIcon icon={faEnvelope} /></a>
-          shopgopro@fakemail.pl
-        </div>
-        <div className={styles.socialContainer}>
-          <a>
-            <FontAwesomeIcon icon={faFacebookSquare} />
-          </a>
-          <a>
-            <FontAwesomeIcon icon={faInstagram} />
-          </a>
-          <a>
-            <FontAwesomeIcon icon={faTwitter} />
-          </a>
-        </div>
-      </div>
-    </div>
+    <ContactDetails />
     <div className={styles.copyrightContainer}><p>Copyright &copy; 2020</p></div>
   </div>
 )

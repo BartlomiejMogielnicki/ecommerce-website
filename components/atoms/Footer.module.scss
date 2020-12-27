@@ -37,39 +37,6 @@
     }
   }
 
-  .contactContainer {
-    padding: 20px 20px 10px 20px;
-    width: 100%;
-    max-width: 800px;
-
-    .contactInfo {
-      padding: 0 30px;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-
-      a {
-        margin-right: 5px;
-      }
-    }
-
-    .socialContainer {
-      width: 100px;
-      display: flex;
-      justify-content: space-evenly;
-      font-size: 1.5rem;
-
-      a {
-        cursor: pointer;
-        transition: 0.2s;
-
-        :hover {
-          color: #00adef;
-        }
-      }
-    }
-  }
-
   .copyrightContainer {
     margin-top: 30px;
     color: #999;
