@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useState, useEffect } from 'react';
 import Link from 'next/link'
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
@@ -13,6 +13,16 @@ interface Props {
 
 const ProductDetails:FC<Props> = ({ product }) => {
   const [isShowProductModal, toggleShowProductModal] = useState(false)
+
+  const enableScroll = ():void => {
+    document.body.style.overflow = 'scroll'
+  }
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => enableScroll()
+  }, [])
+
   return (
     <div className={styles.container}>
       <div className={styles.imageContainer}>
