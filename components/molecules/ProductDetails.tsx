@@ -42,6 +42,20 @@ const ProductDetails:FC<Props> = ({ product }) => {
           </button>
         </div>
       </div>
+      {isShowProductModal && (
+        <div className={styles.productImagesModalContainer}>
+          <div className={styles.productImagesModal}>
+            <Carousel className="carousel-style" showStatus={false}>
+              {product.images.map((image) => (
+                <div className={styles.activeImage}>
+                  <img src={image.url} alt={image.name} />
+                </div>
+              ))}
+            </Carousel>
+          </div>
+          <div className={styles.productImagesModalBackdrop} onClick={() => toggleShowProductModal(!isShowProductModal)} />
+        </div>
+      )}
     </div>
   );
 }

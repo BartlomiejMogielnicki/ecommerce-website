@@ -48,11 +48,16 @@ li:focus {
     width: 12px;
   }
 
+  .carousel .thumbs {
+    display: flex;
+    justify-content: center;
+  }
   .carousel .thumb {
     width: 100px !important;
     display: inline-flex;
     justify-content: center;
     align-items: center;
+    background-color: white;
     img {
       height: 100px;
       width: auto;
@@ -67,5 +72,13 @@ li:focus {
 
   .carousel .thumb.selected {
     border: 3px solid #00adef;
+  }
+
+  .carousel .control-prev.control-arrow:before {
+    border-right: 8px solid #000;
+  }
+
+  .carousel .control-next.control-arrow:before {
+    border-left: 8px solid #000;
   }
 }
