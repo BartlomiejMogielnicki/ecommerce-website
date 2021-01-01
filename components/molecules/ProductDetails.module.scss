@@ -86,44 +86,4 @@
       }
     }
   }
-
-  .productImagesModalContainer {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    .productImagesModal {
-      width: 1000px;
-      z-index: 1000;
-
-      .activeImage {
-        margin: 0 auto;
-        padding: 20px;
-        width: 500px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        img {
-          height: auto;
-          width: 800px;
-        }
-      }
-    }
-    .productImagesModalBackdrop {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: rgba(0, 0, 0, 0.9);
-      cursor: zoom-out;
-      z-index: 500;
-    }
-  }
 }
