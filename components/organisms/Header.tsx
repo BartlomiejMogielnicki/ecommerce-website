@@ -30,12 +30,20 @@ const Header:FC = () => (
     </div>
     <div className={styles.user}>
       <button type="button">
-        <FontAwesomeIcon icon={faUser} />
-        <p>Register </p>
+        <Link href="/sign-in">
+          <a>
+            <FontAwesomeIcon icon={faUser} />
+            <p>Sign In</p>
+          </a>
+        </Link>
       </button>
       <button type="button">
-        <FontAwesomeIcon icon={faLockOpen} />
-        <p>Log In</p>
+        <Link href="/log-in">
+          <a>
+            <FontAwesomeIcon icon={faLockOpen} />
+            <p>Log In</p>
+          </a>
+        </Link>
       </button>
     </div>
     <Nav />
