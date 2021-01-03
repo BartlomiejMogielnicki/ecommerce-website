@@ -15,21 +15,12 @@ interface Props {
 const ProductDetails:FC<Props> = ({ product }) => {
   const [isShowProductModal, toggleShowProductModal] = useState(false)
 
-  const enableScroll = ():void => {
-    document.body.style.overflow = 'scroll'
-  }
-
-  useEffect(() => {
-    document.body.style.overflow = 'hidden';
-    return () => enableScroll()
-  }, [])
-
   return (
     <div className={styles.container}>
       <div className={styles.imageContainer}>
         <Carousel className="carousel-style" showStatus={false} showArrows={false}>
           {product.images.map((image) => (
-            <div className={styles.activeImage}>
+            <div className={styles.activeImage} onClick={() => toggleShowProductModal(!isShowProductModal)}>
               <img src={image.url} alt={image.name} />
             </div>
           ))}

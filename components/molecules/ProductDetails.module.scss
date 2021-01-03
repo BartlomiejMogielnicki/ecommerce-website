@@ -19,6 +19,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      cursor: zoom-in;
 
       img {
         height: 100%;
@@ -29,7 +30,7 @@
     .zoomButton {
       position: absolute;
       top: 20px;
-      right: 50px;
+      right: 70px;
       font-size: 1.2rem;
       color: #00adef;
     }

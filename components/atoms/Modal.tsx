@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import { Carousel } from 'react-responsive-carousel';
 import { Product } from '../../types';
 import styles from './Modal.module.scss'
@@ -8,19 +8,29 @@ interface Props {
   clicked: () => void
 }
 
-const Modal:FC<Props> = ({ product, clicked }) => (
-  <div className={styles.productImagesModalContainer}>
-    <div className={styles.productImagesModal}>
-      <Carousel className="carousel-style" showStatus={false}>
-        {product.images.map((image) => (
-          <div className={styles.activeImage}>
-            <img src={image.url} alt={image.name} />
-          </div>
-        ))}
-      </Carousel>
+const Modal:FC<Props> = ({ product, clicked }) => {
+  const enableScroll = ():void => {
+    document.body.style.overflowY = 'scroll'
+  }
+
+  useEffect(() => {
+    document.body.style.overflowY = 'hidden';
+    return () => enableScroll()
+  }, [])
+  return (
+    <div className={styles.productImagesModalContainer}>
+      <div className={styles.productImagesModal}>
+        <Carousel className="carousel-style" showStatus={false}>
+          {product.images.map((image) => (
+            <div className={styles.activeImage}>
+              <img src={image.url} alt={image.name} />
+            </div>
+          ))}
+        </Carousel>
+      </div>
+      <div className={styles.productImagesModalBackdrop} onClick={clicked} />
     </div>
-    <div className={styles.productImagesModalBackdrop} onClick={clicked} />
-  </div>
-)
+  )
+}
 
 export default Modal
