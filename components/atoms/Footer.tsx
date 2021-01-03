@@ -65,25 +65,33 @@ const shortCuts = [
   },
 ]
 
-const Footer:FC = () => (
-  <div className={styles.container}>
-    <div className={styles.shortcutsContainer}>
-      {shortCuts.map((item) => (
-        <ul key={item.title} className={styles.shortcutsColumn}>
-          <h4>{item.title}</h4>
-          {item.links.map((link) => (
-            <li key={link.text} className={styles.shortcutsItem}>
-              <Link href={link.href}>
-                <a>{link.text}</a>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      ))}
+const Footer:FC = () => {
+  const currentYear = new Date().getFullYear()
+  return (
+    <div className={styles.container}>
+      <div className={styles.shortcutsContainer}>
+        {shortCuts.map((item) => (
+          <ul key={item.title} className={styles.shortcutsColumn}>
+            <h4>{item.title}</h4>
+            {item.links.map((link) => (
+              <li key={link.text} className={styles.shortcutsItem}>
+                <Link href={link.href}>
+                  <a>{link.text}</a>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        ))}
+      </div>
+      <ContactDetails />
+      <div className={styles.copyrightContainer}>
+        <p>
+          Copyright &copy;
+          {currentYear}
+        </p>
+      </div>
     </div>
-    <ContactDetails />
-    <div className={styles.copyrightContainer}><p>Copyright &copy; 2020</p></div>
-  </div>
-)
+  )
+}
 
 export default Footer
