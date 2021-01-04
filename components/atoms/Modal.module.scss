@@ -10,7 +10,16 @@
 
   .productImagesModal {
     width: 1000px;
+    position: relative;
     z-index: 1000;
+
+    .closeButton {
+      position: absolute;
+      top: 20px;
+      right: 50px;
+      color: #00adef;
+      font-size: 2rem;
+    }
 
     .activeImage {
       margin: 0 auto;

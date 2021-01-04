@@ -1,5 +1,7 @@
 import { FC, useEffect } from 'react'
 import { Carousel } from 'react-responsive-carousel';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Product } from '../../types';
 import styles from './Modal.module.scss'
 
@@ -23,6 +25,9 @@ const Modal:FC<Props> = ({ product, clicked }) => {
         <Carousel className="carousel-style" showStatus={false}>
           {product.images.map((image) => (
             <div className={styles.activeImage}>
+              <button className={styles.closeButton} type="button" onClick={clicked}>
+                <FontAwesomeIcon icon={faTimes} />
+              </button>
               <img src={image.url} alt={image.name} />
             </div>
           ))}

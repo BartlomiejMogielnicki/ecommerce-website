@@ -14,7 +14,10 @@
     justify-content: center;
     align-items: center;
     background-color: #00adef;
-    color: white;
+    border-top: 5px solid #fff;
+    border-bottom: 5px solid #fff;
+    border-right: 2px solid #fff;
+    color: #fff;
     font-size: 4rem;
   }
 
@@ -24,5 +27,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #000;
+    border-top: 5px solid #fff;
+    border-bottom: 5px solid #fff;
+    border-left: 3px solid #fff;
+    color: #fff;
   }
 }
