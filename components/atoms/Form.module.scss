@@ -1,0 +1,46 @@
+.formContainer {
+  width: 350px;
+  height: 425px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+
+  &.small {
+    height: 350px;
+  }
+
+  .inputSection {
+    height: 50px;
+    label {
+      color: #00adef;
+    }
+
+    input {
+      padding: 7px;
+      margin-top: 5px;
+      width: 250px;
+      display: block;
+      font-size: 1rem;
+      border-radius: 5px;
+
+      &:focus {
+        border: 3px solid #00adef;
+        border-radius: 5px;
+      }
+    }
+  }
+
+  .submitBtn {
+    padding: 7px 15px;
+    color: white;
+    font-size: 1rem;
+    border: 2px solid #00adef;
+    border-radius: 5px;
+    transition: 0.2s;
+
+    &:hover {
+      background-color: #00adef;
+    }
+  }
+}
