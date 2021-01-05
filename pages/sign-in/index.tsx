@@ -10,7 +10,7 @@ const Contact: FC = () => (
       <Header />
     </header>
     <main>
-      <LoginContent />
+      <LoginContent type="signin" />
     </main>
     <footer>
       <Footer />

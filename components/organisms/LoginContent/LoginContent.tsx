@@ -1,8 +1,9 @@
 import { FC } from 'react'
+import Form from 'components/atoms/Form'
 import styles from './LoginContent.module.scss'
 
 interface Props {
-  type?: string
+  type: string
 }
 
 const LoginContent:FC<Props> = ({ type }) => (
@@ -12,7 +13,7 @@ const LoginContent:FC<Props> = ({ type }) => (
       <h2>In</h2>
     </div>
     <div className={styles.formContainer}>
-      Form
+      <Form type={type} />
     </div>
   </div>
 )
