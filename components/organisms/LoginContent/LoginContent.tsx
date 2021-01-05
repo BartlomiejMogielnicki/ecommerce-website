@@ -10,7 +10,7 @@ const LoginContent:FC<Props> = ({ type }) => (
   <div className={styles.container}>
     <div className={styles.titleContainer}>
       <h2>{type === 'login' ? 'Log' : 'Sign'}</h2>
-      <h2>In</h2>
+      <h2>in</h2>
     </div>
     <div className={styles.formContainer}>
       <Form type={type} />
