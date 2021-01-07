@@ -6,12 +6,9 @@
   justify-content: space-evenly;
   align-items: center;
 
-  &.small {
-    height: 350px;
-  }
-
   .inputSection {
     height: 50px;
+
     label {
       color: #00adef;
     }
@@ -29,9 +26,14 @@
         border-radius: 5px;
       }
     }
+
+    .errorMessage {
+      color: red;
+    }
   }
 
   .submitBtn {
+    margin-top: 5px;
     padding: 7px 15px;
     color: white;
     font-size: 1rem;

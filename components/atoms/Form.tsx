@@ -1,6 +1,8 @@
 import { FC, useState } from 'react'
 import styles from './Form.module.scss'
 
+const SIGNIN = 'signin';
+
 interface Props {
   type: string
 }
@@ -23,41 +25,35 @@ const Form:FC<Props> = ({ type }) => {
       toggleUsernameError(true)
       return
     }
+    toggleUsernameError(false)
 
     const validateEmail = (address) => {
       const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       return re.test(String(address).toLowerCase());
     }
 
-    if ((email.length === 0) || (!validateEmail(email))) {
+    if ((type === SIGNIN) && ((email.length === 0) || (!validateEmail(email)))) {
       toggleEmailError(true)
       return
     }
+    toggleEmailError(false)
 
     if (password.length === 0) {
       togglePasswordError(true)
       return
     }
+    togglePasswordError(false)
 
-    if (password2.length === 0 || password !== password2) {
+    if ((type === SIGNIN) && ((password2.length === 0 || password !== password2))) {
       togglePassword2Error(true)
       return
     }
-
-    console.log(`Form submitted with:
-    username: ${username}
-    email: ${email}
-    password: ${password}
-    password2: ${password2}`)
+    togglePassword2Error(false)
 
     setUsername('')
     setEmail('')
     setPassword('')
     setPassword2('')
-    toggleUsernameError(false)
-    toggleEmailError(false)
-    togglePasswordError(false)
-    togglePassword2Error(false)
   }
 
   return (
@@ -67,6 +63,7 @@ const Form:FC<Props> = ({ type }) => {
           Username
           <input type="text" maxLength={12} id="username" value={username} onChange={(e) => setUsername(e.target.value)} />
         </label>
+        {isUsernameError && <small className={styles.errorMessage}>Invalid username</small>}
       </div>
       {type === 'signin' && (
       <div className={styles.inputSection}>
@@ -74,6 +71,7 @@ const Form:FC<Props> = ({ type }) => {
           E-mail
           <input type="email" maxLength={35} id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
         </label>
+        {isEmailError && <small className={styles.errorMessage}>Invalid e-mail address</small>}
       </div>
       )}
       <div className={styles.inputSection}>
@@ -81,6 +79,7 @@ const Form:FC<Props> = ({ type }) => {
           Password
           <input type="password" maxLength={15} id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         </label>
+        {isPasswordError && <small className={styles.errorMessage}>Invalid password</small>}
       </div>
       {type === 'signin' && (
       <div className={styles.inputSection}>
@@ -88,6 +87,7 @@ const Form:FC<Props> = ({ type }) => {
           Confirm Password
           <input type="password" maxLength={15} id="password2" value={password2} onChange={(e) => setPassword2(e.target.value)} />
         </label>
+        {isPassword2Error && <small className={styles.errorMessage}>Invalid password</small>}
       </div>
       )}
       <button className={styles.submitBtn} type="submit">Submit</button>
