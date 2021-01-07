@@ -2,6 +2,7 @@ import { FC, useState } from 'react'
 import styles from './Form.module.scss'
 
 const SIGNIN = 'signin';
+const LOGIN = 'login'
 
 interface Props {
   type: string
@@ -17,6 +18,8 @@ const Form:FC<Props> = ({ type }) => {
   const [isEmailError, toggleEmailError] = useState(false)
   const [isPasswordError, togglePasswordError] = useState(false)
   const [isPassword2Error, togglePassword2Error] = useState(false)
+
+  const passwordErrorMessage = type === SIGNIN ? 'Password min. length is 6 characters' : 'Invalid Username'
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -38,7 +41,7 @@ const Form:FC<Props> = ({ type }) => {
     }
     toggleEmailError(false)
 
-    if (password.length === 0) {
+    if ((password.length === 0) || (password.length < 6)) {
       togglePasswordError(true)
       return
     }
@@ -57,11 +60,11 @@ const Form:FC<Props> = ({ type }) => {
   }
 
   return (
-    <form className={`${styles.formContainer} ${type === 'login' && styles.small}`} noValidate onSubmit={(e) => handleSubmit(e)}>
-      <div className={styles.inputSection}>
+    <form className={`${styles.formContainer} ${type === LOGIN && styles.small}`} noValidate onSubmit={(e) => handleSubmit(e)}>
+      <div className={`${styles.inputSection} ${isUsernameError && styles.isError}`}>
         <label htmlFor="username">
           Username
-          <input type="text" maxLength={12} id="username" value={username} onChange={(e) => setUsername(e.target.value)} />
+          <input className={`${isUsernameError && styles.isError}`} type="text" maxLength={12} id="username" value={username} onChange={(e) => setUsername(e.target.value)} />
         </label>
         {isUsernameError && <small className={styles.errorMessage}>Invalid username</small>}
       </div>
@@ -69,7 +72,7 @@ const Form:FC<Props> = ({ type }) => {
       <div className={styles.inputSection}>
         <label htmlFor="email">
           E-mail
-          <input type="email" maxLength={35} id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <input className={`${isEmailError && styles.isError}`} type="email" maxLength={35} id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
         </label>
         {isEmailError && <small className={styles.errorMessage}>Invalid e-mail address</small>}
       </div>
@@ -77,15 +80,15 @@ const Form:FC<Props> = ({ type }) => {
       <div className={styles.inputSection}>
         <label htmlFor="password">
           Password
-          <input type="password" maxLength={15} id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          <input className={`${isPasswordError && styles.isError}`} type="password" maxLength={15} id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         </label>
-        {isPasswordError && <small className={styles.errorMessage}>Invalid password</small>}
+        {isPasswordError && <small className={styles.errorMessage}>{passwordErrorMessage}</small>}
       </div>
       {type === 'signin' && (
       <div className={styles.inputSection}>
         <label htmlFor="password2">
           Confirm Password
-          <input type="password" maxLength={15} id="password2" value={password2} onChange={(e) => setPassword2(e.target.value)} />
+          <input className={`${isPassword2Error && styles.isError}`} type="password" maxLength={15} id="password2" value={password2} onChange={(e) => setPassword2(e.target.value)} />
         </label>
         {isPassword2Error && <small className={styles.errorMessage}>Invalid password</small>}
       </div>
