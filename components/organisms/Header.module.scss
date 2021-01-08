@@ -64,6 +64,19 @@
       color: #00adef;
     }
 
+    .userName {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #00adef;
+      font-size: 1.1rem;
+      font-weight: bold;
+
+      p {
+        margin-left: 10px;
+      }
+    }
+
     a {
       display: flex;
       justify-content: space-between;

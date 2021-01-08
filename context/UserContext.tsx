@@ -1,19 +1,30 @@
 import { useReducer, createContext } from 'react'
 
-const initialState = {
-  authenticated: true,
-  userName: 'TestUser',
-  cart: [],
+interface CartObject {
+    _id: string,
+    title: string
 }
 
 interface ContextProps {
-  authenticated: boolean,
-  user: string
+  user: {
+    authenticated: boolean,
+    userName: string,
+    cart: CartObject[]
+  }
+}
+
+const initialState = {
+  authenticated: true,
+  userName: 'TestUser',
   cart: [
     {
-      _id: string,
-      title: string
-    }
+      _id: '1',
+      title: 'one',
+    },
+    {
+      _id: '2',
+      title: 'two',
+    },
   ],
 }
 
