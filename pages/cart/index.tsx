@@ -1,5 +1,6 @@
 import { FC, useContext } from 'react'
 import { UserContext } from 'context/UserContext'
+import Link from 'next/link'
 
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -28,7 +29,14 @@ const Cart:FC = () => {
           {cart.map((item) => (
             <li className={styles.cartItem} key={item.title}>
               <img src={item.image} alt={item.title} />
-              <p>{item.title}</p>
+              <div className={styles.cartItemTitle}>
+                <p>{item.title}</p>
+                <button type="button">
+                  <Link href={`/products/${item.category}/${item.title.split(' ').join('-').toLowerCase()}`}>
+                    <a>Details</a>
+                  </Link>
+                </button>
+              </div>
               <div className={styles.cartItemQuantity}>
                 <button type="button">-</button>
                 <p>
@@ -53,6 +61,9 @@ const Cart:FC = () => {
             <strong>{summaryCost}</strong>
             $
           </p>
+        </div>
+        <div className={styles.buy}>
+          <button className={styles.buyButton} type="button">Buy</button>
         </div>
       </main>
       <footer>

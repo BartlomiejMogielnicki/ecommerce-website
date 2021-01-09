@@ -2,6 +2,7 @@ import { useReducer, createContext } from 'react'
 
 interface CartObject {
     title: string,
+    category: string,
     price: number,
     image: string,
     quantity: number
@@ -21,12 +22,14 @@ const initialState = {
   cart: [
     {
       title: 'GoPro HERO 9 Black',
+      category: 'cameras',
       price: 349.99,
       image: 'https://strapiuploadecommerceimages.s3.eu-central-1.amazonaws.com/gp9_1_c0b10a6e80.jpg',
       quantity: 1,
     },
     {
       title: 'GoPro HERO 8 Black',
+      category: 'cameras',
       price: 299.99,
       image: 'https://strapiuploadecommerceimages.s3.eu-central-1.amazonaws.com/gp8_1_9fe20a6816.jpg',
       quantity: 1,
