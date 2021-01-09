@@ -1,6 +1,9 @@
 import { FC, useContext } from 'react'
 import { UserContext } from 'context/UserContext'
 
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import Header from 'components/organisms/Header'
 import Footer from 'components/atoms/Footer'
 import styles from './cart.module.scss'
@@ -23,14 +26,21 @@ const Cart:FC = () => {
             <li className={styles.cartItem} key={item.title}>
               <img src={item.image} alt={item.title} />
               <p>{item.title}</p>
-              <p>
-                {item.quantity}
-                pcs
-              </p>
+              <div className={styles.cartItemQuantity}>
+                <button type="button">-</button>
+                <p>
+                  {item.quantity}
+                  {' pcs'}
+                </p>
+                <button type="button">+</button>
+              </div>
               <p>
                 {item.price}
-                $
+                {' $'}
               </p>
+              <button type="button" className={styles.buttonDelete}>
+                <FontAwesomeIcon icon={faTrash} />
+              </button>
             </li>
           ))}
         </ul>

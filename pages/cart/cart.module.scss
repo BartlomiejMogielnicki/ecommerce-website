@@ -9,7 +9,7 @@
     .cartItem {
       padding: 10px 0;
       display: grid;
-      grid-template-columns: 150px 1fr 150px 150px;
+      grid-template-columns: 150px 1fr 150px 200px 50px;
       grid-template-rows: 1fr;
       justify-items: center;
       align-items: center;
@@ -22,6 +22,35 @@
       img {
         height: 80px;
         max-width: 150px;
+      }
+
+      .cartItemQuantity {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      button {
+        width: 35px;
+        height: 35px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #00adef;
+        border: 1px solid #00adef;
+        border-radius: 5px;
+        font-size: 2rem;
+        transition: 0.2s;
+
+        &:hover {
+          background-color: #00adef;
+          color: white;
+        }
+      }
+
+      .buttonDelete {
+        font-size: 1rem;
       }
     }
   }
