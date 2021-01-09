@@ -3,7 +3,6 @@ import Link from 'next/link';
 import styles from './ProductCard.module.scss';
 
 type Props = {
-  _id: string
   title: string,
   image: string,
   category: string,

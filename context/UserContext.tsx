@@ -1,8 +1,9 @@
 import { useReducer, createContext } from 'react'
 
 interface CartObject {
-    _id: string,
-    title: string
+    title: string,
+    price: string,
+    image: string
 }
 
 interface ContextProps {
@@ -18,12 +19,14 @@ const initialState = {
   userName: 'TestUser',
   cart: [
     {
-      _id: '1',
-      title: 'one',
+      title: 'GoPro HERO 9 Black',
+      price: '349.99$',
+      image: 'https://strapiuploadecommerceimages.s3.eu-central-1.amazonaws.com/gp9_1_c0b10a6e80.jpg',
     },
     {
-      _id: '2',
-      title: 'two',
+      title: 'GoPro HERO 8 Black',
+      price: '299.99$',
+      image: 'https://strapiuploadecommerceimages.s3.eu-central-1.amazonaws.com/gp8_1_9fe20a6816.jpg',
     },
   ],
 }
