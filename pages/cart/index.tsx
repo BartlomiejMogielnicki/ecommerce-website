@@ -10,6 +10,9 @@ import styles from './cart.module.scss'
 
 const Cart:FC = () => {
   const { user: { cart } } = useContext(UserContext)
+
+  const summaryCost = cart.map((item) => item.price).reduce((a, b) => a + b, 0)
+
   return (
     <div>
       <header>
@@ -44,6 +47,13 @@ const Cart:FC = () => {
             </li>
           ))}
         </ul>
+        <div className={styles.summaryCost}>
+          <p>
+            Summary cost:
+            <strong>{summaryCost}</strong>
+            $
+          </p>
+        </div>
       </main>
       <footer>
         <Footer />

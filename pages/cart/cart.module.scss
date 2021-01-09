@@ -5,7 +5,12 @@
   text-align: center;
   font-size: 1.4rem;
 
+  h2 {
+    margin-top: 10px;
+  }
+
   .cartList {
+    margin-top: 10px;
     .cartItem {
       padding: 10px 0;
       display: grid;
@@ -52,6 +57,15 @@
       .buttonDelete {
         font-size: 1rem;
       }
+    }
+  }
+
+  .summaryCost {
+    margin: 20px 0;
+    text-align: right;
+
+    strong {
+      margin-left: 5px;
     }
   }
 }
