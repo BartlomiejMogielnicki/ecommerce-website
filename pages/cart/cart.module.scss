@@ -1,0 +1,28 @@
+.container {
+  margin: 0 auto;
+  padding: 10px 10px;
+  max-width: 1200px;
+  text-align: center;
+  font-size: 1.4rem;
+
+  .cartList {
+    .cartItem {
+      padding: 10px 0;
+      display: grid;
+      grid-template-columns: 150px 1fr 150px 150px;
+      grid-template-rows: 1fr;
+      justify-items: center;
+      align-items: center;
+      border-bottom: 1px solid #aaa;
+
+      &:last-of-type {
+        border-bottom: none;
+      }
+
+      img {
+        height: 80px;
+        max-width: 150px;
+      }
+    }
+  }
+}
