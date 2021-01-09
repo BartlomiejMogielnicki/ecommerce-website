@@ -1,4 +1,4 @@
-import { FC, useState, useEffect } from 'react';
+import { FC, useState } from 'react';
 import Link from 'next/link'
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
@@ -20,7 +20,7 @@ const ProductDetails:FC<Props> = ({ product }) => {
       <div className={styles.imageContainer}>
         <Carousel className="carousel-style" showStatus={false} showArrows={false}>
           {product.images.map((image) => (
-            <div className={styles.activeImage} onClick={() => toggleShowProductModal(!isShowProductModal)}>
+            <div key={image.name} className={styles.activeImage} onClick={() => toggleShowProductModal(!isShowProductModal)}>
               <img src={image.url} alt={image.name} />
             </div>
           ))}

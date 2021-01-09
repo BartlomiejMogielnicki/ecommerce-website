@@ -18,6 +18,7 @@ const ProductsList: FC<Props> = ({ products }) => (
       {products && products.sort((product) => (product.bestseller ? -1 : 1)).map((product) => (
         <ProductCard
           key={product.title}
+          _id={product._id}
           title={product.title}
           category={product.category}
           image={product.images[0].url}

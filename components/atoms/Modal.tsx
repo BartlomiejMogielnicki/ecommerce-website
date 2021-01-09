@@ -24,7 +24,7 @@ const Modal:FC<Props> = ({ product, clicked }) => {
       <div className={styles.productImagesModal}>
         <Carousel className="carousel-style" showStatus={false}>
           {product.images.map((image) => (
-            <div className={styles.activeImage}>
+            <div className={styles.activeImage} key={image.name}>
               <button className={styles.closeButton} type="button" onClick={clicked}>
                 <FontAwesomeIcon icon={faTimes} />
               </button>
