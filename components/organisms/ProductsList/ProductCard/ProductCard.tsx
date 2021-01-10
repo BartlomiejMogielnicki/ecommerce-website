@@ -1,5 +1,6 @@
-import { FC } from 'react';
+import { FC, useContext } from 'react';
 import Link from 'next/link';
+import { UserContext } from 'context/UserContext'
 import styles from './ProductCard.module.scss';
 
 type Props = {
@@ -7,13 +8,15 @@ type Props = {
   image: string,
   category: string,
   shortDescription: string,
-  price: string,
+  price: number,
   bestseller: boolean
 }
 
 const ProductCard:FC<Props> = ({
   title, image, category, shortDescription, price, bestseller,
 }) => {
+  const { addToCart } = useContext(UserContext)
+
   const linkTitle = title.split(' ').join('-').toLowerCase();
 
   return (
@@ -21,7 +24,12 @@ const ProductCard:FC<Props> = ({
       <img src={image} alt={title} />
       <h2>{title}</h2>
       <p>{shortDescription}</p>
-      <p><strong>{price}</strong></p>
+      <p>
+        <strong>
+          {price}
+          {' $'}
+        </strong>
+      </p>
       {bestseller && <div className={styles.ribbon}><span>Bestseller</span></div>}
       <div className={styles.btnsContainer}>
         <button type="button">
@@ -29,7 +37,7 @@ const ProductCard:FC<Props> = ({
             <a>Details</a>
           </Link>
         </button>
-        <button type="button">
+        <button type="button" onClick={() => addToCart(title, category, price, image)}>
           <p>Add to cart</p>
         </button>
       </div>

@@ -1,4 +1,4 @@
-import { useReducer, createContext } from 'react'
+import { useReducer, createContext, useCallback } from 'react'
 
 interface CartObject {
     title: string,
@@ -13,7 +13,8 @@ interface ContextProps {
     authenticated: boolean,
     userName: string,
     cart: CartObject[]
-  }
+  },
+  addToCart: (title: string, category: string, price: number, image: string) => void
 }
 
 const initialState = {
@@ -39,12 +40,39 @@ const initialState = {
 
 export const UserContext = createContext<Partial<ContextProps>>({})
 
-const reducer = (state, action) => state
+const ADD_TO_CART = 'ADD_TO_CART'
+
+const reducer = (state, action) => {
+  if (action.type === ADD_TO_CART) {
+    return {
+      ...state, cart: [action.payload, ...state.cart],
+    }
+  }
+  return state;
+}
 
 export const UserProvider = ({ children }) => {
   const [user, dispatch] = useReducer(reducer, initialState)
 
-  const value = { user }
+  const addToCart = useCallback(
+    (
+      title, category, price, image,
+    ) => {
+      dispatch({
+        type: ADD_TO_CART,
+        payload: {
+          title,
+          category,
+          price,
+          image,
+          quantity: 1,
+        },
+      });
+    },
+    [dispatch],
+  );
+
+  const value = { user, addToCart }
 
   return (
     <UserContext.Provider value={value}>{children}</UserContext.Provider>

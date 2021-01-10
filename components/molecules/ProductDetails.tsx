@@ -1,10 +1,11 @@
-import { FC, useState } from 'react';
+import { FC, useState, useContext } from 'react';
 import Link from 'next/link'
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Modal from 'components/atoms/Modal'
+import { UserContext } from 'context/UserContext'
 import styles from './ProductDetails.module.scss';
 import { Product } from '../../types';
 
@@ -14,6 +15,8 @@ interface Props {
 
 const ProductDetails:FC<Props> = ({ product }) => {
   const [isShowProductModal, toggleShowProductModal] = useState(false)
+
+  const { addToCart } = useContext(UserContext)
 
   return (
     <div className={styles.container}>
@@ -32,14 +35,17 @@ const ProductDetails:FC<Props> = ({ product }) => {
       <div className={styles.panel}>
         <h1>{product.title}</h1>
         <p className={styles.description}>{product.description}</p>
-        <p className={styles.price}>{product.price}</p>
+        <p className={styles.price}>
+          {product.price}
+          {' $'}
+        </p>
         <div className={styles.btnsContainer}>
           <button type="button">
             <Link href={`/products/${product.category}`}>
               <a>{`Return to ${product.category}`}</a>
             </Link>
           </button>
-          <button type="button">
+          <button type="button" onClick={() => addToCart(product.title, product.category, product.price, product.images[0].url)}>
             <p>Add to cart</p>
           </button>
         </div>

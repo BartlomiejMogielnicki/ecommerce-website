@@ -17,7 +17,10 @@ const HomeBestsGallery:FC<Props> = ({ bestsellers }) => (
             <a>
               <img src={item.images[0].url} alt={item.title} />
               <p><strong>{item.title}</strong></p>
-              <p>{item.price}</p>
+              <p>
+                {item.price}
+                {' $'}
+              </p>
             </a>
           </Link>
         </li>

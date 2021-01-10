@@ -5,7 +5,7 @@ export interface Product {
   image: string
   shortDescription: string
   description: string
-  price: string
+  price: number
   bestseller: boolean
   images: [
     {
