@@ -14,7 +14,8 @@ interface ContextProps {
     userName: string,
     cart: CartObject[]
   },
-  addToCart: (title: string, category: string, price: number, image: string) => void
+  addToCart: (title: string, category: string, price: number, image: string) => void,
+  deleteFromCart: (title: string) => void
 }
 
 const initialState = {
@@ -41,11 +42,18 @@ const initialState = {
 export const UserContext = createContext<Partial<ContextProps>>({})
 
 const ADD_TO_CART = 'ADD_TO_CART'
+const DELETE_FROM_CART = 'DELETE_FROM_CART'
 
 const reducer = (state, action) => {
   if (action.type === ADD_TO_CART) {
     return {
       ...state, cart: [action.payload, ...state.cart],
+    }
+  }
+
+  if (action.type === DELETE_FROM_CART) {
+    return {
+      ...state, cart: state.cart.filter((item) => item.title !== action.payload.title),
     }
   }
   return state;
@@ -72,7 +80,19 @@ export const UserProvider = ({ children }) => {
     [dispatch],
   );
 
-  const value = { user, addToCart }
+  const deleteFromCart = useCallback((
+    title,
+  ) => {
+    dispatch({
+      type: DELETE_FROM_CART,
+      payload: {
+        title,
+      },
+    });
+  },
+  [dispatch])
+
+  const value = { user, addToCart, deleteFromCart }
 
   return (
     <UserContext.Provider value={value}>{children}</UserContext.Provider>
