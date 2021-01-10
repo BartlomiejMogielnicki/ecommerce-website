@@ -15,7 +15,8 @@ interface ContextProps {
     cart: CartObject[]
   },
   addToCart: (title: string, category: string, price: number, image: string) => void,
-  deleteFromCart: (title: string) => void
+  deleteFromCart: (title: string) => void,
+  increaseQuantity: (title: string) => void
 }
 
 const initialState = {
@@ -43,6 +44,8 @@ export const UserContext = createContext<Partial<ContextProps>>({})
 
 const ADD_TO_CART = 'ADD_TO_CART'
 const DELETE_FROM_CART = 'DELETE_FROM_CART'
+const INCREASE_QUANTITY = 'INCREASE_QUANTITY'
+const DECREASE_QUANTITY = 'DECREASE_QUANTITY'
 
 const reducer = (state, action) => {
   if (action.type === ADD_TO_CART) {
@@ -56,6 +59,24 @@ const reducer = (state, action) => {
       ...state, cart: state.cart.filter((item) => item.title !== action.payload.title),
     }
   }
+
+  if (action.type === INCREASE_QUANTITY) {
+    return {
+      ...state,
+      cart: state.cart.map((item) => {
+        if (item.title === action.payload.title) {
+          return {
+            ...item,
+            quantity: item.quantity + 1,
+          }
+        }
+        return {
+          ...item,
+        }
+      }),
+    }
+  }
+
   return state;
 }
 
@@ -80,9 +101,7 @@ export const UserProvider = ({ children }) => {
     [dispatch],
   );
 
-  const deleteFromCart = useCallback((
-    title,
-  ) => {
+  const deleteFromCart = useCallback((title) => {
     dispatch({
       type: DELETE_FROM_CART,
       payload: {
@@ -92,7 +111,18 @@ export const UserProvider = ({ children }) => {
   },
   [dispatch])
 
-  const value = { user, addToCart, deleteFromCart }
+  const increaseQuantity = useCallback((title) => {
+    dispatch({
+      type: INCREASE_QUANTITY,
+      payload: {
+        title,
+      },
+    });
+  }, [dispatch])
+
+  const value = {
+    user, addToCart, deleteFromCart, increaseQuantity,
+  }
 
   return (
     <UserContext.Provider value={value}>{children}</UserContext.Provider>
