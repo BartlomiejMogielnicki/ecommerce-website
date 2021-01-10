@@ -48,7 +48,7 @@ const Cart:FC = () => {
                 <button type="button" onClick={() => increaseQuantity(item.title)}>+</button>
               </div>
               <p>
-                {item.price * item.quantity}
+                {(item.price * item.quantity).toFixed(2)}
                 {' $'}
               </p>
               <button type="button" className={styles.buttonDelete} onClick={() => deleteFromCart(item.title)}>
