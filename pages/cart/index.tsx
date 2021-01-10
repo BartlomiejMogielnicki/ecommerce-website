@@ -10,7 +10,9 @@ import Footer from 'components/atoms/Footer'
 import styles from './cart.module.scss'
 
 const Cart:FC = () => {
-  const { user: { cart }, deleteFromCart, increaseQuantity } = useContext(UserContext)
+  const {
+    user: { cart }, deleteFromCart, increaseQuantity, decreaseQuantity,
+  } = useContext(UserContext)
 
   const summaryCost = cart.map((item) => item.price).reduce((a, b) => a + b, 0)
 
@@ -38,7 +40,7 @@ const Cart:FC = () => {
                 </button>
               </div>
               <div className={styles.cartItemQuantity}>
-                <button type="button">-</button>
+                <button type="button" onClick={() => decreaseQuantity(item.title)}>-</button>
                 <p>
                   {item.quantity}
                   {' pcs'}

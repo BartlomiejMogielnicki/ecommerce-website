@@ -16,7 +16,8 @@ interface ContextProps {
   },
   addToCart: (title: string, category: string, price: number, image: string) => void,
   deleteFromCart: (title: string) => void,
-  increaseQuantity: (title: string) => void
+  increaseQuantity: (title: string) => void,
+  decreaseQuantity: (title: string) => void
 }
 
 const initialState = {
@@ -77,6 +78,23 @@ const reducer = (state, action) => {
     }
   }
 
+  if (action.type === DECREASE_QUANTITY) {
+    return {
+      ...state,
+      cart: state.cart.map((item) => {
+        if (item.title === action.payload.title) {
+          return {
+            ...item,
+            quantity: item.quantity - 1,
+          }
+        }
+        return {
+          ...item,
+        }
+      }),
+    }
+  }
+
   return state;
 }
 
@@ -120,8 +138,17 @@ export const UserProvider = ({ children }) => {
     });
   }, [dispatch])
 
+  const decreaseQuantity = useCallback((title) => {
+    dispatch({
+      type: DECREASE_QUANTITY,
+      payload: {
+        title,
+      },
+    });
+  }, [dispatch])
+
   const value = {
-    user, addToCart, deleteFromCart, increaseQuantity,
+    user, addToCart, deleteFromCart, increaseQuantity, decreaseQuantity,
   }
 
   return (
