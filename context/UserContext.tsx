@@ -50,9 +50,12 @@ const DECREASE_QUANTITY = 'DECREASE_QUANTITY'
 
 const reducer = (state, action) => {
   if (action.type === ADD_TO_CART) {
-    return {
-      ...state, cart: [action.payload, ...state.cart],
+    if (state.cart.every((item) => item.title !== action.payload.title)) {
+      return {
+        ...state, cart: [action.payload, ...state.cart],
+      }
     }
+    return state;
   }
 
   if (action.type === DELETE_FROM_CART) {

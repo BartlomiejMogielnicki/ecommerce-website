@@ -14,7 +14,7 @@ const Cart:FC = () => {
     user: { cart }, deleteFromCart, increaseQuantity, decreaseQuantity,
   } = useContext(UserContext)
 
-  const summaryCost = cart.map((item) => item.price).reduce((a, b) => a + b, 0)
+  const summaryCost = cart.map((item) => item.price * item.quantity).reduce((a, b) => a + b, 0).toFixed(2)
 
   return (
     <div>
@@ -48,7 +48,7 @@ const Cart:FC = () => {
                 <button type="button" onClick={() => increaseQuantity(item.title)}>+</button>
               </div>
               <p>
-                {item.price}
+                {item.price * item.quantity}
                 {' $'}
               </p>
               <button type="button" className={styles.buttonDelete} onClick={() => deleteFromCart(item.title)}>
@@ -61,7 +61,7 @@ const Cart:FC = () => {
           <p>
             Summary cost:
             <strong>{summaryCost}</strong>
-            $
+            {' $'}
           </p>
         </div>
         <div className={styles.buy}>
