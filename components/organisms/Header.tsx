@@ -1,4 +1,6 @@
-import { FC, useContext } from 'react';
+import {
+  FC, useContext, useRef, useState, useEffect,
+} from 'react';
 import {
   faLock, faLockOpen, faShoppingCart, faUser,
 } from '@fortawesome/free-solid-svg-icons';
@@ -12,6 +14,21 @@ import styles from './Header.module.scss';
 
 const Header:FC = () => {
   const { user } = useContext(UserContext)
+  const [isCartFixed, setIsCartFixed] = useState(false)
+
+  const cartRef = useRef(null)
+
+  useEffect(() => {
+    const cartOffsetTop = cartRef.current.getBoundingClientRect().top
+    const handleScroll = () => {
+      setIsCartFixed(window.scrollY + 40 > cartOffsetTop)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
 
   return (
     <div className={styles.container}>
@@ -25,7 +42,7 @@ const Header:FC = () => {
         <div className={`${styles.topCol} ${styles.topColCart}`}>
           <Link href="/cart">
             <a>
-              <div className={styles.cart}>
+              <div className={`${styles.cart} ${isCartFixed && styles.fixed}`} ref={cartRef}>
                 <FontAwesomeIcon icon={faShoppingCart} />
                 My Cart
                 <div className={styles.itemsNum}>{user.cart.length}</div>

@@ -30,6 +30,13 @@
     align-items: center;
     justify-content: space-between;
     position: relative;
+
+    &.fixed {
+      position: fixed;
+      top: 40px;
+      right: 55px;
+      z-index: 1000;
+    }
   }
 
   .cart:hover {
