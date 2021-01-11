@@ -44,7 +44,6 @@ const Header:FC = () => {
             <a>
               <div className={`${styles.cart} ${isCartFixed && styles.fixed}`} ref={cartRef}>
                 <FontAwesomeIcon icon={faShoppingCart} />
-                My Cart
                 <div className={styles.itemsNum}>{user.cart.length}</div>
               </div>
             </a>
