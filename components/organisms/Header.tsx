@@ -22,7 +22,11 @@ const Header:FC = () => {
   const router = useRouter()
 
   useEffect(() => {
-    const cartOffsetTop = cartRef.current.getBoundingClientRect().top
+    let cartOffsetTop = cartRef.current.getBoundingClientRect().top
+    // Set default offset to prevent issue when change page with fixed cart icon
+    if (cartOffsetTop < 84) {
+      cartOffsetTop = 84
+    }
     const handleScroll = () => {
       setIsCartFixed(window.scrollY + 40 > cartOffsetTop)
     }
@@ -47,7 +51,9 @@ const Header:FC = () => {
             <a>
               <div className={`${styles.cart} ${isCartFixed && styles.fixed} ${router.pathname === '/cart' && styles.hidden}`} ref={cartRef}>
                 <FontAwesomeIcon icon={faShoppingCart} />
-                <div className={styles.itemsNum}>{user.cart.length}</div>
+                <div className={styles.itemsNum}>
+                  {user.cart.length}
+                </div>
               </div>
             </a>
           </Link>
