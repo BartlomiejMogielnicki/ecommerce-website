@@ -17,7 +17,8 @@ interface ContextProps {
   addToCart: (title: string, category: string, price: number, image: string) => void,
   deleteFromCart: (title: string) => void,
   increaseQuantity: (title: string) => void,
-  decreaseQuantity: (title: string) => void
+  decreaseQuantity: (title: string) => void,
+  logout: () => void
 }
 
 const initialState = {
@@ -47,6 +48,7 @@ const ADD_TO_CART = 'ADD_TO_CART'
 const DELETE_FROM_CART = 'DELETE_FROM_CART'
 const INCREASE_QUANTITY = 'INCREASE_QUANTITY'
 const DECREASE_QUANTITY = 'DECREASE_QUANTITY'
+const LOG_OUT = 'LOG_OUT'
 
 const reducer = (state, action) => {
   if (action.type === ADD_TO_CART) {
@@ -95,6 +97,14 @@ const reducer = (state, action) => {
           ...item,
         }
       }),
+    }
+  }
+
+  if (action.type === LOG_OUT) {
+    return {
+      authenticated: false,
+      userName: null,
+      cart: [],
     }
   }
 
@@ -150,8 +160,15 @@ export const UserProvider = ({ children }) => {
     });
   }, [dispatch])
 
+  const logout = useCallback(() => {
+    console.log('LOGOUT!')
+    dispatch({
+      type: LOG_OUT,
+    })
+  }, [dispatch])
+
   const value = {
-    user, addToCart, deleteFromCart, increaseQuantity, decreaseQuantity,
+    user, addToCart, deleteFromCart, increaseQuantity, decreaseQuantity, logout,
   }
 
   return (

@@ -14,7 +14,7 @@ import Search from 'components/atoms/Search';
 import styles from './Header.module.scss';
 
 const Header:FC = () => {
-  const { user } = useContext(UserContext)
+  const { user, logout } = useContext(UserContext)
   const [isCartFixed, setIsCartFixed] = useState(false)
 
   const cartRef = useRef(null)
@@ -65,7 +65,7 @@ const Header:FC = () => {
             <FontAwesomeIcon icon={faUser} />
             <p>{user.userName}</p>
           </div>
-          <button type="button">
+          <button type="button" onClick={logout}>
             <a>
               <FontAwesomeIcon icon={faLock} />
               <p>Log Out</p>
