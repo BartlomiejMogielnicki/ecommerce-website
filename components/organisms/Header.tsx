@@ -6,6 +6,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link'
+import { useRouter } from 'next/router';
 import { UserContext } from 'context/UserContext'
 
 import Nav from 'components/atoms/Nav';
@@ -17,6 +18,8 @@ const Header:FC = () => {
   const [isCartFixed, setIsCartFixed] = useState(false)
 
   const cartRef = useRef(null)
+
+  const router = useRouter()
 
   useEffect(() => {
     const cartOffsetTop = cartRef.current.getBoundingClientRect().top
@@ -42,7 +45,7 @@ const Header:FC = () => {
         <div className={`${styles.topCol} ${styles.topColCart}`}>
           <Link href="/cart">
             <a>
-              <div className={`${styles.cart} ${isCartFixed && styles.fixed}`} ref={cartRef}>
+              <div className={`${styles.cart} ${isCartFixed && styles.fixed} ${router.pathname === '/cart' && styles.hidden}`} ref={cartRef}>
                 <FontAwesomeIcon icon={faShoppingCart} />
                 <div className={styles.itemsNum}>{user.cart.length}</div>
               </div>
