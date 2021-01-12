@@ -144,7 +144,7 @@ export const UserProvider = ({ children }) => {
     [dispatch],
   );
 
-  const deleteFromCart = useCallback((title) => {
+  const deleteFromCart = useCallback((title: string) => {
     dispatch({
       type: DELETE_FROM_CART,
       payload: {
@@ -154,7 +154,7 @@ export const UserProvider = ({ children }) => {
   },
   [dispatch])
 
-  const increaseQuantity = useCallback((title) => {
+  const increaseQuantity = useCallback((title: string) => {
     dispatch({
       type: INCREASE_QUANTITY,
       payload: {
@@ -163,7 +163,7 @@ export const UserProvider = ({ children }) => {
     });
   }, [dispatch])
 
-  const decreaseQuantity = useCallback((title) => {
+  const decreaseQuantity = useCallback((title: string) => {
     dispatch({
       type: DECREASE_QUANTITY,
       payload: {
@@ -186,7 +186,12 @@ export const UserProvider = ({ children }) => {
       },
       method: 'POST',
       body: JSON.stringify({ username, password }),
-    }).then((response) => response.json()).then((data) => dispatch({
+    }).then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw new Error('Something went wrong');
+    }).then((data) => dispatch({
       type: LOG_IN, payload: data,
     })).catch((error) => console.log(error))
   }, [dispatch])
