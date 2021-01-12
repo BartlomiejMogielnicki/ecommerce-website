@@ -22,6 +22,8 @@ interface ContextProps {
   login: (username: string, password: string) => void
 }
 
+const URL = 'http://localhost:3000';
+
 const initialState = {
   authenticated: true,
   userName: 'TestUser',

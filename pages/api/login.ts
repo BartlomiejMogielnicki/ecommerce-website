@@ -1,17 +1,19 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import { connectToDB } from 'db/connect'
 
-export default async function signup(req: NextApiRequest, res: NextApiResponse) {
+export default async function login(req: NextApiRequest, res: NextApiResponse) {
   const { db } = await connectToDB()
 
-  if (req.method === 'POST') {
-    try {
-      const { username, password } = req.body
+  const { username, password } = req.body
 
-      const user = await db.collection('users').findOne({ username, password })
-      res.send({ user })
-    } catch (error) {
-      res.status(400).send({})
+  try {
+    const user = await db.collection('users').findOne({ username, password })
+
+    if (user) {
+      res.status(200).send({ user })
     }
+    res.status(404).send({})
+  } catch (error) {
+    res.status(400).send({})
   }
 }
