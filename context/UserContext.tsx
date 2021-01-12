@@ -113,8 +113,11 @@ const reducer = (state, action) => {
   }
 
   if (action.type === LOG_IN) {
-    console.log('LOGIN ACTION!')
-    return state
+    return {
+      authenticated: true,
+      userName: action.payload.user.username,
+      cart: [],
+    }
   }
 
   return state;
@@ -175,10 +178,17 @@ export const UserProvider = ({ children }) => {
     })
   }, [dispatch])
 
-  const login = useCallback(() => {
-    dispatch({
-      type: LOG_IN,
-    })
+  const login = useCallback((username: string, password: string) => {
+    fetch(`${URL}/api/login`, {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      method: 'POST',
+      body: JSON.stringify({ username, password }),
+    }).then((response) => response.json()).then((data) => dispatch({
+      type: LOG_IN, payload: data,
+    })).catch((error) => console.log(error))
   }, [dispatch])
 
   const value = {
