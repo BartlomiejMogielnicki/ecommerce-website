@@ -1,4 +1,5 @@
-import { FC, useState } from 'react'
+import { FC, useContext, useState } from 'react'
+import { UserContext } from 'context/UserContext'
 import styles from './Form.module.scss'
 
 const SIGNIN = 'signin';
@@ -18,6 +19,8 @@ const Form:FC<Props> = ({ type }) => {
   const [isEmailError, toggleEmailError] = useState(false)
   const [isPasswordError, togglePasswordError] = useState(false)
   const [isPassword2Error, togglePassword2Error] = useState(false)
+
+  const { login } = useContext(UserContext)
 
   const passwordErrorMessage = type === SIGNIN ? 'Password min. length is 6 characters' : 'Invalid Username'
 
@@ -52,6 +55,10 @@ const Form:FC<Props> = ({ type }) => {
       return
     }
     togglePassword2Error(false)
+
+    if (type === LOGIN) {
+      login(username, password)
+    }
 
     setUsername('')
     setEmail('')
