@@ -10,7 +10,7 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
     const user = await db.collection('users').findOne({ username, password })
 
     if (user) {
-      res.status(200).send({ user })
+      res.status(200).send(user)
     }
     res.status(404).send({})
   } catch (error) {

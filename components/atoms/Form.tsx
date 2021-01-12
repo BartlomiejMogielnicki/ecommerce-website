@@ -20,7 +20,7 @@ const Form:FC<Props> = ({ type }) => {
   const [isPasswordError, togglePasswordError] = useState(false)
   const [isPassword2Error, togglePassword2Error] = useState(false)
 
-  const { login } = useContext(UserContext)
+  const { login, signin } = useContext(UserContext)
 
   const passwordErrorMessage = type === SIGNIN ? 'Password min. length is 6 characters' : 'Invalid Username'
 
@@ -58,6 +58,10 @@ const Form:FC<Props> = ({ type }) => {
 
     if (type === LOGIN) {
       login(username, password)
+    }
+
+    if (type === SIGNIN) {
+      signin(username, email, password)
     }
 
     setUsername('')

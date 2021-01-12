@@ -1,5 +1,7 @@
 import { useReducer, createContext, useCallback } from 'react'
 
+const URL = 'http://localhost:3000';
+
 interface CartObject {
     title: string,
     category: string,
@@ -19,10 +21,9 @@ interface ContextProps {
   increaseQuantity: (title: string) => void,
   decreaseQuantity: (title: string) => void,
   logout: () => void,
-  login: (username: string, password: string) => void
+  login: (username: string, password: string) => void,
+  signin: (username: string, email: string, password: string) => void
 }
-
-const URL = 'http://localhost:3000';
 
 const initialState = {
   authenticated: true,
@@ -115,7 +116,7 @@ const reducer = (state, action) => {
   if (action.type === LOG_IN) {
     return {
       authenticated: true,
-      userName: action.payload.user.username,
+      userName: action.payload.username,
       cart: [],
     }
   }
@@ -196,8 +197,26 @@ export const UserProvider = ({ children }) => {
     })).catch((error) => console.log(error))
   }, [dispatch])
 
+  const signin = useCallback((username: string, email: string, password: string) => {
+    fetch(`${URL}/api/signin`, {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      method: 'POST',
+      body: JSON.stringify({ username, email, password }),
+    }).then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw new Error('Something went wrong');
+    }).then((data) => dispatch({
+      type: LOG_IN, payload: data,
+    })).catch((error) => console.log(error))
+  }, [dispatch])
+
   const value = {
-    user, addToCart, deleteFromCart, increaseQuantity, decreaseQuantity, logout, login,
+    user, addToCart, deleteFromCart, increaseQuantity, decreaseQuantity, logout, login, signin,
   }
 
   return (
