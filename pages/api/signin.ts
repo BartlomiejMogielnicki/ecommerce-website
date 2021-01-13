@@ -7,6 +7,13 @@ export default async function signin(req: NextApiRequest, res: NextApiResponse) 
   const { username, email, password } = req.body
 
   try {
+    const nameCheck = await db.collection('users').findOne({ username })
+    const emailCheck = await db.collection('users').findOne({ email })
+
+    if (nameCheck || emailCheck) {
+      res.status(406).send({})
+    }
+
     const user = {
       username,
       email,
