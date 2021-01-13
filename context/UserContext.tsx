@@ -15,6 +15,7 @@ interface ContextProps {
     authenticated: boolean,
     userName: string,
     cart: CartObject[]
+    history: []
   },
   addToCart: (title: string, category: string, price: number, image: string) => void,
   deleteFromCart: (title: string) => void,
@@ -44,6 +45,7 @@ const initialState = {
       quantity: 1,
     },
   ],
+  history: [],
 }
 
 export const UserContext = createContext<Partial<ContextProps>>({})
@@ -116,8 +118,10 @@ const reducer = (state, action) => {
   if (action.type === LOG_IN) {
     return {
       authenticated: true,
-      userName: action.payload.username,
-      cart: [],
+      userName: action.payload.user.username,
+      authToken: action.payload.token,
+      cart: action.payload.user.cart,
+      history: action.payload.user.history,
     }
   }
 

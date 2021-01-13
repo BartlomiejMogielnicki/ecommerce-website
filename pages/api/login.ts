@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next'
+import jwt from 'jsonwebtoken'
 import { connectToDB } from 'db/connect'
 
 export default async function login(req: NextApiRequest, res: NextApiResponse) {
@@ -7,10 +8,14 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
   const { username, password } = req.body
 
   try {
-    const user = await db.collection('users').findOne({ username, password })
+    let user = await db.collection('users').findOne({ username, password })
 
     if (user) {
-      res.status(200).send(user)
+      const token = jwt.sign({ _id: username }, process.env.JWT_SECRET)
+      const tokensArray = user.tokens.concat({ token })
+
+      user = await db.collection('users').findOneAndReplace({ username, password }, { ...user, tokens: tokensArray })
+      res.status(200).send({ user: user.value, token })
     }
     res.status(404).send({})
   } catch (error) {
