@@ -11,6 +11,7 @@ interface Props {
 
 const ProductsList: FC<Props> = ({ products }) => {
   const [sortOption, setSortOption] = useState('bestsellers')
+  const [searchTerm, setSearchTerm] = useState('')
 
   let sortFn;
   switch (sortOption) {
@@ -38,7 +39,7 @@ const ProductsList: FC<Props> = ({ products }) => {
           <label htmlFor="sort">
             <h3>Sort</h3>
             <select name="sort" id="sort" onChange={(e) => setSortOption(e.target.value)}>
-              <option value="bestsellers" selected>Bestsellers</option>
+              <option defaultValue="bestsellers">Bestsellers</option>
               <option value="nameAtoZ">Name A to Z</option>
               <option value="nameZtoA">Name Z to A</option>
               <option value="priceAscending">Price ascending</option>
@@ -49,12 +50,12 @@ const ProductsList: FC<Props> = ({ products }) => {
         <div className={styles.searchContainer}>
           <label htmlFor="search">
             <h3>Search</h3>
-            <input type="text" id="search" placeholder="Enter search keyword" />
+            <input type="text" id="search" placeholder="Enter search keyword" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
           </label>
         </div>
       </div>
       <div className={styles.productsContainer}>
-        {products && sortFn.map((product) => (
+        {products && sortFn.filter((product) => product.title.toLowerCase().includes(searchTerm.toLowerCase())).map((product) => (
           <ProductCard
             key={product.title}
             title={product.title}
