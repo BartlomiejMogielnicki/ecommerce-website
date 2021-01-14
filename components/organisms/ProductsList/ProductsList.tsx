@@ -46,6 +46,12 @@ const ProductsList: FC<Props> = ({ products }) => {
             </select>
           </label>
         </div>
+        <div className={styles.searchContainer}>
+          <label htmlFor="search">
+            <h3>Search</h3>
+            <input type="text" id="search" placeholder="Enter search keyword" />
+          </label>
+        </div>
       </div>
       <div className={styles.productsContainer}>
         {products && sortFn.map((product) => (

@@ -16,8 +16,9 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
 
       user = await db.collection('users').findOneAndReplace({ username, password }, { ...user, tokens: tokensArray })
       res.status(200).send({ user: user.value, token })
+    } else {
+      res.status(404).send({})
     }
-    res.status(404).send({})
   } catch (error) {
     res.status(400).send({})
   }
