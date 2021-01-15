@@ -30,39 +30,17 @@ const initialState = {
   authenticated: true,
   authToken: '',
   userName: 'TestUser',
-  cart: [
-    {
-      title: 'GoPro HERO 9 Black',
-      category: 'cameras',
-      price: 349.99,
-      image: 'https://strapiuploadecommerceimages.s3.eu-central-1.amazonaws.com/gp9_1_c0b10a6e80.jpg',
-      quantity: 1,
-    },
-    {
-      title: 'GoPro HERO 8 Black',
-      category: 'cameras',
-      price: 299.99,
-      image: 'https://strapiuploadecommerceimages.s3.eu-central-1.amazonaws.com/gp8_1_9fe20a6816.jpg',
-      quantity: 1,
-    },
-  ],
+  cart: [],
   history: [],
 }
 
 export const UserContext = createContext<Partial<ContextProps>>({})
 
-const DELETE_FROM_CART = 'DELETE_FROM_CART'
 const UPDATE_CART = 'UPDATE_CART'
 const LOG_OUT = 'LOG_OUT'
 const LOG_IN = 'LOG_IN'
 
 const reducer = (state, action) => {
-  if (action.type === DELETE_FROM_CART) {
-    return {
-      ...state, cart: state.cart.filter((item) => item.title !== action.payload.title),
-    }
-  }
-
   if (action.type === UPDATE_CART) {
     return {
       ...state,

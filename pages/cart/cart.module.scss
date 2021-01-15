@@ -69,6 +69,16 @@
       background-color: #00adef;
       color: white;
     }
+
+    &:disabled {
+      color: gray;
+      border: 1px solid gray;
+
+      &:hover {
+        background-color: white;
+        color: gray;
+      }
+    }
   }
 
   .summaryCost {
