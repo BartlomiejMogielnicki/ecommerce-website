@@ -19,7 +19,7 @@ interface ContextProps {
   },
   addToCart: (title: string, category: string, price: number, image: string) => void,
   deleteFromCart: (title: string) => void,
-  increaseQuantity: (title: string) => void,
+  increaseQuantity: (authTokne: string, title: string) => void,
   decreaseQuantity: (title: string) => void,
   logout: () => void,
   login: (username: string, password: string) => void,
@@ -159,14 +159,36 @@ export const UserProvider = ({ children }) => {
   },
   [dispatch])
 
-  const increaseQuantity = useCallback((title: string) => {
-    dispatch({
+  const increaseQuantity = useCallback((authToken: string, title: string) => {
+    fetch(`${URL}/api/cart/changeQuantity`, {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${authToken}`,
+      },
+      method: 'POST',
+      body: JSON.stringify({ title }),
+    }).then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw new Error('Something went wrong');
+    }).then((data) => dispatch({
       type: INCREASE_QUANTITY,
       payload: {
         title,
       },
-    });
+    })).catch((error) => console.log(error))
   }, [dispatch])
+
+  // const increaseQuantity = useCallback((title: string) => {
+  //   dispatch({
+  //     type: INCREASE_QUANTITY,
+  //     payload: {
+  //       title,
+  //     },
+  //   });
+  // }, [dispatch])
 
   const decreaseQuantity = useCallback((title: string) => {
     dispatch({
