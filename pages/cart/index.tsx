@@ -11,7 +11,7 @@ import styles from './cart.module.scss'
 
 const Cart:FC = () => {
   const {
-    user: { cart }, deleteFromCart, increaseQuantity, decreaseQuantity,
+    user: { cart, authToken }, deleteFromCart, changeQuantity,
   } = useContext(UserContext)
 
   const summaryCost = cart.map((item) => item.price * item.quantity).reduce((a, b) => a + b, 0).toFixed(2)
@@ -40,12 +40,12 @@ const Cart:FC = () => {
                 </button>
               </div>
               <div className={styles.cartItemQuantity}>
-                <button type="button" onClick={() => decreaseQuantity(item.title)}>-</button>
+                <button type="button" onClick={() => changeQuantity(authToken, item.title, 'dec')}>-</button>
                 <p>
                   {item.quantity}
                   {' pcs'}
                 </p>
-                <button type="button" onClick={() => increaseQuantity(item.title)}>+</button>
+                <button type="button" onClick={() => changeQuantity(authToken, item.title, 'inc')}>+</button>
               </div>
               <p>
                 {(item.price * item.quantity).toFixed(2)}

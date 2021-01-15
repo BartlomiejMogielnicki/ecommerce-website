@@ -4,7 +4,7 @@ import { connectToDB } from 'db/connect'
 
 export default async function changeQuantity(req: NextApiRequest, res: NextApiResponse) {
   const { db } = await connectToDB()
-  const { title, action } = req.body
+  const { title, operation } = req.body
 
   try {
     const token = req.headers.authorization.replace('Bearer ', '')
@@ -15,19 +15,25 @@ export default async function changeQuantity(req: NextApiRequest, res: NextApiRe
     })
 
     let modifiedCart
-    if (action === 'inc') {
+    if (operation === 'inc') {
       modifiedCart = user.cart.map((item) => {
         if (item.title === title) {
-          return item.quantity + 1
+          return {
+            ...item,
+            quantity: item.quantity + 1,
+          }
         }
         return item
       })
     }
 
-    if (action === 'dec') {
+    if (operation === 'dec') {
       modifiedCart = user.cart.map((item) => {
         if (item.title === title && item.quantity > 0) {
-          return item.quantity - 1
+          return {
+            ...item,
+            quantity: item.quantity - 1,
+          }
         }
         return item
       })
@@ -40,7 +46,7 @@ export default async function changeQuantity(req: NextApiRequest, res: NextApiRe
     if (!user) {
       throw new Error()
     } else {
-      res.status(200).send({ user })
+      res.status(200).send({ cart: modifiedCart })
     }
   } catch (error) {
     res.status(401).send({ error: 'Please authenticate.' })

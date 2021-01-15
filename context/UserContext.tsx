@@ -13,14 +13,14 @@ interface CartObject {
 interface ContextProps {
   user: {
     authenticated: boolean,
+    authToken: string,
     userName: string,
     cart: CartObject[]
     history: []
   },
   addToCart: (title: string, category: string, price: number, image: string) => void,
   deleteFromCart: (title: string) => void,
-  increaseQuantity: (authTokne: string, title: string) => void,
-  decreaseQuantity: (title: string) => void,
+  changeQuantity: (authToken: string, title: string, operation: string) => void,
   logout: () => void,
   login: (username: string, password: string) => void,
   signin: (username: string, email: string, password: string) => void
@@ -28,6 +28,7 @@ interface ContextProps {
 
 const initialState = {
   authenticated: true,
+  authToken: '',
   userName: 'TestUser',
   cart: [
     {
@@ -52,8 +53,7 @@ export const UserContext = createContext<Partial<ContextProps>>({})
 
 const ADD_TO_CART = 'ADD_TO_CART'
 const DELETE_FROM_CART = 'DELETE_FROM_CART'
-const INCREASE_QUANTITY = 'INCREASE_QUANTITY'
-const DECREASE_QUANTITY = 'DECREASE_QUANTITY'
+const UPDATE_CART = 'UPDATE_CART'
 const LOG_OUT = 'LOG_OUT'
 const LOG_IN = 'LOG_IN'
 
@@ -73,37 +73,10 @@ const reducer = (state, action) => {
     }
   }
 
-  if (action.type === INCREASE_QUANTITY) {
+  if (action.type === UPDATE_CART) {
     return {
       ...state,
-      cart: state.cart.map((item) => {
-        if (item.title === action.payload.title) {
-          return {
-            ...item,
-            quantity: item.quantity + 1,
-          }
-        }
-        return {
-          ...item,
-        }
-      }),
-    }
-  }
-
-  if (action.type === DECREASE_QUANTITY) {
-    return {
-      ...state,
-      cart: state.cart.map((item) => {
-        if ((item.title === action.payload.title) && (item.quantity > 0)) {
-          return {
-            ...item,
-            quantity: item.quantity - 1,
-          }
-        }
-        return {
-          ...item,
-        }
-      }),
+      cart: action.payload.cart,
     }
   }
 
@@ -159,44 +132,26 @@ export const UserProvider = ({ children }) => {
   },
   [dispatch])
 
-  const increaseQuantity = useCallback((authToken: string, title: string) => {
-    fetch(`${URL}/api/cart/changeQuantity`, {
+  const changeQuantity = useCallback((authToken: string, title: string, operation: string) => {
+    fetch(`${URL}/api/cart/change-quantity`, {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
         Authorization: `Bearer ${authToken}`,
       },
       method: 'POST',
-      body: JSON.stringify({ title }),
+      body: JSON.stringify({ title, operation }),
     }).then((response) => {
       if (response.ok) {
         return response.json();
       }
       throw new Error('Something went wrong');
     }).then((data) => dispatch({
-      type: INCREASE_QUANTITY,
+      type: UPDATE_CART,
       payload: {
-        title,
+        cart: data.cart,
       },
     })).catch((error) => console.log(error))
-  }, [dispatch])
-
-  // const increaseQuantity = useCallback((title: string) => {
-  //   dispatch({
-  //     type: INCREASE_QUANTITY,
-  //     payload: {
-  //       title,
-  //     },
-  //   });
-  // }, [dispatch])
-
-  const decreaseQuantity = useCallback((title: string) => {
-    dispatch({
-      type: DECREASE_QUANTITY,
-      payload: {
-        title,
-      },
-    });
   }, [dispatch])
 
   const logout = useCallback(() => {
@@ -242,7 +197,7 @@ export const UserProvider = ({ children }) => {
   }, [dispatch])
 
   const value = {
-    user, addToCart, deleteFromCart, increaseQuantity, decreaseQuantity, logout, login, signin,
+    user, addToCart, deleteFromCart, changeQuantity, logout, login, signin,
   }
 
   return (
