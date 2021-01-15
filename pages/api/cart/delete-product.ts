@@ -14,14 +14,18 @@ export default async function deleteProduct(req: NextApiRequest, res: NextApiRes
       'tokens.token': token,
     })
 
-    await db
+    const updatedUser = await db
       .collection('users')
-      .updateOne({ username: decoded._id, 'tokens.token': token }, { $pull: { cart: { title } } })
+      .findOneAndUpdate(
+        { username: decoded._id, 'tokens.token': token },
+        { $pull: { cart: { title } } },
+        { returnOriginal: false },
+      )
 
     if (!user) {
       throw new Error()
     } else {
-      res.status(200).send({})
+      res.status(200).send({ cart: updatedUser.value.cart })
     }
   } catch (error) {
     res.status(401).send({ error: 'Please authenticate.' })

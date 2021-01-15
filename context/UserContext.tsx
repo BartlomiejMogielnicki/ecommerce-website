@@ -19,7 +19,7 @@ interface ContextProps {
     history: []
   },
   addToCart: (title: string, category: string, price: number, image: string) => void,
-  deleteFromCart: (title: string) => void,
+  deleteFromCart: (authToken: string, title: string) => void,
   changeQuantity: (authToken: string, title: string, operation: string) => void,
   logout: () => void,
   login: (username: string, password: string) => void,
@@ -122,15 +122,27 @@ export const UserProvider = ({ children }) => {
     [dispatch],
   );
 
-  const deleteFromCart = useCallback((title: string) => {
-    dispatch({
-      type: DELETE_FROM_CART,
-      payload: {
-        title,
+  const deleteFromCart = useCallback((authToken: string, title: string) => {
+    fetch(`${URL}/api/cart/delete-product`, {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${authToken}`,
       },
-    });
-  },
-  [dispatch])
+      method: 'POST',
+      body: JSON.stringify({ title }),
+    }).then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw new Error('Something went wrong');
+    }).then((data) => dispatch({
+      type: UPDATE_CART,
+      payload: {
+        cart: data.cart,
+      },
+    })).catch((error) => console.log(error))
+  }, [dispatch])
 
   const changeQuantity = useCallback((authToken: string, title: string, operation: string) => {
     fetch(`${URL}/api/cart/change-quantity`, {

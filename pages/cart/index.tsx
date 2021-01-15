@@ -51,7 +51,7 @@ const Cart:FC = () => {
                 {(item.price * item.quantity).toFixed(2)}
                 {' $'}
               </p>
-              <button type="button" className={styles.buttonDelete} onClick={() => deleteFromCart(item.title)}>
+              <button type="button" className={styles.buttonDelete} onClick={() => deleteFromCart(authToken, item.title)}>
                 <FontAwesomeIcon icon={faTrash} />
               </button>
             </li>
