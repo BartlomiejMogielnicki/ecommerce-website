@@ -18,7 +18,7 @@ interface ContextProps {
     cart: CartObject[]
     history: []
   },
-  addToCart: (title: string, category: string, price: number, image: string) => void,
+  addToCart: (authToken: string, title: string, category: string, price: number, image: string) => void,
   deleteFromCart: (authToken: string, title: string) => void,
   changeQuantity: (authToken: string, title: string, operation: string) => void,
   logout: () => void,
@@ -51,22 +51,12 @@ const initialState = {
 
 export const UserContext = createContext<Partial<ContextProps>>({})
 
-const ADD_TO_CART = 'ADD_TO_CART'
 const DELETE_FROM_CART = 'DELETE_FROM_CART'
 const UPDATE_CART = 'UPDATE_CART'
 const LOG_OUT = 'LOG_OUT'
 const LOG_IN = 'LOG_IN'
 
 const reducer = (state, action) => {
-  if (action.type === ADD_TO_CART) {
-    if (state.cart.every((item) => item.title !== action.payload.title)) {
-      return {
-        ...state, cart: [action.payload, ...state.cart],
-      }
-    }
-    return state;
-  }
-
   if (action.type === DELETE_FROM_CART) {
     return {
       ...state, cart: state.cart.filter((item) => item.title !== action.payload.title),
@@ -106,21 +96,33 @@ export const UserProvider = ({ children }) => {
 
   const addToCart = useCallback(
     (
-      title, category, price, image,
+      authToken, title, category, price, image,
     ) => {
-      dispatch({
-        type: ADD_TO_CART,
-        payload: {
-          title,
-          category,
-          price,
-          image,
-          quantity: 1,
+      fetch(`${URL}/api/cart/add-product`, {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${authToken}`,
         },
-      });
-    },
-    [dispatch],
-  );
+        method: 'POST',
+        body: JSON.stringify({
+          product: {
+            title, category, price, image, quantity: 1,
+          },
+        }),
+      }).then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error('Something went wrong');
+      }).then((data) => dispatch({
+        type: UPDATE_CART,
+        payload: {
+          cart: data.cart,
+        },
+      })).catch((error) => console.log(error))
+    }, [dispatch],
+  )
 
   const deleteFromCart = useCallback((authToken: string, title: string) => {
     fetch(`${URL}/api/cart/delete-product`, {

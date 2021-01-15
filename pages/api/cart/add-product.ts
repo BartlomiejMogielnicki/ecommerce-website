@@ -9,19 +9,23 @@ export default async function changeQuantity(req: NextApiRequest, res: NextApiRe
   try {
     const token = req.headers.authorization.replace('Bearer ', '')
     const decoded = jwt.verify(token, process.env.JWT_SECRET)
-    let user = await db.collection('users').findOne({
+    const user = await db.collection('users').findOne({
       username: decoded._id,
       'tokens.token': token,
     })
 
-    user = await db
+    const updatedUser = await db
       .collection('users')
-      .updateOne({ username: decoded._id, 'tokens.token': token }, { $push: { cart: { ...product } } })
+      .findOneAndUpdate(
+        { username: decoded._id, 'tokens.token': token },
+        { $push: { cart: { ...product } } },
+        { returnOriginal: false },
+      )
 
     if (!user) {
       throw new Error()
     } else {
-      res.status(200).send({})
+      res.status(200).send({ cart: updatedUser.value.cart })
     }
   } catch (error) {
     res.status(401).send({ error: 'Please authenticate.' })

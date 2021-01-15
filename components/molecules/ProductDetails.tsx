@@ -16,7 +16,7 @@ interface Props {
 const ProductDetails:FC<Props> = ({ product }) => {
   const [isShowProductModal, toggleShowProductModal] = useState(false)
 
-  const { addToCart } = useContext(UserContext)
+  const { user: { authToken }, addToCart } = useContext(UserContext)
 
   return (
     <div className={styles.container}>
@@ -45,7 +45,7 @@ const ProductDetails:FC<Props> = ({ product }) => {
               <a>{`Return to ${product.category}`}</a>
             </Link>
           </button>
-          <button type="button" onClick={() => addToCart(product.title, product.category, product.price, product.images[0].url)}>
+          <button type="button" onClick={() => addToCart(authToken, product.title, product.category, product.price, product.images[0].url)}>
             <p>Add to cart</p>
           </button>
         </div>
