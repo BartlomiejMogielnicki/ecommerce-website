@@ -11,7 +11,7 @@ import styles from './cart.module.scss'
 
 const Cart:FC = () => {
   const {
-    user: { cart, authToken }, deleteFromCart, changeQuantity,
+    user: { cart }, deleteFromCart, changeQuantity,
   } = useContext(UserContext)
 
   const summaryCost = cart.map((item) => item.price * item.quantity).reduce((a, b) => a + b, 0).toFixed(2)
@@ -40,18 +40,18 @@ const Cart:FC = () => {
                 </button>
               </div>
               <div className={styles.cartItemQuantity}>
-                <button type="button" disabled={item.quantity === 0} onClick={() => changeQuantity(authToken, item.title, 'dec')}>-</button>
+                <button type="button" disabled={item.quantity === 0} onClick={() => changeQuantity(item.title, 'dec')}>-</button>
                 <p>
                   {item.quantity}
                   {' pcs'}
                 </p>
-                <button type="button" onClick={() => changeQuantity(authToken, item.title, 'inc')}>+</button>
+                <button type="button" onClick={() => changeQuantity(item.title, 'inc')}>+</button>
               </div>
               <p>
                 {(item.price * item.quantity).toFixed(2)}
                 {' $'}
               </p>
-              <button type="button" className={styles.buttonDelete} onClick={() => deleteFromCart(authToken, item.title)}>
+              <button type="button" className={styles.buttonDelete} onClick={() => deleteFromCart(item.title)}>
                 <FontAwesomeIcon icon={faTrash} />
               </button>
             </li>

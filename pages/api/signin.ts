@@ -33,7 +33,13 @@ export default async function signin(req: NextApiRequest, res: NextApiResponse) 
 
     await db.collection('users').insertOne(user)
 
-    res.status(201).send({ user, token })
+    res.status(201).send({
+      user: {
+        username: user.username,
+        cart: user.cart,
+        history: user.history,
+      },
+    })
   } catch (error) {
     res.status(400).send({})
   }

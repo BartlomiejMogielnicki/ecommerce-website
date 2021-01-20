@@ -7,7 +7,7 @@ export default async function changeQuantity(req: NextApiRequest, res: NextApiRe
   const { title, operation } = req.body
 
   try {
-    const token = req.headers.authorization.replace('Bearer ', '')
+    const token = req.cookies.auth
     const decoded = jwt.verify(token, process.env.JWT_SECRET)
     let user = await db.collection('users').findOne({
       username: decoded._id,

@@ -13,14 +13,13 @@ interface CartObject {
 interface ContextProps {
   user: {
     authenticated: boolean,
-    authToken: string,
     userName: string,
-    cart: CartObject[]
+    cart: CartObject[],
     history: []
   },
-  addToCart: (authToken: string, title: string, category: string, price: number, image: string) => void,
-  deleteFromCart: (authToken: string, title: string) => void,
-  changeQuantity: (authToken: string, title: string, operation: string) => void,
+  addToCart: (title: string, category: string, price: number, image: string) => void,
+  deleteFromCart: (title: string) => void,
+  changeQuantity: (title: string, operation: string) => void,
   logout: () => void,
   login: (username: string, password: string) => void,
   signin: (username: string, email: string, password: string) => void
@@ -28,7 +27,6 @@ interface ContextProps {
 
 const initialState = {
   authenticated: false,
-  authToken: '',
   userName: '',
   cart: [],
   history: [],
@@ -60,7 +58,6 @@ const reducer = (state, action) => {
     return {
       authenticated: true,
       userName: action.payload.user.username,
-      authToken: action.payload.token,
       cart: action.payload.user.cart,
       history: action.payload.user.history,
     }
@@ -74,13 +71,12 @@ export const UserProvider = ({ children }) => {
 
   const addToCart = useCallback(
     (
-      authToken, title, category, price, image,
+      title, category, price, image,
     ) => {
       fetch(`${URL}/api/cart/add-product`, {
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${authToken}`,
         },
         method: 'POST',
         body: JSON.stringify({
@@ -102,12 +98,11 @@ export const UserProvider = ({ children }) => {
     }, [dispatch],
   )
 
-  const deleteFromCart = useCallback((authToken: string, title: string) => {
+  const deleteFromCart = useCallback((title: string) => {
     fetch(`${URL}/api/cart/delete-product`, {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${authToken}`,
       },
       method: 'POST',
       body: JSON.stringify({ title }),
@@ -124,12 +119,11 @@ export const UserProvider = ({ children }) => {
     })).catch((error) => console.log(error))
   }, [dispatch])
 
-  const changeQuantity = useCallback((authToken: string, title: string, operation: string) => {
+  const changeQuantity = useCallback((title: string, operation: string) => {
     fetch(`${URL}/api/cart/change-quantity`, {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${authToken}`,
       },
       method: 'POST',
       body: JSON.stringify({ title, operation }),

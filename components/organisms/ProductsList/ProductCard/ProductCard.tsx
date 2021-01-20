@@ -15,7 +15,7 @@ type Props = {
 const ProductCard:FC<Props> = ({
   title, image, category, shortDescription, price, bestseller,
 }) => {
-  const { user: { authToken }, addToCart } = useContext(UserContext)
+  const { addToCart } = useContext(UserContext)
 
   const linkTitle = title.split(' ').join('-').toLowerCase();
 
@@ -37,7 +37,7 @@ const ProductCard:FC<Props> = ({
             <a>Details</a>
           </Link>
         </button>
-        <button type="button" onClick={() => addToCart(authToken, title, category, price, image)}>
+        <button type="button" onClick={() => addToCart(title, category, price, image)}>
           <p>Add to cart</p>
         </button>
       </div>

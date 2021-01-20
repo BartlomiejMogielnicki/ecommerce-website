@@ -17,7 +17,7 @@ const ProductDetails:FC<Props> = ({ product }) => {
   const [isShowProductModal, toggleShowProductModal] = useState(false)
   const [selectedImage, setSelectedImage] = useState(0)
 
-  const { user: { authToken }, addToCart } = useContext(UserContext)
+  const { addToCart } = useContext(UserContext)
 
   const handleShowHideModal = (imageIndex) => {
     setSelectedImage(imageIndex)
@@ -51,7 +51,7 @@ const ProductDetails:FC<Props> = ({ product }) => {
               <a>{`Return to ${product.category}`}</a>
             </Link>
           </button>
-          <button type="button" onClick={() => addToCart(authToken, product.title, product.category, product.price, product.images[0].url)}>
+          <button type="button" onClick={() => addToCart(product.title, product.category, product.price, product.images[0].url)}>
             <p>Add to cart</p>
           </button>
         </div>
