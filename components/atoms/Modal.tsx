@@ -7,10 +7,11 @@ import styles from './Modal.module.scss'
 
 interface Props {
   product: Product,
+  selectedImage: number,
   clicked: () => void
 }
 
-const Modal:FC<Props> = ({ product, clicked }) => {
+const Modal:FC<Props> = ({ product, selectedImage, clicked }) => {
   const enableScroll = ():void => {
     document.body.style.overflowY = 'scroll'
   }
@@ -22,7 +23,7 @@ const Modal:FC<Props> = ({ product, clicked }) => {
   return (
     <div className={styles.productImagesModalContainer}>
       <div className={styles.productImagesModal}>
-        <Carousel className="carousel-style" showStatus={false}>
+        <Carousel className="carousel-style" showStatus={false} selectedItem={selectedImage}>
           {product.images.map((image) => (
             <div className={styles.activeImage} key={image.name}>
               <button className={styles.closeButton} type="button" onClick={clicked}>

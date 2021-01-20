@@ -15,20 +15,26 @@ interface Props {
 
 const ProductDetails:FC<Props> = ({ product }) => {
   const [isShowProductModal, toggleShowProductModal] = useState(false)
+  const [selectedImage, setSelectedImage] = useState(0)
 
   const { user: { authToken }, addToCart } = useContext(UserContext)
+
+  const handleShowHideModal = (imageIndex) => {
+    setSelectedImage(imageIndex)
+    toggleShowProductModal(!isShowProductModal)
+  }
 
   return (
     <div className={styles.container}>
       <div className={styles.imageContainer}>
         <Carousel className="carousel-style" showStatus={false} showArrows={false}>
-          {product.images.map((image) => (
-            <div key={image.name} className={styles.activeImage} onClick={() => toggleShowProductModal(!isShowProductModal)}>
+          {product.images.map((image, index) => (
+            <div key={image.name} className={styles.activeImage} onClick={() => handleShowHideModal(index)}>
               <img src={image.url} alt={image.name} />
             </div>
           ))}
         </Carousel>
-        <button className={styles.zoomButton} type="button" onClick={() => toggleShowProductModal(!isShowProductModal)}>
+        <button className={styles.zoomButton} type="button" onClick={() => handleShowHideModal(selectedImage)}>
           <FontAwesomeIcon icon={faSearch} />
         </button>
       </div>
@@ -51,7 +57,7 @@ const ProductDetails:FC<Props> = ({ product }) => {
         </div>
       </div>
       {isShowProductModal
-        && <Modal product={product} clicked={() => toggleShowProductModal(!isShowProductModal)} />}
+        && <Modal selectedImage={selectedImage} product={product} clicked={() => handleShowHideModal(selectedImage)} />}
     </div>
   );
 }
