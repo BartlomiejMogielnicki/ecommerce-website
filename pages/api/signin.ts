@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import { connectToDB } from 'db/connect'
+import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 
 export default async function signin(req: NextApiRequest, res: NextApiResponse) {
@@ -15,10 +16,12 @@ export default async function signin(req: NextApiRequest, res: NextApiResponse) 
       res.status(406).send({})
     }
 
+    const cryptedPassword = await bcrypt.hash(password, 8)
+
     const user = {
       username,
       email,
-      password,
+      cryptedPassword,
       cart: [],
       history: [],
       tokens: [],
