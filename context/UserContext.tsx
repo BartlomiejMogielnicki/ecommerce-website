@@ -27,9 +27,9 @@ interface ContextProps {
 }
 
 const initialState = {
-  authenticated: true,
+  authenticated: false,
   authToken: '',
-  userName: 'TestUser',
+  userName: '',
   cart: [],
   history: [],
 }

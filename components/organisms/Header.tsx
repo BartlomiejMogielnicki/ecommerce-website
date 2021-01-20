@@ -41,7 +41,11 @@ const Header:FC = () => {
     <div className={styles.container}>
       <div className={styles.topRow}>
         <div className={styles.topCol}>
-          <img className={styles.logo} src="/gopro-logo-300.png" alt="gopro logo" />
+          <Link href="/">
+            <a>
+              <img className={styles.logo} src="/gopro-logo-300.png" alt="gopro logo" />
+            </a>
+          </Link>
         </div>
         <div className={styles.topCol}>
           <Search />
