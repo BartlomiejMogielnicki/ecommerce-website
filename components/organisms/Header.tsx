@@ -10,7 +10,6 @@ import { useRouter } from 'next/router';
 import { UserContext } from 'context/UserContext'
 
 import Nav from 'components/atoms/Nav';
-import Search from 'components/atoms/Search';
 import styles from './Header.module.scss';
 
 const Header:FC = () => {
@@ -47,10 +46,7 @@ const Header:FC = () => {
             </a>
           </Link>
         </div>
-        <div className={styles.topCol}>
-          <Search />
-        </div>
-        <div className={`${styles.topCol} ${styles.topColCart}`}>
+        <div className={styles.topColCart}>
           <Link href="/cart">
             <a>
               <div className={`${styles.cart} ${isCartFixed && styles.fixed} ${router.pathname === '/cart' && styles.hidden}`} ref={cartRef}>
