@@ -1,26 +1,20 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import jwt from 'jsonwebtoken'
 import { connectToDB } from 'db/connect'
+import auth from 'middleware/auth'
 
-export default async function changeQuantity(req: NextApiRequest, res: NextApiResponse) {
+const addProduct = async (req: NextApiRequest, res: NextApiResponse) => {
   const { db } = await connectToDB()
-  const { product } = req.body
+  const { product, username, token } = req.body
 
   try {
-    const token = req.cookies.auth
-    const decoded = jwt.verify(token, process.env.JWT_SECRET)
     const user = await db.collection('users').findOne({
-      username: decoded._id,
+      username,
       'tokens.token': token,
     })
 
     const updatedUser = await db
       .collection('users')
-      .findOneAndUpdate(
-        { username: decoded._id, 'tokens.token': token },
-        { $push: { cart: { ...product } } },
-        { returnOriginal: false },
-      )
+      .findOneAndUpdate({ username }, { $push: { cart: { ...product } } }, { returnOriginal: false })
 
     if (!user) {
       throw new Error()
@@ -28,6 +22,8 @@ export default async function changeQuantity(req: NextApiRequest, res: NextApiRe
       res.status(200).send({ cart: updatedUser.value.cart })
     }
   } catch (error) {
-    res.status(401).send({ error: 'Please authenticate.' })
+    res.status(500).send({ error: 'Something went wrong' })
   }
 }
+
+export default auth(addProduct)
