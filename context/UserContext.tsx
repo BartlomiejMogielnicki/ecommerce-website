@@ -38,6 +38,7 @@ const UPDATE_CART = 'UPDATE_CART'
 const LOG_OUT = 'LOG_OUT'
 const LOG_IN = 'LOG_IN'
 const GUEST_ADD_TO_CART = 'GUEST_ADD_TO_CART'
+const GUEST_DELETE_ITEM = 'GUEST_DELETE_ITEM'
 
 const reducer = (state, action) => {
   if (action.type === UPDATE_CART) {
@@ -75,6 +76,13 @@ const reducer = (state, action) => {
     return {
       ...state,
       cart: [...state.cart, newProduct],
+    }
+  }
+
+  if (action.type === GUEST_DELETE_ITEM) {
+    return {
+      ...state,
+      cart: state.cart.filter((item) => item.title !== action.payload.title),
     }
   }
 
@@ -123,24 +131,33 @@ export const UserProvider = ({ children }) => {
   )
 
   const deleteFromCart = useCallback((title: string) => {
-    fetch(`${URL}/api/cart/delete-product`, {
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      method: 'POST',
-      body: JSON.stringify({ title }),
-    }).then((response) => {
-      if (response.ok) {
-        return response.json();
-      }
-      throw new Error('Something went wrong');
-    }).then((data) => dispatch({
-      type: UPDATE_CART,
-      payload: {
-        cart: data.cart,
-      },
-    })).catch((error) => console.log(error))
+    if (!user.authenticated) {
+      dispatch({
+        type: GUEST_DELETE_ITEM,
+        payload: {
+          title,
+        },
+      })
+    } else {
+      fetch(`${URL}/api/cart/delete-product`, {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        method: 'POST',
+        body: JSON.stringify({ title }),
+      }).then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error('Something went wrong');
+      }).then((data) => dispatch({
+        type: UPDATE_CART,
+        payload: {
+          cart: data.cart,
+        },
+      })).catch((error) => console.log(error))
+    }
   }, [dispatch])
 
   const changeQuantity = useCallback((title: string, operation: string) => {
