@@ -39,6 +39,13 @@ const Header:FC = () => {
   return (
     <div className={styles.container}>
       <div className={styles.topRow}>
+        <div className={styles.topColLogo}>
+          <Link href="/">
+            <a>
+              <img className={styles.shopLogo} src="/shop-logo.png" alt="logo" />
+            </a>
+          </Link>
+        </div>
         <div className={styles.topCol}>
           <Link href="/">
             <a>
