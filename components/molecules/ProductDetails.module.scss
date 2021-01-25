@@ -67,6 +67,16 @@
         border: 2px solid #00adef;
         border-radius: 5px;
 
+        &:disabled {
+          color: gray;
+          border: 2px solid gray;
+
+          :hover {
+            background-color: white;
+            color: gray;
+          }
+        }
+
         a {
           display: block;
           padding: 7px 15px;
