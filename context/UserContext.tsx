@@ -37,6 +37,7 @@ export const UserContext = createContext<Partial<ContextProps>>({})
 const UPDATE_CART = 'UPDATE_CART'
 const LOG_OUT = 'LOG_OUT'
 const LOG_IN = 'LOG_IN'
+const GUEST_ADD_TO_CART = 'GUEST_ADD_TO_CART'
 
 const reducer = (state, action) => {
   if (action.type === UPDATE_CART) {
@@ -63,6 +64,20 @@ const reducer = (state, action) => {
     }
   }
 
+  if (action.type === GUEST_ADD_TO_CART) {
+    const newProduct: CartObject = {
+      title: action.payload.title,
+      category: action.payload.category,
+      price: action.payload.price,
+      image: action.payload.image,
+      quantity: 1,
+    }
+    return {
+      ...state,
+      cart: [...state.cart, newProduct],
+    }
+  }
+
   return state;
 }
 
@@ -73,28 +88,37 @@ export const UserProvider = ({ children }) => {
     (
       title, category, price, image,
     ) => {
-      fetch(`${URL}/api/cart/add-product`, {
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        method: 'POST',
-        body: JSON.stringify({
-          product: {
-            title, category, price, image, quantity: 1,
+      if (!user.authenticated) {
+        dispatch({
+          type: GUEST_ADD_TO_CART,
+          payload: {
+            title, category, price, image,
           },
-        }),
-      }).then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error('Something went wrong');
-      }).then((data) => dispatch({
-        type: UPDATE_CART,
-        payload: {
-          cart: data.cart,
-        },
-      })).catch((error) => console.log(error))
+        })
+      } else {
+        fetch(`${URL}/api/cart/add-product`, {
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          method: 'POST',
+          body: JSON.stringify({
+            product: {
+              title, category, price, image, quantity: 1,
+            },
+          }),
+        }).then((response) => {
+          if (response.ok) {
+            return response.json();
+          }
+          throw new Error('Something went wrong');
+        }).then((data) => dispatch({
+          type: UPDATE_CART,
+          payload: {
+            cart: data.cart,
+          },
+        })).catch((error) => console.log(error))
+      }
     }, [dispatch],
   )
 
