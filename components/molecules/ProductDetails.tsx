@@ -60,7 +60,6 @@ const ProductDetails:FC<Props> = ({ product }) => {
               <p>Add to cart</p>
             </button>
           )}
-
         </div>
       </div>
       {isShowProductModal

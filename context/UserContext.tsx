@@ -39,6 +39,7 @@ const LOG_OUT = 'LOG_OUT'
 const LOG_IN = 'LOG_IN'
 const GUEST_ADD_TO_CART = 'GUEST_ADD_TO_CART'
 const GUEST_DELETE_ITEM = 'GUEST_DELETE_ITEM'
+const GUEST_CHANGE_QUANTITY = 'GUEST_CHANGE_QUANTITY'
 
 const reducer = (state, action) => {
   if (action.type === UPDATE_CART) {
@@ -83,6 +84,35 @@ const reducer = (state, action) => {
     return {
       ...state,
       cart: state.cart.filter((item) => item.title !== action.payload.title),
+    }
+  }
+
+  if (action.type === GUEST_CHANGE_QUANTITY) {
+    if (action.payload.operation === 'inc') {
+      return {
+        ...state,
+        cart: state.cart.map((item) => {
+          if (item.title === action.payload.title) {
+            return {
+              ...item,
+              quantity: item.quantity + 1,
+            }
+          }
+          return item
+        }),
+      }
+    }
+    return {
+      ...state,
+      cart: state.cart.map((item) => {
+        if (item.title === action.payload.title) {
+          return {
+            ...item,
+            quantity: item.quantity - 1,
+          }
+        }
+        return item
+      }),
     }
   }
 
@@ -161,24 +191,33 @@ export const UserProvider = ({ children }) => {
   }, [dispatch])
 
   const changeQuantity = useCallback((title: string, operation: string) => {
-    fetch(`${URL}/api/cart/change-quantity`, {
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      method: 'POST',
-      body: JSON.stringify({ title, operation }),
-    }).then((response) => {
-      if (response.ok) {
-        return response.json();
-      }
-      throw new Error('Something went wrong');
-    }).then((data) => dispatch({
-      type: UPDATE_CART,
-      payload: {
-        cart: data.cart,
-      },
-    })).catch((error) => console.log(error))
+    if (!user.authenticated) {
+      dispatch({
+        type: GUEST_CHANGE_QUANTITY,
+        payload: {
+          title, operation,
+        },
+      })
+    } else {
+      fetch(`${URL}/api/cart/change-quantity`, {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        method: 'POST',
+        body: JSON.stringify({ title, operation }),
+      }).then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error('Something went wrong');
+      }).then((data) => dispatch({
+        type: UPDATE_CART,
+        payload: {
+          cart: data.cart,
+        },
+      })).catch((error) => console.log(error))
+    }
   }, [dispatch])
 
   const logout = useCallback(() => {
