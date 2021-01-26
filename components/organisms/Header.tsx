@@ -36,6 +36,11 @@ const Header:FC = () => {
     }
   }, [])
 
+  const handleLogout = () => {
+    logout()
+    router.push('/')
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.topRow}>
@@ -72,7 +77,7 @@ const Header:FC = () => {
             <FontAwesomeIcon icon={faUser} />
             <p>{user.userName}</p>
           </div>
-          <button type="button" onClick={logout}>
+          <button type="button" onClick={handleLogout}>
             <a>
               <FontAwesomeIcon icon={faLock} />
               <p>Log Out</p>
