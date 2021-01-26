@@ -157,7 +157,7 @@ export const UserProvider = ({ children }) => {
           },
         })).catch((error) => console.log(error))
       }
-    }, [dispatch],
+    }, [dispatch, user.authenticated],
   )
 
   const deleteFromCart = useCallback((title: string) => {
@@ -188,7 +188,7 @@ export const UserProvider = ({ children }) => {
         },
       })).catch((error) => console.log(error))
     }
-  }, [dispatch])
+  }, [dispatch, user.authenticated])
 
   const changeQuantity = useCallback((title: string, operation: string) => {
     if (!user.authenticated) {
@@ -218,7 +218,7 @@ export const UserProvider = ({ children }) => {
         },
       })).catch((error) => console.log(error))
     }
-  }, [dispatch])
+  }, [dispatch, user.authenticated])
 
   const logout = useCallback(() => {
     dispatch({
