@@ -1,3 +1,5 @@
+@import '/styles/config.scss';
+
 .contactContainer {
   margin: 0 auto;
   padding: 20px 20px 10px 20px;
@@ -47,6 +49,29 @@
     &.big {
       width: 300px;
       font-size: 3rem;
+    }
+  }
+}
+
+@include mediaSmall {
+  .contactContainer {
+    height: 150px;
+    flex-direction: column;
+    align-items: center;
+
+    .contactInfo {
+      height: 70%;
+      flex-direction: column;
+    }
+
+    .socialContainer {
+      width: 200px;
+
+      a {
+        :hover {
+          color: #fff;
+        }
+      }
     }
   }
 }

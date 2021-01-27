@@ -1,3 +1,5 @@
+@import '/styles/config.scss';
+
 .container {
   padding: 20px 10px 10px 10px;
   width: 100%;
@@ -13,11 +15,12 @@
     width: 100%;
     max-width: 600px;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 
     .shortcutsColumn {
-      width: 33%;
+      min-width: 33%;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -40,5 +43,26 @@
   .copyrightContainer {
     margin-top: 30px;
     color: #999;
+  }
+}
+
+@include mediaSmall {
+  .container {
+    .shortcutsContainer {
+      width: 100%;
+      max-width: 600px;
+      flex-wrap: wrap;
+
+      .shortcutsColumn {
+        min-width: 33%;
+
+        .shortcutsItem {
+          font-size: 0.8rem;
+          :hover {
+            color: #999;
+          }
+        }
+      }
+    }
   }
 }
