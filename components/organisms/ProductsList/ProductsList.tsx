@@ -35,23 +35,25 @@ const ProductsList: FC<Props> = ({ products }) => {
     <div className={styles.container}>
       <div className={styles.categoriesContainer}>
         <Categories />
-        <div className={styles.sortContainer}>
-          <label htmlFor="sort">
-            <h3>Sort</h3>
-            <select name="sort" id="sort" onChange={(e) => setSortOption(e.target.value)}>
-              <option defaultValue="bestsellers">Bestsellers</option>
-              <option value="nameAtoZ">Name A to Z</option>
-              <option value="nameZtoA">Name Z to A</option>
-              <option value="priceAscending">Price ascending</option>
-              <option value="priceDescending">Price descending</option>
-            </select>
-          </label>
-        </div>
-        <div className={styles.searchContainer}>
-          <label htmlFor="search">
-            <h3>Search</h3>
-            <input type="text" id="search" placeholder="Enter search keyword" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
-          </label>
+        <div className={styles.secondSection}>
+          <div className={styles.sortContainer}>
+            <label htmlFor="sort">
+              <h3>Sort</h3>
+              <select name="sort" id="sort" onChange={(e) => setSortOption(e.target.value)}>
+                <option defaultValue="bestsellers">Bestsellers</option>
+                <option value="nameAtoZ">Name A to Z</option>
+                <option value="nameZtoA">Name Z to A</option>
+                <option value="priceAscending">Price ascending</option>
+                <option value="priceDescending">Price descending</option>
+              </select>
+            </label>
+          </div>
+          <div className={styles.searchContainer}>
+            <label htmlFor="search">
+              <h3>Search</h3>
+              <input type="text" id="search" placeholder="Enter search keyword" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+            </label>
+          </div>
         </div>
       </div>
       <div className={styles.productsContainer}>

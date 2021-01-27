@@ -1,3 +1,5 @@
+@import '/styles/config.scss';
+
 .container {
   border: 1px solid black;
 
@@ -29,6 +31,42 @@
         border-right: 10px solid #00adef;
         color: #00adef;
         font-weight: bold;
+      }
+    }
+  }
+}
+
+@include mediaSmall {
+  .container {
+    h3 {
+      border-bottom: 1px solid black;
+    }
+    .list {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+
+      .item:nth-of-type(1) {
+        width: 100%;
+      }
+
+      .item {
+        border-top: none;
+        width: 33%;
+
+        :hover {
+          background-color: #fff;
+          color: #00adef;
+        }
+
+        a {
+          padding: 5px;
+          text-align: center;
+        }
+
+        &.active {
+          border-right: none;
+        }
       }
     }
   }
