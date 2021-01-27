@@ -21,7 +21,7 @@ const HomeContent:FC<Props> = ({ bestsellers, recentPosts }) => (
     <div className={styles.advNavigateContainer}>
       <a href="#video">
         <FontAwesomeIcon icon={faAngleDown} />
-        <p>Watch the trailer!</p>
+        <p>Watch GoPro HERO 9 trailer!</p>
       </a>
     </div>
     <div className={styles.videoSection} id="video">
