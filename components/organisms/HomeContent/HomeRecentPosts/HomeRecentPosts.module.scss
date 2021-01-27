@@ -1,3 +1,5 @@
+@import '/styles/config.scss';
+
 .recentPostsSection {
   padding: 20px 10px 70px 10px;
   background-color: #00adef;
@@ -11,6 +13,7 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    flex-wrap: wrap;
   }
 
   .post {
@@ -51,6 +54,39 @@
       :hover {
         background-color: #00adef;
         color: #fff;
+      }
+    }
+  }
+}
+
+@include mediaSmall {
+  .recentPostsSection {
+    .postsList {
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+
+    .post:nth-of-type(1) {
+      margin-top: 0;
+    }
+
+    .post {
+      margin-top: 20px;
+      height: 100%;
+      width: 90%;
+      padding-bottom: 70px;
+      font-size: 1.2rem;
+
+      p {
+        font-size: 1rem;
+        text-align: justify;
+      }
+
+      button {
+        :hover {
+          background-color: white;
+          color: #00adef;
+        }
       }
     }
   }
