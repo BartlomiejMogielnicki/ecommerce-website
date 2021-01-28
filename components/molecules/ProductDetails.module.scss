@@ -117,20 +117,9 @@
     }
 
     .imageContainer {
-      margin-top: 10px;
-      position: relative;
-      text-align: center;
-
       width: 100%;
 
       .activeImage {
-        margin: 0 auto;
-        padding: 35px 10px 35px 10px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: zoom-in;
-
         height: 320px;
         width: 320px;
 
@@ -138,14 +127,6 @@
           height: 100%;
           width: auto;
         }
-      }
-
-      .zoomButton {
-        position: absolute;
-        top: 20px;
-        right: 70px;
-        font-size: 1.2rem;
-        color: #00adef;
       }
     }
 
