@@ -26,6 +26,7 @@ const ProductDetails:FC<Props> = ({ product }) => {
 
   return (
     <div className={styles.container}>
+      <h1 className={styles.smallMobilesTitle}>{product.title}</h1>
       <div className={styles.imageContainer}>
         <Carousel className="carousel-style" showStatus={false} showArrows={false}>
           {product.images.map((image, index) => (
@@ -39,7 +40,7 @@ const ProductDetails:FC<Props> = ({ product }) => {
         </button>
       </div>
       <div className={styles.panel}>
-        <h1>{product.title}</h1>
+        <h1 className={styles.bigDevicesTitle}>{product.title}</h1>
         <p className={styles.description}>{product.description}</p>
         <p className={styles.price}>
           {product.price}
