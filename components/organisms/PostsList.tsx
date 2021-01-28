@@ -22,6 +22,6 @@ const PostsList:FC<Props> = ({ posts }) => (
       </div>
     ))}
   </div>
-  )
+)
 
 export default PostsList;
