@@ -47,7 +47,7 @@ const Cart:FC = () => {
                 </p>
                 <button type="button" onClick={() => changeQuantity(item.title, 'inc')}>+</button>
               </div>
-              <p>
+              <p className={styles.cartItemPrice}>
                 {(item.price * item.quantity).toFixed(2)}
                 {' $'}
               </p>

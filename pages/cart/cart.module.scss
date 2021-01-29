@@ -1,3 +1,5 @@
+@import '/styles/config.scss';
+
 .container {
   margin: 0 auto;
   padding: 10px 10px;
@@ -99,6 +101,97 @@
       margin-right: 60px;
       width: 120px;
       font-size: 1.5rem;
+    }
+  }
+}
+
+@include mediaSmall {
+  .container {
+    width: 100%;
+
+    h2 {
+      margin-bottom: 10px;
+    }
+
+    .cartList {
+      .cartItem {
+        grid-template-columns: 1fr;
+        grid-template-rows: 50px 100px 50px 50px;
+        position: relative;
+        grid-template-areas:
+          'title'
+          'image'
+          'quantity'
+          'price';
+
+        &:first-of-type {
+          border-top: 1px solid #aaa;
+        }
+
+        &:last-of-type {
+          border-bottom: 1px solid #aaa;
+        }
+
+        img {
+          grid-area: image;
+        }
+
+        .cartItemTitle {
+          align-items: center;
+          grid-area: title;
+          font-size: 1.1rem;
+
+          button {
+            margin-left: 5px;
+            width: 55px;
+            font-size: 0.9rem;
+          }
+        }
+
+        .cartItemQuantity {
+          width: 150px;
+          grid-area: quantity;
+          font-size: 1.1rem;
+        }
+
+        .cartItemPrice {
+          grid-area: price;
+        }
+
+        .buttonDelete {
+          position: absolute;
+          bottom: 67px;
+          right: 10px;
+          grid-area: delete;
+        }
+      }
+    }
+
+    button {
+      &:hover {
+        background-color: #00adef;
+        color: white;
+      }
+
+      &:disabled {
+        &:hover {
+          background-color: white;
+          color: gray;
+        }
+      }
+    }
+
+    .summaryCost {
+      text-align: center;
+    }
+
+    .buy {
+      margin: 20px 0;
+      justify-content: center;
+
+      .buyButton {
+        margin-right: 0;
+      }
     }
   }
 }
