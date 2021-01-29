@@ -1,3 +1,9 @@
+@mixin mediaSmallest {
+  @media screen and (max-width: 400px) {
+    @content;
+  }
+}
+
 @mixin mediaSmall {
   @media screen and (max-width: 550px) {
     @content;

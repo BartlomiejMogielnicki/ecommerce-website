@@ -102,3 +102,11 @@
     }
   }
 }
+
+@include mediaSmallest {
+  .container {
+      .productsContainer {
+      padding: 10px;
+    }
+  }
+}

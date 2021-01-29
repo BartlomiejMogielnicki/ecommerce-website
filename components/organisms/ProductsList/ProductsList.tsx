@@ -51,7 +51,7 @@ const ProductsList: FC<Props> = ({ products }) => {
           <div className={styles.searchContainer}>
             <label htmlFor="search">
               <h3>Search</h3>
-              <input type="text" id="search" placeholder="Enter search keyword" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+              <input type="text" id="search" placeholder="Enter keyword" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
             </label>
           </div>
         </div>

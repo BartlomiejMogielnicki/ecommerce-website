@@ -17,7 +17,7 @@ const ContactDetails:FC<Props> = ({ big }) => (
       </div>
       <div>
         <a><FontAwesomeIcon icon={faEnvelope} /></a>
-        shopgopro@fakemail.pl
+        gofakeshop@fakemail.pl
       </div>
     </div>
     <div className={`${styles.socialContainer} ${big ? styles.big : null}`}>

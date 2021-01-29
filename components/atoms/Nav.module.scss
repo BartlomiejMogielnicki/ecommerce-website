@@ -43,3 +43,9 @@
     }
   }
 }
+
+@include mediaSmallest {
+  .list {
+    margin-left: -10px;
+  }
+}

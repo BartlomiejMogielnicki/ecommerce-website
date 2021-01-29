@@ -91,3 +91,29 @@
     }
   }
 }
+
+@include mediaSmallest {
+  .advNavigateContainer {
+    a {
+      margin-left: 15px;
+      font-size: 3rem;
+    }
+  }
+
+  .videoSection {
+    padding: 10px 0 10px;
+
+    .videoContainer {
+      height: 400px;
+      width: 95%;
+    }
+
+    button {
+      margin-top: 0;
+      margin-bottom: 20px;
+      :hover {
+        background-color: black;
+      }
+    }
+  }
+}

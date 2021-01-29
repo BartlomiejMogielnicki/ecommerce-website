@@ -143,3 +143,9 @@
     }
   }
 }
+
+@include mediaSmallest {
+  .advContainer {
+    grid-template-rows: 230px;
+  }
+}
