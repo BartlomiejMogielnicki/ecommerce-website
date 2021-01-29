@@ -4,10 +4,8 @@ import { connectToDB } from 'db/connect';
 import { getPosts } from 'db/posts';
 import { Post } from 'types';
 
-import Header from 'components/organisms/Header';
 import PostsList from 'components/organisms/PostsList';
 import PostDetails from 'components/molecules/PostDetails';
-import Footer from 'components/atoms/Footer'
 
 interface Props {
   posts: Post[]
@@ -26,17 +24,9 @@ const Blog: FC<Props> = ({ posts }) => {
   }
 
   return (
-    <div>
-      <header>
-        <Header />
-      </header>
-      <main>
-        {postsEl}
-      </main>
-      <footer>
-        <Footer />
-      </footer>
-    </div>
+    <>
+      {postsEl}
+    </>
   );
 };
 

@@ -2,8 +2,6 @@ import { FC, useContext, useEffect } from 'react';
 import { UserContext } from 'context/UserContext'
 import { useRouter } from 'next/router'
 
-import Header from 'components/organisms/Header';
-import Footer from 'components/atoms/Footer'
 import LoginContent from 'components/organisms/LoginContent/LoginContent'
 
 const Contact: FC = () => {
@@ -17,17 +15,9 @@ const Contact: FC = () => {
   }, [authenticated, router])
 
   return (
-    <div>
-      <header>
-        <Header />
-      </header>
-      <main>
-        <LoginContent type="login" />
-      </main>
-      <footer>
-        <Footer />
-      </footer>
-    </div>
+    <>
+      <LoginContent type="login" />
+    </>
   )
 }
 

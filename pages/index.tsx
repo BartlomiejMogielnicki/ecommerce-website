@@ -6,8 +6,6 @@ import { getPosts } from 'db/posts';
 import { connectToDB } from 'db/connect';
 
 import HomeContent from 'components/organisms/HomeContent/HomeContent'
-import Header from 'components/organisms/Header';
-import Footer from 'components/atoms/Footer'
 
 interface Props {
   bestsellers: Product[],
@@ -15,21 +13,13 @@ interface Props {
 }
 
 const Home: FC<Props> = ({ bestsellers, recentPosts }) => (
-  <div>
+  <>
     <Head>
       <title>Ecommerce website</title>
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
-    <header>
-      <Header />
-    </header>
-    <main>
-      <HomeContent bestsellers={bestsellers} recentPosts={recentPosts} />
-    </main>
-    <footer>
-      <Footer />
-    </footer>
-  </div>
+    <HomeContent bestsellers={bestsellers} recentPosts={recentPosts} />
+  </>
 )
 
 export async function getStaticProps() {

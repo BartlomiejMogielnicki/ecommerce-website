@@ -1,9 +1,12 @@
 import { UserProvider } from 'context/UserContext'
 import 'styles/globals.scss';
+import Layout from 'components/atoms/Layout'
 
 const MyApp = ({ Component, pageProps }) => (
   <UserProvider>
-    <Component {...pageProps} />
+    <Layout>
+      <Component {...pageProps} />
+    </Layout>
   </UserProvider>
 )
 
