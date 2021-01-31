@@ -2,7 +2,7 @@ import {
   FC, useContext, useRef, useState, useEffect,
 } from 'react';
 import {
-  faLock, faLockOpen, faShoppingCart, faUser,
+  faLock, faLockOpen, faShoppingCart, faUser, faBars,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link'
@@ -105,6 +105,9 @@ const Header:FC = () => {
         </div>
       )}
       <Nav />
+      <button className={styles.menuButton} type="button">
+        <FontAwesomeIcon icon={faBars} />
+      </button>
     </div>
   );
 }
