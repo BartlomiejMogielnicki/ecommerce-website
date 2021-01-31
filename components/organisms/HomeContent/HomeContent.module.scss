@@ -68,40 +68,22 @@
   }
 }
 
-@include mediaLarge {
-  .advNavigateContainer {
-    height: 120px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    background-color: black;
+@include mediaBig {
+  .videoSection {
+    padding: 0 0 30px;
 
-    a {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 5rem;
-      color: #00adef;
-      animation: blink 0.5s linear alternate infinite;
+    .videoContainer {
+      margin: 0 auto 10px;
+      height: 450px;
+    }
 
-      p {
-        margin-left: 20px;
-        font-size: 1.5rem;
-        color: #fff;
-      }
-
-      @keyframes blink {
-        0% {
-          opacity: 0.2;
-        }
-
-        100% {
-          opacity: 1;
-        }
-      }
+    button {
+      margin-top: 10px;
     }
   }
+}
 
+@include mediaLarge {
   .videoSection {
     padding: 0 0 60px;
 

@@ -105,6 +105,44 @@
   }
 }
 
+@include mediaBig {
+  .container {
+    font-size: 1.2rem;
+
+    .cartList {
+      .cartItem {
+        grid-template-columns: 100px 1fr 150px 150px 50px;
+
+        .cartItemTitle {
+          align-items: center;
+
+          button {
+            margin-left: 5px;
+            width: 55px;
+            font-size: 1rem;
+          }
+        }
+
+        .cartItemQuantity {
+          width: 90%;
+        }
+      }
+    }
+
+    .summaryCost {
+      text-align: center;
+    }
+
+    .buy {
+      justify-content: center;
+
+      .buyButton {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
 @include mediaSmall {
   .container {
     width: 100%;
