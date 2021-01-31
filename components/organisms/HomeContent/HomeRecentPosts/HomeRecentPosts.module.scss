@@ -59,6 +59,24 @@
   }
 }
 
+@include mediaLarge {
+  .recentPostsSection {
+    .postsList {
+      margin-top: 40px;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .post {
+      margin-bottom: 20px;
+      height: 320px;
+      width: 45%;
+    }
+  }
+}
+
 @include mediaSmall {
   .recentPostsSection {
     .postsList {

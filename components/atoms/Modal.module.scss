@@ -49,6 +49,23 @@
   }
 }
 
+@include mediaLarge {
+  .productImagesModalContainer {
+    .productImagesModal {
+      width: 70%;
+
+      .activeImage {
+        width: 100%;
+
+        img {
+          height: 450px;
+          width: auto;
+        }
+      }
+    }
+  }
+}
+
 @include mediaSmall {
   .productImagesModalContainer {
     .productImagesModal {

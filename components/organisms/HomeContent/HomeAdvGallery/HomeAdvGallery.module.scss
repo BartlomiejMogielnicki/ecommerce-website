@@ -80,6 +80,70 @@
   }
 }
 
+@include mediaLarge {
+  .advContainer {
+    grid-template-columns: 1fr;
+    grid-template-rows: 500px;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+
+    .mainAdv {
+      grid-row-start: 1;
+      grid-row-end: 2;
+      border-left: none;
+      border-right: none;
+      border-bottom: none;
+    }
+
+    & > div {
+      width: 100%;
+      height: 100%;
+      display: flex;
+    }
+
+    .smallAdv {
+      width: 50%;
+      height: 100%;
+    }
+
+    .topLeftAdv {
+      border-right: 2px solid #fff;
+
+      .advTitle {
+        top: 80%;
+        right: 70%;
+      }
+    }
+
+    .botLeftAdv {
+      border-bottom: none;
+      border-left: 3px solid #fff;
+    }
+
+    .topRightAdv {
+      border-right: 3px solid #fff;
+      border-bottom: 5px solid #fff;
+    }
+
+    .botRightAdv {
+      border-top: 5px solid #fff;
+      border-bottom: 5px solid #fff;
+      border-left: 2px solid #fff;
+    }
+
+    .advTitle {
+      position: absolute;
+      font-size: 2rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+      color: #fff;
+    }
+  }
+}
+
 @include mediaSmall {
   .advContainer {
     grid-template-columns: 100%;
@@ -92,7 +156,6 @@
 
     .mainAdv {
       width: 100%;
-      grid-area: 'first';
       grid-row-start: 1;
       grid-row-end: 2;
       border-right: none;

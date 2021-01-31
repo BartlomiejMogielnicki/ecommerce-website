@@ -68,6 +68,50 @@
   }
 }
 
+@include mediaLarge {
+  .advNavigateContainer {
+    height: 120px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: black;
+
+    a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 5rem;
+      color: #00adef;
+      animation: blink 0.5s linear alternate infinite;
+
+      p {
+        margin-left: 20px;
+        font-size: 1.5rem;
+        color: #fff;
+      }
+
+      @keyframes blink {
+        0% {
+          opacity: 0.2;
+        }
+
+        100% {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .videoSection {
+    padding: 0 0 60px;
+
+    .videoContainer {
+      margin: 0 auto 10px;
+      height: 600px;
+    }
+  }
+}
+
 @include mediaSmall {
   .advNavigateContainer {
     a {

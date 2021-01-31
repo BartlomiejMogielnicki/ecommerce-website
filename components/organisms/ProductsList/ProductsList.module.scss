@@ -54,6 +54,7 @@
 
     input {
       padding: 10px;
+      width: 100%;
       border: none;
     }
   }
@@ -97,7 +98,6 @@
     .searchContainer {
       width: 45%;
       input {
-        width: 100%;
         height: 40px;
       }
     }

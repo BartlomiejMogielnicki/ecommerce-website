@@ -130,6 +130,34 @@
   }
 }
 
+@include mediaLarge {
+  .container {
+    height: 190px;
+
+    .topCol {
+      .logo {
+        height: 130px;
+      }
+    }
+
+    .topColLogo {
+      .shopLogo {
+        height: 50px;
+      }
+    }
+
+    .topColCart {
+      top: 25px;
+
+      .cart {
+        &.fixed {
+          top: 25px;
+        }
+      }
+    }
+  }
+}
+
 @include mediaSmall {
   .container {
     height: 90px;
