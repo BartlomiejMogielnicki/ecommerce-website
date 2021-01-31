@@ -12,7 +12,12 @@ import { UserContext } from 'context/UserContext'
 import Nav from 'components/atoms/Nav';
 import styles from './Header.module.scss';
 
-const Header:FC = () => {
+interface Props {
+  clicked: () => void,
+  showMenu: boolean
+}
+
+const Header:FC<Props> = ({ clicked, showMenu }) => {
   const { user, logout } = useContext(UserContext)
   const [isCartFixed, setIsCartFixed] = useState(false)
 
@@ -42,7 +47,7 @@ const Header:FC = () => {
   }
 
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} ${showMenu && styles.containerShow}`}>
       <div className={styles.topRow}>
         <div className={styles.topColLogo}>
           <Link href="/">
@@ -105,7 +110,7 @@ const Header:FC = () => {
         </div>
       )}
       <Nav />
-      <button className={styles.menuButton} type="button">
+      <button className={styles.menuButton} type="button" onClick={clicked}>
         <FontAwesomeIcon icon={faBars} />
       </button>
     </div>

@@ -134,6 +134,8 @@
   .container {
     height: 90px;
     position: fixed;
+    transform: translateY(-85px);
+    transition: 0.3s;
 
     .topCol {
       .logo {
@@ -215,6 +217,10 @@
       background-color: black;
       color: #fff;
     }
+  }
+
+  .containerShow {
+    transform: translateY(0);
   }
 }
 
