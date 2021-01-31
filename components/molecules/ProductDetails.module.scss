@@ -107,10 +107,12 @@
 
 @include mediaSmall {
   .container {
+    margin: 0 auto;
     min-height: none;
     flex-direction: column;
 
     .smallMobilesTitle {
+      margin-top: 50px;
       display: block;
       text-align: center;
       font-size: 1.8rem;

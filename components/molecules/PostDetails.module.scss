@@ -1,3 +1,5 @@
+@import '/styles/config.scss';
+
 .container {
   max-width: 1200px;
   min-height: 720px;
@@ -29,5 +31,13 @@
       background-color: #00adef;
       color: #fff;
     }
+  }
+}
+
+@include mediaSmall {
+  .container {
+    margin-top: 0;
+    max-width: 90%;
+    min-height: 600px;
   }
 }
