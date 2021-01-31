@@ -111,7 +111,11 @@ const Header:FC<Props> = ({ clicked, showMenu }) => {
       )}
       <Nav />
       <button className={styles.menuButton} type="button" onClick={clicked}>
-        <FontAwesomeIcon icon={faBars} />
+        <div className={`${styles.linesContainer} ${showMenu && styles.hideIcon}`}>
+          <div className={showMenu && styles.hide} />
+          <div className={showMenu && styles.hide} />
+          <div className={showMenu && styles.hide} />
+        </div>
       </button>
     </div>
   );
