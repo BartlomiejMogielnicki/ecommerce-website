@@ -59,6 +59,40 @@
   }
 }
 
+@include mediaMedium {
+  .recentPostsSection {
+    .postsList {
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+
+    .post:nth-of-type(1) {
+      margin-top: 0;
+    }
+
+    .post {
+      margin-top: 20px;
+      height: 100%;
+      width: 90%;
+      max-width: 500px;
+      padding-bottom: 70px;
+      font-size: 1.2rem;
+
+      p {
+        font-size: 1rem;
+        text-align: justify;
+      }
+
+      button {
+        :hover {
+          background-color: white;
+          color: #00adef;
+        }
+      }
+    }
+  }
+}
+
 @include mediaBig {
   .recentPostsSection {
     .postsList {

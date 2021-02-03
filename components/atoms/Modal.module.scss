@@ -32,7 +32,7 @@
       align-items: center;
 
       img {
-        height: 750px;
+        height: 500px;
         width: auto;
       }
     }
@@ -59,6 +59,45 @@
 
         img {
           height: 450px;
+          width: auto;
+        }
+      }
+    }
+  }
+}
+
+@include mediaBig {
+  .productImagesModalContainer {
+    .productImagesModal {
+      width: 70%;
+
+      .activeImage {
+        width: 100%;
+
+        img {
+          height: 450px;
+          width: auto;
+        }
+      }
+    }
+  }
+}
+
+@include mediaMedium {
+  .productImagesModalContainer {
+    .productImagesModal {
+      width: 100%;
+
+      .closeButton {
+        top: 10px;
+        right: 30px;
+      }
+
+      .activeImage {
+        width: 100%;
+
+        img {
+          height: 400px;
           width: auto;
         }
       }

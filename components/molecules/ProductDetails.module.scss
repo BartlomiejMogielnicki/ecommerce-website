@@ -105,6 +105,89 @@
   }
 }
 
+@include mediaMedium {
+  .container {
+    margin: 0 auto;
+    min-height: none;
+    flex-direction: column;
+
+    .smallMobilesTitle {
+      margin-top: 50px;
+      display: block;
+      text-align: center;
+      font-size: 1.8rem;
+    }
+
+    .imageContainer {
+      margin-top: 20px;
+      width: 100%;
+
+      .activeImage {
+        height: 320px;
+        width: 320px;
+
+        img {
+          height: 100%;
+          width: auto;
+        }
+      }
+    }
+
+    .panel {
+      min-height: 250px;
+
+      .bigDevicesTitle {
+        display: none;
+      }
+
+      .description {
+        font-size: 1.2rem;
+      }
+
+      .price {
+        margin-top: 10px;
+        font-size: 1.4rem;
+      }
+
+      .btnsContainer {
+        width: 300px;
+        display: flex;
+        justify-content: space-around;
+
+        button {
+          margin-left: 5px;
+          margin-top: 15px;
+
+          &:disabled {
+            color: gray;
+            border: 2px solid gray;
+
+            :hover {
+              background-color: white;
+              color: gray;
+            }
+          }
+
+          a {
+            padding: 5px 10px;
+            font-size: 1rem;
+          }
+
+          p {
+            padding: 5px 10px;
+            font-size: 1rem;
+          }
+
+          :hover {
+            background-color: #fff;
+            color: #00adef;
+          }
+        }
+      }
+    }
+  }
+}
+
 @include mediaSmall {
   .container {
     margin: 0 auto;

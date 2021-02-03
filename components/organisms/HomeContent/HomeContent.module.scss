@@ -68,6 +68,21 @@
   }
 }
 
+@include mediaMedium {
+  .videoSection {
+    padding: 0 0 30px;
+
+    .videoContainer {
+      margin: 0 auto 10px;
+      height: 450px;
+    }
+
+    button {
+      margin-top: 10px;
+    }
+  }
+}
+
 @include mediaBig {
   .videoSection {
     padding: 0 0 30px;

@@ -71,6 +71,15 @@
   }
 }
 
+@include mediaMedium {
+  .container {
+    .categoriesContainer {
+      margin-left: 20px;
+      width: 250px;
+    }
+  }
+}
+
 @include mediaSmall {
   .container {
     flex-direction: column;

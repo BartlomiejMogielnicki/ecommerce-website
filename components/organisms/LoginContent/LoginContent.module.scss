@@ -37,6 +37,24 @@
   }
 }
 
+@include mediaMedium {
+  .container {
+    height: 100%;
+    grid-template-columns: 100%;
+    grid-template-rows: 150px 1fr;
+
+    .titleContainer {
+      border-bottom: none;
+      border-right: none;
+      font-size: 2rem;
+    }
+
+    .formContainer {
+      border-left: none;
+    }
+  }
+}
+
 @include mediaSmall {
   .container {
     height: 100%;
