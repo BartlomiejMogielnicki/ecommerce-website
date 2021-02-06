@@ -1,0 +1,61 @@
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 50px;
+  width: 50px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+
+  div {
+    margin: 5px;
+    height: 100%;
+    width: 100%;
+  }
+
+  @keyframes load {
+    0% {
+      opacity: 0;
+    }
+    25% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    75% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  .firstDot {
+    background-color: #00adef;
+    animation: load 0.8s linear infinite;
+  }
+
+  .secondDot {
+    background-color: #005baa;
+    animation: load 0.8s linear infinite;
+    animation-delay: 0.6s;
+  }
+
+  .thirdDot {
+    background-color: #005baa;
+    animation: load 0.8s linear infinite;
+    animation-delay: 0.2s;
+  }
+
+  .fourthDot {
+    background-color: #00adef;
+    animation: load 0.8s linear infinite;
+    animation-delay: 0.4s;
+  }
+}

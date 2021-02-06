@@ -1,5 +1,6 @@
 import { FC, useState } from 'react';
 import Categories from 'components/organisms/ProductsList/Categories/Categories';
+import LoadingSpinner from 'components/atoms/LoadingSpinner'
 import ProductCard from './ProductCard/ProductCard';
 import styles from './ProductsList.module.scss';
 
@@ -59,6 +60,7 @@ const ProductsList: FC<Props> = ({ products }) => {
         </div>
       </div>
       <div className={styles.productsContainer}>
+        {!products && <LoadingSpinner />}
         {products && sortFn.filter((product) => product.title.toLowerCase().includes(searchTerm.toLowerCase())).map((product) => (
           <ProductCard
             key={product.title}
