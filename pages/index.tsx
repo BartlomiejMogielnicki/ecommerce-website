@@ -15,8 +15,10 @@ interface Props {
 const Home: FC<Props> = ({ bestsellers, recentPosts }) => (
   <>
     <Head>
-      <title>Ecommerce website</title>
+      <title>GoFakeShop action cameras shop</title>
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      <meta name="description" content="Action cameras shop website. Buy the best action cameras. Read articles about the best action cameras. Contact for advice about best action cameras." />
+      <meta name="keywords" content="gopro, action cameras, cameras, hero, video, photo, media" />
     </Head>
     <HomeContent bestsellers={bestsellers} recentPosts={recentPosts} />
   </>

@@ -14,21 +14,23 @@ const ProductsList: FC<Props> = ({ products }) => {
   const [searchTerm, setSearchTerm] = useState('')
 
   let sortFn;
-  switch (sortOption) {
-    case 'nameAtoZ':
-      sortFn = products.sort((a, b) => a.title.localeCompare(b.title))
-      break;
-    case 'nameZtoA':
-      sortFn = products.sort((a, b) => b.title.localeCompare(a.title))
-      break;
-    case 'priceAscending':
-      sortFn = products.sort((a, b) => a.price - b.price)
-      break;
-    case 'priceDescending':
-      sortFn = products.sort((a, b) => b.price - a.price)
-      break;
-    default:
-      sortFn = products.sort((product) => (product.bestseller ? -1 : 1));
+  if (products) {
+    switch (sortOption) {
+      case 'nameAtoZ':
+        sortFn = products.sort((a, b) => a.title.localeCompare(b.title))
+        break;
+      case 'nameZtoA':
+        sortFn = products.sort((a, b) => b.title.localeCompare(a.title))
+        break;
+      case 'priceAscending':
+        sortFn = products.sort((a, b) => a.price - b.price)
+        break;
+      case 'priceDescending':
+        sortFn = products.sort((a, b) => b.price - a.price)
+        break;
+      default:
+        sortFn = products.sort((product) => (product.bestseller ? -1 : 1));
+    }
   }
 
   return (
