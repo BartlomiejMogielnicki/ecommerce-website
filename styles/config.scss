@@ -10,6 +10,12 @@
   }
 }
 
+@mixin mediaSmallLandscape {
+  @media screen and (max-height: 500px) and (orientation: landscape) {
+    @content;
+  }
+}
+
 @mixin mediaMedium {
   @media screen and (min-width: 601px) and (max-width: 768px) {
     @content;

@@ -100,3 +100,18 @@ li:focus {
     }
   }
 }
+
+@include mediaSmallLandscape {
+  .carousel-style {
+    .carousel .control-dots .dot {
+      display: none;
+    }
+    .carousel .thumb {
+      width: 100px !important;
+      img {
+        height: 70px;
+        width: auto;
+      }
+    }
+  }
+}

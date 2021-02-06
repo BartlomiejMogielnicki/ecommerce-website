@@ -17,7 +17,9 @@ const Modal:FC<Props> = ({ product, selectedImage, clicked }) => {
   }
 
   useEffect(() => {
-    document.body.style.overflowY = 'hidden';
+    if (window.innerHeight > 600) {
+      document.body.style.overflowY = 'hidden';
+    }
     return () => enableScroll()
   }, [])
   return (

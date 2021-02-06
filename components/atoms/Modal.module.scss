@@ -126,3 +126,11 @@
     }
   }
 }
+
+@include mediaSmallLandscape {
+  .productImagesModalContainer {
+    .productImagesModal {
+      width: 70%;
+    }
+  }
+}

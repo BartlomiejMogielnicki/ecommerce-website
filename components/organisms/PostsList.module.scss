@@ -1,9 +1,10 @@
 @import '/styles/config.scss';
 
 .container {
+  margin: 0 auto;
   max-width: 1200px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, 450px);
+  grid-template-columns: repeat(auto-fill, 400px);
   grid-template-rows: repeat(auto-fill, 230px);
   grid-gap: 80px 50px;
   justify-content: center;
@@ -32,6 +33,38 @@
       :hover {
         background-color: #00adef;
         color: #fff;
+      }
+    }
+  }
+}
+
+@include mediaBig {
+  .container {
+    grid-template-columns: repeat(auto-fill, 90%);
+    grid-template-rows: none;
+    grid-gap: 10px 50px;
+
+    .post {
+      padding: 15px 10px 10px 10px;
+      border-top: 1px solid #ddd;
+
+      &:nth-of-type(1) {
+        margin-top: 20px;
+        border-top: none;
+      }
+
+      h2 {
+        text-align: center;
+      }
+
+      button {
+        display: block;
+        margin: 20px auto 0;
+
+        :hover {
+          background-color: #fff;
+          color: #00adef;
+        }
       }
     }
   }

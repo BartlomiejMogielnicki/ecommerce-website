@@ -138,6 +138,7 @@
     a {
       margin-left: 15px;
       font-size: 3rem;
+      text-align: center;
     }
   }
 
@@ -155,6 +156,15 @@
       :hover {
         background-color: black;
       }
+    }
+  }
+}
+
+@include mediaSmallLandscape {
+  .videoSection {
+    .videoContainer {
+      height: 400px;
+      width: 75%;
     }
   }
 }

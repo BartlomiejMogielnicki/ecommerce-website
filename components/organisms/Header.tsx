@@ -95,7 +95,7 @@ const Header:FC<Props> = ({ clicked, showMenu }) => {
             <Link href="/sign-in">
               <a>
                 <FontAwesomeIcon icon={faUser} />
-                <p>Sign In</p>
+                <p>Sign Up</p>
               </a>
             </Link>
           </button>
