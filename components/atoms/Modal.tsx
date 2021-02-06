@@ -25,12 +25,12 @@ const Modal:FC<Props> = ({ product, selectedImage, clicked }) => {
   return (
     <div className={styles.productImagesModalContainer}>
       <div className={styles.productImagesModal}>
+        <button className={styles.closeButton} type="button" onClick={clicked}>
+          <FontAwesomeIcon icon={faTimes} />
+        </button>
         <Carousel className="carousel-style" showStatus={false} selectedItem={selectedImage}>
           {product.images.map((image) => (
             <div className={styles.activeImage} key={image.name}>
-              <button className={styles.closeButton} type="button" onClick={clicked}>
-                <FontAwesomeIcon icon={faTimes} />
-              </button>
               <img src={image.url} alt={image.name} />
             </div>
           ))}

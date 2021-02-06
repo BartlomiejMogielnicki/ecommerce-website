@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import Link from 'next/link';
+import LoadingSpinner from 'components/atoms/LoadingSpinner'
 import styles from './PostsList.module.scss';
 
 import { Post } from '../../types';
@@ -10,6 +11,7 @@ interface Props {
 
 const PostsList:FC<Props> = ({ posts }) => (
   <div className={styles.container}>
+    {!posts && <LoadingSpinner />}
     {posts && posts.map((p) => (
       <div className={styles.post} key={p.title}>
         <h2>{p.title}</h2>
