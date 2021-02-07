@@ -9,7 +9,7 @@ const moveContentStyles = {
 
 const defaultContentStyles = {
   transition: '.3s',
-  transform: 'translateY(0)',
+  transform: 'translateY(-5px)',
 }
 
 const Layout: FC = ({ children }) => {
