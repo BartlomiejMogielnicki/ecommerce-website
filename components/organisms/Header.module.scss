@@ -167,10 +167,6 @@
           top: 10px;
           right: 15px;
         }
-
-        &.hidden {
-          display: block;
-        }
       }
 
       .itemsNum {
@@ -243,9 +239,9 @@
 
 @include mediaSmall {
   .container {
-    height: 90px;
+    height: 100px;
     position: fixed;
-    transform: translateY(-90px);
+    transform: translateY(-100px);
     transition: 0.3s;
 
     .topCol {
@@ -255,7 +251,7 @@
     }
 
     .topColLogo {
-      top: 5px;
+      top: 10px;
       left: 5px;
       .shopLogo {
         height: 35px;
@@ -263,7 +259,7 @@
     }
 
     .topColCart {
-      top: 40px;
+      top: 50px;
       padding-top: 0;
       padding-right: 0px;
       font-size: 1.5rem;
@@ -280,10 +276,6 @@
           position: relative;
           top: 10px;
           right: 15px;
-        }
-
-        &.hidden {
-          display: block;
         }
       }
 
@@ -324,7 +316,7 @@
       position: absolute;
       bottom: -40px;
       left: 0;
-      background-color: rgba(0, 0, 0, 0.7);
+      background-color: rgba(0, 0, 0, 0.8);
       color: #fff;
 
       .linesContainer {

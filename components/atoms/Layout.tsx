@@ -4,12 +4,12 @@ import Footer from 'components/atoms/Footer'
 
 const moveContentStyles = {
   transition: '.3s',
-  transform: 'translateY(85px)',
+  transform: 'translateY(105px)',
 }
 
 const defaultContentStyles = {
   transition: '.3s',
-  transform: 'translateY(-5px)',
+  transform: 'translateY(0px)',
 }
 
 const Layout: FC = ({ children }) => {
