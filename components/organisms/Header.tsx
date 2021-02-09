@@ -18,12 +18,18 @@ interface Props {
 }
 
 const Header:FC<Props> = ({ clicked, showMenu }) => {
-  const { user, logout } = useContext(UserContext)
+  const { user, logout, cookieLogin } = useContext(UserContext)
   const [isCartFixed, setIsCartFixed] = useState(false)
 
   const cartRef = useRef(null)
 
   const router = useRouter()
+
+  useEffect(() => {
+    if (!user.authenticated) {
+      cookieLogin()
+    }
+  }, [user.authenticated, cookieLogin])
 
   useEffect(() => {
     let cartOffsetTop = cartRef.current.getBoundingClientRect().top
