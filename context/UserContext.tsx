@@ -222,9 +222,15 @@ export const UserProvider = ({ children }) => {
   }, [dispatch, user.authenticated])
 
   const logout = useCallback(() => {
-    dispatch({
-      type: LOG_OUT,
-    })
+    fetch(`${URL}/api/logout`)
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error('Something went wrong');
+      }).then(() => dispatch({
+        type: LOG_OUT,
+      })).catch((error) => console.log(error))
   }, [dispatch])
 
   const login = useCallback((username: string, password: string) => {

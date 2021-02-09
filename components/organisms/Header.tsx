@@ -41,11 +41,6 @@ const Header:FC<Props> = ({ clicked, showMenu }) => {
     }
   }, [])
 
-  const handleLogout = () => {
-    logout()
-    router.push('/')
-  }
-
   return (
     <div className={`${styles.container} ${showMenu && styles.containerShow}`}>
       <div className={styles.topRow}>
@@ -82,7 +77,7 @@ const Header:FC<Props> = ({ clicked, showMenu }) => {
             <FontAwesomeIcon icon={faUser} />
             <p>{user.userName}</p>
           </div>
-          <button type="button" onClick={handleLogout}>
+          <button type="button" onClick={logout}>
             <a>
               <FontAwesomeIcon icon={faLock} />
               <p>Log Out</p>
