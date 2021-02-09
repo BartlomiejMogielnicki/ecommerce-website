@@ -12,9 +12,9 @@ const Nav:FC = () => (
       <Link href="/">
         <a>
           <p className={styles.itemText}>Home</p>
-          <a className={styles.itemIcon}>
+          <div className={styles.itemIcon}>
             <FontAwesomeIcon icon={faHome} />
-          </a>
+          </div>
         </a>
       </Link>
     </li>
@@ -22,9 +22,9 @@ const Nav:FC = () => (
       <Link href="/products">
         <a>
           <p className={styles.itemText}>Products</p>
-          <a className={styles.itemIcon}>
+          <div className={styles.itemIcon}>
             <FontAwesomeIcon icon={faShoppingBasket} />
-          </a>
+          </div>
         </a>
       </Link>
     </li>
@@ -32,9 +32,9 @@ const Nav:FC = () => (
       <Link href="/blog">
         <a>
           <p className={styles.itemText}>Blog</p>
-          <a className={styles.itemIcon}>
+          <div className={styles.itemIcon}>
             <FontAwesomeIcon icon={faBookReader} />
-          </a>
+          </div>
         </a>
       </Link>
     </li>
@@ -42,9 +42,9 @@ const Nav:FC = () => (
       <Link href="/contact">
         <a>
           <p className={styles.itemText}>Contact</p>
-          <a className={styles.itemIcon}>
+          <div className={styles.itemIcon}>
             <FontAwesomeIcon icon={faPhone} />
-          </a>
+          </div>
         </a>
       </Link>
     </li>

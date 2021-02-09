@@ -48,7 +48,7 @@ const Header:FC<Props> = ({ clicked, showMenu }) => {
   }, [])
 
   return (
-    <div className={`${styles.container} ${showMenu && styles.containerShow}`}>
+    <div className={`${styles.container} ${showMenu ? styles.containerShow : null}`}>
       <div className={styles.topRow}>
         <div className={styles.topColLogo}>
           <Link href="/">
@@ -67,7 +67,7 @@ const Header:FC<Props> = ({ clicked, showMenu }) => {
         <div className={styles.topColCart}>
           <Link href="/cart">
             <a>
-              <div className={`${styles.cart} ${isCartFixed && styles.fixed} ${router.pathname === '/cart' && styles.hidden}`} ref={cartRef}>
+              <div className={`${styles.cart} ${isCartFixed ? styles.fixed : null} ${router.pathname === '/cart' && styles.hidden}`} ref={cartRef}>
                 <FontAwesomeIcon icon={faShoppingCart} />
                 <div className={styles.itemsNum}>
                   {user.cart.length}
@@ -112,10 +112,10 @@ const Header:FC<Props> = ({ clicked, showMenu }) => {
       )}
       <Nav />
       <button className={styles.menuButton} type="button" onClick={clicked}>
-        <div className={`${styles.linesContainer} ${showMenu && styles.hideIcon}`}>
-          <div className={showMenu && styles.hide} />
-          <div className={showMenu && styles.hide} />
-          <div className={showMenu && styles.hide} />
+        <div className={`${styles.linesContainer} ${showMenu ? styles.hideIcon : null}`}>
+          <div className={showMenu ? styles.hide : null} />
+          <div className={showMenu ? styles.hide : null} />
+          <div className={showMenu ? styles.hide : null} />
         </div>
       </button>
     </div>
