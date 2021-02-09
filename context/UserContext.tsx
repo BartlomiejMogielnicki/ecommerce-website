@@ -22,7 +22,8 @@ interface ContextProps {
   changeQuantity: (title: string, operation: string) => void,
   logout: () => void,
   login: (username: string, password: string) => void,
-  signin: (username: string, email: string, password: string) => void
+  signin: (username: string, email: string, password: string) => void,
+  cookieLogin: () => void
 }
 
 const initialState = {
@@ -262,8 +263,20 @@ export const UserProvider = ({ children }) => {
     })).catch((error) => console.log(error))
   }, [dispatch])
 
+  const cookieLogin = useCallback(() => {
+    fetch(`${URL}/api/cookieLogin`)
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error('Something went wrong');
+      }).then((data) => dispatch({
+        type: LOG_IN, payload: data,
+      })).catch((error) => console.log(error))
+  }, [dispatch])
+
   const value = {
-    user, addToCart, deleteFromCart, changeQuantity, logout, login, signin,
+    user, addToCart, deleteFromCart, changeQuantity, logout, login, signin, cookieLogin,
   }
 
   return (

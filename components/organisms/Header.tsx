@@ -2,7 +2,7 @@ import {
   FC, useContext, useRef, useState, useEffect,
 } from 'react';
 import {
-  faLock, faLockOpen, faShoppingCart, faUser, faBars,
+  faLock, faLockOpen, faShoppingCart, faUser,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link'
