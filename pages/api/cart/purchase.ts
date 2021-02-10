@@ -2,16 +2,18 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import { connectToDB } from 'db/connect'
 import auth from 'middleware/auth'
 
-const addProduct = async (req: NextApiRequest, res: NextApiResponse) => {
+const purchase = async (req: NextApiRequest, res: NextApiResponse) => {
   const { db } = await connectToDB()
-  const { product, username, token } = req.body
+  const { username, token, cart } = req.body
+
+  const orderDate = new Date().toLocaleString('en-GB')
 
   try {
     const user = await db
       .collection('users')
       .findOneAndUpdate(
         { username, 'tokens.token': token },
-        { $push: { cart: { ...product } } },
+        { $push: { history: { orderDate, ...cart } }, $set: { cart: [] } },
         { returnOriginal: false },
       )
 
@@ -25,4 +27,4 @@ const addProduct = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 }
 
-export default auth(addProduct)
+export default auth(purchase)

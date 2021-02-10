@@ -20,7 +20,7 @@ interface ContextProps {
   addToCart: (title: string, category: string, price: number, image: string) => void,
   deleteFromCart: (title: string) => void,
   changeQuantity: (title: string, operation: string) => void,
-  purchase: () => void,
+  purchase: (cart: CartObject[]) => void,
   logout: () => void,
   login: (username: string, password: string) => void,
   signin: (username: string, email: string, password: string) => void,
@@ -230,11 +230,30 @@ export const UserProvider = ({ children }) => {
     }
   }, [dispatch, user.authenticated])
 
-  const purchase = useCallback(() => {
+  const purchase = useCallback((cart: CartObject[]) => {
     if (!user.authenticated) {
       dispatch({
         type: GUEST_PURCHASE,
       })
+    } else {
+      fetch(`${URL}/api/cart/purchase`, {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        method: 'POST',
+        body: JSON.stringify({ cart }),
+      }).then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error('Something went wrong');
+      }).then((data) => dispatch({
+        type: UPDATE_CART,
+        payload: {
+          cart: data.cart,
+        },
+      })).catch((error) => console.log(error))
     }
   }, [dispatch, user.authenticated])
 

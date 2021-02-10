@@ -18,7 +18,7 @@ const Cart:FC = () => {
 
   const handlePurchase = () => {
     setIsPurchaseModalShow(true)
-    purchase()
+    purchase(cart)
   }
 
   return (

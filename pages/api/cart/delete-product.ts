@@ -7,19 +7,14 @@ const deleteProduct = async (req: NextApiRequest, res: NextApiResponse) => {
   const { title, username, token } = req.body
 
   try {
-    const user = await db.collection('users').findOne({
-      username,
-      'tokens.token': token,
-    })
-
-    const updatedUser = await db
+    const user = await db
       .collection('users')
       .findOneAndUpdate({ username, 'tokens.token': token }, { $pull: { cart: { title } } }, { returnOriginal: false })
 
     if (!user) {
       throw new Error()
     } else {
-      res.status(200).send({ cart: updatedUser.value.cart })
+      res.status(200).send({ cart: user.value.cart })
     }
   } catch (error) {
     res.status(500).send({ error: 'Something went wrong' })
