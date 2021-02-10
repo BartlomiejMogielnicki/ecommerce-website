@@ -1,0 +1,38 @@
+.list {
+  margin: 0 auto;
+  padding: 10px 10px 20px 10px;
+  max-width: 1000px;
+  display: flex;
+  justify-content: space-evenly;
+
+  .item {
+    width: 150px;
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 10px;
+    // background-color: #00adef;
+    color: #00adef;
+    cursor: pointer;
+    transition: 0.2s;
+
+    &:hover {
+      box-shadow: 0 0 10px 1px black;
+    }
+
+    .logoutButton {
+      width: 100%;
+      height: 100%;
+      color: #00adef;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      border: none;
+      font-size: 1.4rem;
+
+      &:hover {
+        background-color: white;
+      }
+    }
+  }
+}
