@@ -1,0 +1,49 @@
+.wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .purchaseInfo {
+    width: 600px;
+    height: 400px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    z-index: 1000;
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .closeButton {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      border: none;
+      color: #00adef;
+      font-size: 2rem;
+      z-index: 10;
+
+      &:hover {
+        background-color: white;
+      }
+    }
+  }
+
+  .purchaseModalBackdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 500;
+  }
+}

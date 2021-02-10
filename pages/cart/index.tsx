@@ -1,6 +1,7 @@
-import { FC, useContext } from 'react'
+import { FC, useContext, useState } from 'react'
 import { UserContext } from 'context/UserContext'
 import Link from 'next/link'
+import PurchaseModal from 'components/atoms/PurchaseModal'
 
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './cart.module.scss'
 
 const Cart:FC = () => {
+  const [isPurchaseModalShown, setIsPurchaseModalShow] = useState(false)
   const {
     user: { cart }, deleteFromCart, changeQuantity, purchase,
   } = useContext(UserContext)
@@ -15,6 +17,7 @@ const Cart:FC = () => {
   const summaryCost = cart.map((item) => item.price * item.quantity).reduce((a, b) => a + b, 0).toFixed(2)
 
   const handlePurchase = () => {
+    setIsPurchaseModalShow(true)
     purchase()
   }
 
@@ -63,8 +66,9 @@ const Cart:FC = () => {
         </p>
       </div>
       <div className={styles.buy}>
-        <button className={styles.buyButton} type="button" onClick={handlePurchase}>Buy</button>
+        <button className={styles.buyButton} type="button" onClick={handlePurchase} disabled={cart.length === 0}>Buy</button>
       </div>
+      {isPurchaseModalShown && <PurchaseModal clicked={() => setIsPurchaseModalShow(false)} />}
     </div>
   )
 }
