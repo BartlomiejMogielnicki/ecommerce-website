@@ -7,10 +7,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 10000000;
 
   .purchaseInfo {
-    width: 600px;
-    height: 400px;
+    width: 90%;
+    max-width: 600px;
+    height: 300px;
     position: relative;
     display: flex;
     justify-content: center;
