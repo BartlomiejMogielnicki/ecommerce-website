@@ -2,6 +2,7 @@ import { FC, useContext, useState } from 'react'
 import { UserContext } from 'context/UserContext'
 import Link from 'next/link'
 import PurchaseModal from 'components/atoms/PurchaseModal'
+import UserNav from 'components/atoms/UserNav'
 
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -23,6 +24,7 @@ const Cart:FC = () => {
 
   return (
     <div className={styles.container}>
+      <UserNav />
       {cart.length === 0 ? (
         <h2>Your cart is empty</h2>
       ) : (
