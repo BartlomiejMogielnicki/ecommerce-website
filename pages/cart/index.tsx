@@ -9,10 +9,14 @@ import styles from './cart.module.scss'
 
 const Cart:FC = () => {
   const {
-    user: { cart }, deleteFromCart, changeQuantity,
+    user: { cart }, deleteFromCart, changeQuantity, purchase,
   } = useContext(UserContext)
 
   const summaryCost = cart.map((item) => item.price * item.quantity).reduce((a, b) => a + b, 0).toFixed(2)
+
+  const handlePurchase = () => {
+    purchase()
+  }
 
   return (
     <div className={styles.container}>
@@ -59,7 +63,7 @@ const Cart:FC = () => {
         </p>
       </div>
       <div className={styles.buy}>
-        <button className={styles.buyButton} type="button">Buy</button>
+        <button className={styles.buyButton} type="button" onClick={handlePurchase}>Buy</button>
       </div>
     </div>
   )

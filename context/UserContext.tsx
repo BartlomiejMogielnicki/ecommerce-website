@@ -20,6 +20,7 @@ interface ContextProps {
   addToCart: (title: string, category: string, price: number, image: string) => void,
   deleteFromCart: (title: string) => void,
   changeQuantity: (title: string, operation: string) => void,
+  purchase: () => void,
   logout: () => void,
   login: (username: string, password: string) => void,
   signin: (username: string, email: string, password: string) => void,
@@ -41,6 +42,7 @@ const LOG_IN = 'LOG_IN'
 const GUEST_ADD_TO_CART = 'GUEST_ADD_TO_CART'
 const GUEST_DELETE_ITEM = 'GUEST_DELETE_ITEM'
 const GUEST_CHANGE_QUANTITY = 'GUEST_CHANGE_QUANTITY'
+const GUEST_PURCHASE = 'GUEST_PURCHASE'
 
 const reducer = (state, action) => {
   if (action.type === UPDATE_CART) {
@@ -114,6 +116,13 @@ const reducer = (state, action) => {
         }
         return item
       }),
+    }
+  }
+
+  if (action.type === GUEST_PURCHASE) {
+    return {
+      ...state,
+      cart: [],
     }
   }
 
@@ -221,6 +230,14 @@ export const UserProvider = ({ children }) => {
     }
   }, [dispatch, user.authenticated])
 
+  const purchase = useCallback(() => {
+    if (!user.authenticated) {
+      dispatch({
+        type: GUEST_PURCHASE,
+      })
+    }
+  }, [dispatch, user.authenticated])
+
   const logout = useCallback(() => {
     fetch(`${URL}/api/logout`)
       .then((response) => {
@@ -282,7 +299,7 @@ export const UserProvider = ({ children }) => {
   }, [dispatch])
 
   const value = {
-    user, addToCart, deleteFromCart, changeQuantity, logout, login, signin, cookieLogin,
+    user, addToCart, deleteFromCart, changeQuantity, purchase, logout, login, signin, cookieLogin,
   }
 
   return (
