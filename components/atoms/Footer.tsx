@@ -51,6 +51,23 @@ const shortCuts = [
     ],
   },
   {
+    title: 'User',
+    links: [
+      {
+        text: 'My profile',
+        href: '/profile',
+      },
+      {
+        text: 'History',
+        href: '/history',
+      },
+      {
+        text: 'Cart',
+        href: '/cart',
+      },
+    ],
+  },
+  {
     title: 'About',
     links: [
       {
