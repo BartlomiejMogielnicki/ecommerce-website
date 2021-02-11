@@ -10,7 +10,39 @@ const History:FC = () => {
   return (
     <div className={styles.container}>
       <UserNav />
-      {!authenticated && <h2>Log in to check your history</h2>}
+      {authenticated ? (
+        <>
+          <h2>Recent orders</h2>
+          <ul className={styles.historyList}>
+            {history.map((order) => (
+              <li key={order.orderDate} className={styles.historyItem}>
+                <h3 className={styles.historyItemDate}>{order.orderDate}</h3>
+                <p>
+                  {'Status: '}
+                  {order.orderStatus}
+                </p>
+                <ul className={styles.historyOrderList}>
+                  {order.cart.map((item) => (
+                    <li key={item.title} className={styles.historyOrderItem}>
+                      <p>
+                        {item.title}
+                      </p>
+                      <p className={styles.historyOrderItemQuantity}>
+                        {item.quantity}
+                        {' pcs'}
+                      </p>
+                      <p className={styles.historyOrderItemPrice}>
+                        {item.price * item.quantity}
+                        {' $'}
+                      </p>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ul>
+        </>
+      ) : <h2>Log in to check your history</h2>}
     </div>
   )
 }

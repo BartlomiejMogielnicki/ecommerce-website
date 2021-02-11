@@ -5,4 +5,37 @@
   max-width: 1200px;
   text-align: center;
   font-size: 1.4rem;
+
+  h2 {
+    margin: 10px 0;
+  }
+
+  .historyList {
+    margin: 0 auto;
+    max-width: 825px;
+    .historyItem {
+      border-top: 1px solid #aaa;
+      .historyItemDate {
+        margin: 10px;
+      }
+      .historyOrderList {
+        .historyOrderItem {
+          padding: 10px 0;
+          display: grid;
+          grid-template-columns: 1fr 0.5fr 0.5fr;
+          grid-template-rows: 1fr;
+          align-items: center;
+          text-align: left;
+
+          .historyOrderItemQuantity {
+            text-align: center;
+          }
+
+          .historyOrderItemPrice {
+            text-align: right;
+          }
+        }
+      }
+    }
+  }
 }

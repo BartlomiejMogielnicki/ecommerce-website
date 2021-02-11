@@ -10,13 +10,16 @@
     padding: 10px;
     border: 2px solid black;
     border-radius: 10px;
-    // background-color: #00adef;
     color: #00adef;
     cursor: pointer;
     transition: 0.2s;
 
     &:hover {
       box-shadow: 0 0 10px 1px black;
+    }
+
+    p {
+      color: black;
     }
 
     .logoutButton {
@@ -29,6 +32,8 @@
       flex-direction: column;
       border: none;
       font-size: 1.4rem;
+      font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
+        Helvetica Neue, sans-serif;
 
       &:hover {
         background-color: white;

@@ -10,12 +10,18 @@ interface CartObject {
     quantity: number
 }
 
+interface HistoryObject {
+  orderDate: string,
+  orderStatus: string,
+  cart: CartObject[]
+}
+
 interface ContextProps {
   user: {
     authenticated: boolean,
     userName: string,
     cart: CartObject[],
-    history: []
+    history: HistoryObject[]
   },
   addToCart: (title: string, category: string, price: number, image: string) => void,
   deleteFromCart: (title: string) => void,
@@ -45,7 +51,15 @@ const GUEST_CHANGE_QUANTITY = 'GUEST_CHANGE_QUANTITY'
 const GUEST_PURCHASE = 'GUEST_PURCHASE'
 
 const reducer = (state, action) => {
-  if (action.type === UPDATE_CART) {
+  if (action.type === UPDATE_CART && action.payload.history) {
+    return {
+      ...state,
+      cart: action.payload.cart,
+      history: action.payload.history,
+    }
+  }
+
+  if (action.type === UPDATE_CART && !action.payload.history) {
     return {
       ...state,
       cart: action.payload.cart,
@@ -252,6 +266,7 @@ export const UserProvider = ({ children }) => {
         type: UPDATE_CART,
         payload: {
           cart: data.cart,
+          history: data.history,
         },
       })).catch((error) => console.log(error))
     }
@@ -314,7 +329,7 @@ export const UserProvider = ({ children }) => {
         throw new Error('Something went wrong');
       }).then((data) => dispatch({
         type: LOG_IN, payload: data,
-      })).catch((error) => console.log(error))
+      })).catch((error) => error)
   }, [dispatch])
 
   const value = {
