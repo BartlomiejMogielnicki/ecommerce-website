@@ -10,7 +10,7 @@ const History:FC = () => {
   return (
     <div className={styles.container}>
       <UserNav />
-      {!authenticated && <h2>Log in to check your profile</h2>}
+      {authenticated ? <h2>User profile</h2> : <h2>Log in to check your profile</h2>}
     </div>
   )
 }

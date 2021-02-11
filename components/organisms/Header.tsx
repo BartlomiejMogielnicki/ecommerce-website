@@ -79,10 +79,14 @@ const Header:FC<Props> = ({ clicked, showMenu }) => {
       </div>
       {user.authenticated ? (
         <div className={styles.user}>
-          <div className={styles.userName}>
-            <FontAwesomeIcon icon={faUser} />
-            <p>{user.userName}</p>
-          </div>
+          <button type="button" className={styles.userName}>
+            <Link href="/profile">
+              <a>
+                <FontAwesomeIcon icon={faUser} />
+                <p>{user.userName}</p>
+              </a>
+            </Link>
+          </button>
           <button type="button" onClick={logout}>
             <a>
               <FontAwesomeIcon icon={faLock} />

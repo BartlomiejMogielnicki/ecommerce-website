@@ -13,11 +13,22 @@
   .historyList {
     margin: 0 auto;
     max-width: 825px;
+
     .historyItem {
       border-top: 1px solid #aaa;
+
+      .finished {
+        color: green;
+      }
+
+      .canceled {
+        color: red;
+      }
+
       .historyItemDate {
         margin: 10px;
       }
+
       .historyOrderList {
         .historyOrderItem {
           padding: 10px 0;

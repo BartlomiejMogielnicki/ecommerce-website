@@ -16,10 +16,10 @@ const History:FC = () => {
           <ul className={styles.historyList}>
             {history.map((order) => (
               <li key={order.orderDate} className={styles.historyItem}>
-                <h3 className={styles.historyItemDate}>{order.orderDate}</h3>
+                <h4 className={styles.historyItemDate}>{order.orderDate}</h4>
                 <p>
                   {'Status: '}
-                  {order.orderStatus}
+                  <span className={(order.orderStatus === 'Finished' && styles.finished) || (order.orderStatus === 'Canceled' && styles.canceled)}>{order.orderStatus}</span>
                 </p>
                 <ul className={styles.historyOrderList}>
                   {order.cart.map((item) => (
