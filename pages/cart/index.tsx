@@ -10,16 +10,25 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './cart.module.scss'
 
 const Cart:FC = () => {
+  const [isUserProfileFormComplete, setIsUserProfileFormComplete] = useState(false)
   const [isPurchaseModalShown, setIsPurchaseModalShow] = useState(false)
   const {
-    user: { cart }, deleteFromCart, changeQuantity, purchase,
+    user: { cart, userData }, deleteFromCart, changeQuantity, purchase,
   } = useContext(UserContext)
 
   const summaryCost = cart.map((item) => item.price * item.quantity).reduce((a, b) => a + b, 0).toFixed(2)
 
   const handlePurchase = () => {
+    const userDataValues = Object.values(userData)
+    if (userDataValues.every((item) => item !== '')) {
+      setIsUserProfileFormComplete(true)
+    }
+
     setIsPurchaseModalShow(true)
-    purchase(cart)
+
+    if (isUserProfileFormComplete) {
+      purchase(cart)
+    }
   }
 
   return (
@@ -70,7 +79,7 @@ const Cart:FC = () => {
       <div className={styles.buy}>
         <button className={styles.buyButton} type="button" onClick={handlePurchase} disabled={cart.length === 0}>Buy</button>
       </div>
-      {isPurchaseModalShown && <PurchaseModal clicked={() => setIsPurchaseModalShow(false)} />}
+      {isPurchaseModalShown && <PurchaseModal permission={isUserProfileFormComplete} clicked={() => setIsPurchaseModalShow(false)} />}
     </div>
   )
 }
