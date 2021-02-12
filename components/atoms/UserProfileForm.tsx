@@ -8,7 +8,7 @@ const UserProfileForm:FC = () => {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('')
-  const [phone, setphone] = useState('')
+  const [phone, setPhone] = useState('')
   const [country, setCountry] = useState('')
   const [voivodeship, setVoivodeship] = useState('')
   const [city, setCity] = useState('')
@@ -18,20 +18,20 @@ const UserProfileForm:FC = () => {
 
   const [isEmailError, toggleEmailError] = useState(false)
 
-  const { user: { userData } } = useContext(UserContext)
+  const { user: { userData }, updateProfile } = useContext(UserContext)
 
   useEffect(() => {
     if (userData) {
       setFirstName(userData.firstName)
       setLastName(userData.lastName)
       setEmail(userData.email)
-      setphone(userData.phoneNumber)
+      setPhone(userData.phone)
       setCountry(userData.country)
       setVoivodeship(userData.voivodeship)
       setCity(userData.city)
       setZipCode(userData.zipCode)
       setStreet(userData.street)
-      setBuilding(userData.bulding)
+      setBuilding(userData.building)
     }
   }, [userData])
 
@@ -49,7 +49,20 @@ const UserProfileForm:FC = () => {
     }
     toggleEmailError(false)
 
-    setEmail('')
+    const userProfile = {
+      firstName,
+      lastName,
+      email,
+      phone,
+      country,
+      voivodeship,
+      city,
+      zipCode,
+      street,
+      building,
+    }
+
+    updateProfile(userProfile)
   }
 
   return (
@@ -81,7 +94,7 @@ const UserProfileForm:FC = () => {
         <div className={styles.inputSection}>
           <label htmlFor="phone">
             Phone number
-            <input type="tel" id="phone" maxLength={15} value={phone} onChange={(e) => setphone(e.target.value)} />
+            <input type="tel" id="phone" maxLength={15} value={phone} onChange={(e) => setPhone(e.target.value)} />
           </label>
         </div>
       </div>
@@ -124,7 +137,7 @@ const UserProfileForm:FC = () => {
           </label>
         </div>
       </div>
-      <button className={styles.submitBtn} type="submit">Submit</button>
+      <button className={styles.submitBtn} type="submit">Update</button>
     </form>
   )
 }

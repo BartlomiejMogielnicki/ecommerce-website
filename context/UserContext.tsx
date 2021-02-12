@@ -1,4 +1,6 @@
-import { useReducer, createContext, useCallback } from 'react'
+import {
+  useReducer, createContext, useCallback,
+} from 'react'
 
 const URL = 'http://localhost:3000';
 
@@ -16,24 +18,26 @@ interface HistoryObject {
   cart: CartObject[]
 }
 
+interface UserProfile {
+  firstName?: string,
+  lastName?: string,
+  email: string,
+  phone?: string,
+  country?: string,
+  voivodeship?: string,
+  city?: string,
+  zipCode?: string,
+  street?: string,
+  building?: string,
+}
+
 interface ContextProps {
   user: {
     authenticated: boolean,
     userName: string,
     cart: CartObject[],
     history: HistoryObject[]
-    userData: {
-      firstName: string,
-      lastName: string,
-      email: string,
-      phoneNumber: string,
-      country: string,
-      voivodeship: string,
-      city: string,
-      zipCode: string,
-      street: string,
-      bulding: string,
-    }
+    userData: UserProfile
   },
   addToCart: (title: string, category: string, price: number, image: string) => void,
   deleteFromCart: (title: string) => void,
@@ -43,6 +47,7 @@ interface ContextProps {
   login: (username: string, password: string) => void,
   signin: (username: string, email: string, password: string) => void,
   cookieLogin: () => void
+  updateProfile: (userData: UserProfile) => void
 }
 
 const initialState = {
@@ -55,6 +60,7 @@ const initialState = {
 export const UserContext = createContext<Partial<ContextProps>>({})
 
 const UPDATE_CART = 'UPDATE_CART'
+const UPDATE_PROFILE = 'UPDATE_PROFILE'
 const LOG_OUT = 'LOG_OUT'
 const LOG_IN = 'LOG_IN'
 const GUEST_ADD_TO_CART = 'GUEST_ADD_TO_CART'
@@ -63,6 +69,13 @@ const GUEST_CHANGE_QUANTITY = 'GUEST_CHANGE_QUANTITY'
 const GUEST_PURCHASE = 'GUEST_PURCHASE'
 
 const reducer = (state, action) => {
+  if (action.type === UPDATE_PROFILE) {
+    return {
+      ...state,
+      userData: action.payload.userData,
+    }
+  }
+
   if (action.type === UPDATE_CART && action.payload.history) {
     return {
       ...state,
@@ -345,8 +358,27 @@ export const UserProvider = ({ children }) => {
       })).catch((error) => error)
   }, [dispatch])
 
+  const updateProfile = useCallback((userData) => {
+    fetch(`${URL}/api/updateProfile`, {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      method: 'POST',
+      body: JSON.stringify({ userData }),
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error('Something went wrong');
+      }).then((data) => dispatch({
+        type: UPDATE_PROFILE, payload: data,
+      })).catch((error) => console.log(error))
+  }, [dispatch])
+
   const value = {
-    user, addToCart, deleteFromCart, changeQuantity, purchase, logout, login, signin, cookieLogin,
+    user, addToCart, deleteFromCart, changeQuantity, purchase, logout, login, signin, cookieLogin, updateProfile,
   }
 
   return (

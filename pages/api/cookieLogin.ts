@@ -21,6 +21,7 @@ export default async function cookieLogin(req: NextApiRequest, res: NextApiRespo
             username: user.username,
             cart: user.cart,
             history: user.history,
+            userData: user.userData,
           },
         })
       } else {

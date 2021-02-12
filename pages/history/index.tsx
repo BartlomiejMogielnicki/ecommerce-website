@@ -19,7 +19,7 @@ const History:FC = () => {
                 <h4 className={styles.historyItemDate}>{order.orderDate}</h4>
                 <p>
                   {'Status: '}
-                  <span className={(order.orderStatus === 'Finished' && styles.finished) || (order.orderStatus === 'Canceled' && styles.canceled)}>{order.orderStatus}</span>
+                  <span className={(order.orderStatus === 'Finished' ? styles.finished : null) || (order.orderStatus === 'Canceled' ? styles.canceled : null)}>{order.orderStatus}</span>
                 </p>
                 <ul className={styles.historyOrderList}>
                   {order.cart.map((item) => (
