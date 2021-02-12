@@ -1,4 +1,6 @@
-import { FC, useContext, useState } from 'react'
+import {
+  FC, useContext, useState, useEffect,
+} from 'react'
 import { UserContext } from 'context/UserContext'
 import styles from './UserProfileForm.module.scss'
 
@@ -16,7 +18,22 @@ const UserProfileForm:FC = () => {
 
   const [isEmailError, toggleEmailError] = useState(false)
 
-  const { user } = useContext(UserContext)
+  const { user: { userData } } = useContext(UserContext)
+
+  useEffect(() => {
+    if (userData) {
+      setFirstName(userData.firstName)
+      setLastName(userData.lastName)
+      setEmail(userData.email)
+      setphone(userData.phoneNumber)
+      setCountry(userData.country)
+      setVoivodeship(userData.voivodeship)
+      setCity(userData.city)
+      setZipCode(userData.zipCode)
+      setStreet(userData.street)
+      setBuilding(userData.bulding)
+    }
+  }, [userData])
 
   const handleSubmit = (e) => {
     e.preventDefault()

@@ -22,6 +22,18 @@ interface ContextProps {
     userName: string,
     cart: CartObject[],
     history: HistoryObject[]
+    userData: {
+      firstName: string,
+      lastName: string,
+      email: string,
+      phoneNumber: string,
+      country: string,
+      voivodeship: string,
+      city: string,
+      zipCode: string,
+      street: string,
+      bulding: string,
+    }
   },
   addToCart: (title: string, category: string, price: number, image: string) => void,
   deleteFromCart: (title: string) => void,
