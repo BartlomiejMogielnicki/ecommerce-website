@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import { connectToDB } from 'db/connect'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
+import cookie from 'cookie'
 
 export default async function signin(req: NextApiRequest, res: NextApiResponse) {
   const { db } = await connectToDB()
@@ -20,10 +21,21 @@ export default async function signin(req: NextApiRequest, res: NextApiResponse) 
 
     const user = {
       username,
-      email,
       cryptedPassword,
       cart: [],
       history: [],
+      userData: {
+        firstName: '',
+        lastName: '',
+        email,
+        phoneNumber: '',
+        country: '',
+        voivodeship: '',
+        city: '',
+        zipCode: '',
+        street: '',
+        bulding: '',
+      },
       tokens: [],
     }
 
@@ -33,11 +45,23 @@ export default async function signin(req: NextApiRequest, res: NextApiResponse) 
 
     await db.collection('users').insertOne(user)
 
+    res.setHeader(
+      'Set-Cookie',
+      cookie.serialize('auth', token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV !== 'development',
+        sameSite: 'strict',
+        maxAge: 3600 * 12,
+        path: '/',
+      }),
+    )
+
     res.status(201).send({
       user: {
         username: user.username,
         cart: user.cart,
         history: user.history,
+        userData: user.userData,
       },
     })
   } catch (error) {

@@ -40,6 +40,7 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
           username: user.value.username,
           cart: user.value.cart,
           history: user.value.history,
+          userData: user.value.userData,
         },
       })
     } else {

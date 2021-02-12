@@ -80,6 +80,7 @@ const reducer = (state, action) => {
       userName: action.payload.user.username,
       cart: action.payload.user.cart,
       history: action.payload.user.history,
+      userData: action.payload.user.userData,
     }
   }
 
