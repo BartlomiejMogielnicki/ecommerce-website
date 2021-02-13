@@ -1,6 +1,7 @@
-import { FC, useEffect } from 'react'
+import { FC, useEffect, useContext } from 'react'
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { UserContext } from 'context/UserContext'
 import Link from 'next/link'
 import styles from './PurchaseModal.module.scss'
 
@@ -10,6 +11,8 @@ interface Props {
 }
 
 const PurchaseModal:FC<Props> = ({ clicked, permission }) => {
+  const { user: { authenticated } } = useContext(UserContext)
+
   const enableScroll = ():void => {
     document.body.style.overflowY = 'scroll'
   }
@@ -27,8 +30,8 @@ const PurchaseModal:FC<Props> = ({ clicked, permission }) => {
         {permission ? <h3>Thank you for purchase!</h3> : (
           <>
             <h3>Please fill in the user profile</h3>
-            <p>Create an account and log in to save your user data for next purchases and keep track of your purchase history!</p>
-            <button className={styles.navButton} type="button" onClick={clicked}>
+            {!authenticated && <p>Create an account and log in to save your user data for next purchases and keep track of your purchase history</p>}
+            <button className={styles.navButton} type="button">
               <Link href="/profile">
                 <a>User Profile</a>
               </Link>

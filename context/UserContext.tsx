@@ -48,6 +48,7 @@ interface ContextProps {
   signin: (username: string, email: string, password: string) => void,
   cookieLogin: () => void
   updateProfile: (userData: UserProfile) => void
+  updateGuestProfile: (userData: UserProfile) => void
 }
 
 const initialState = {
@@ -55,6 +56,18 @@ const initialState = {
   userName: '',
   cart: [],
   history: [],
+  userData: {
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    country: '',
+    voivodeship: '',
+    city: '',
+    zipCode: '',
+    street: '',
+    building: '',
+  },
 }
 
 export const UserContext = createContext<Partial<ContextProps>>({})
@@ -96,6 +109,19 @@ const reducer = (state, action) => {
       authenticated: false,
       userName: null,
       cart: [],
+      history: [],
+      userData: {
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        country: '',
+        voivodeship: '',
+        city: '',
+        zipCode: '',
+        street: '',
+        building: '',
+      },
     }
   }
 
@@ -377,8 +403,15 @@ export const UserProvider = ({ children }) => {
       })).catch((error) => console.log(error))
   }, [dispatch])
 
+  const updateGuestProfile = useCallback((userData) => {
+    dispatch({
+      type: UPDATE_PROFILE,
+      payload: { userData },
+    })
+  }, [dispatch])
+
   const value = {
-    user, addToCart, deleteFromCart, changeQuantity, purchase, logout, login, signin, cookieLogin, updateProfile,
+    user, addToCart, deleteFromCart, changeQuantity, purchase, logout, login, signin, cookieLogin, updateProfile, updateGuestProfile,
   }
 
   return (

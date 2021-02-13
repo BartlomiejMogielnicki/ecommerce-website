@@ -16,7 +16,13 @@ const History:FC = () => {
           <h2>User profile</h2>
           <UserProfileForm />
         </>
-      ) : <h2>Log in to check your profile</h2>}
+      ) : (
+        <>
+          <h2>Guest user profile</h2>
+          <p className={styles.advice}>Create an account and log in to save your user data for next purchases and keep track of your purchase history</p>
+          <UserProfileForm />
+        </>
+      )}
     </div>
   )
 }
