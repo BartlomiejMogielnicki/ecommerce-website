@@ -298,9 +298,25 @@ export const UserProvider = ({ children }) => {
 
   const purchase = useCallback((cart: CartObject[], userData: UserProfile) => {
     if (!user.authenticated) {
-      dispatch({
-        type: GUEST_PURCHASE,
-      })
+      fetch(`${URL}/api/cart/guestPurchase`, {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        method: 'POST',
+        body: JSON.stringify({ cart, userData }),
+      }).then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error('Something went wrong');
+      }).then(() => dispatch({
+        type: UPDATE_CART,
+        payload: {
+          cart: [],
+          history: [],
+        },
+      })).catch((error) => console.log(error))
     } else {
       fetch(`${URL}/api/cart/purchase`, {
         headers: {
