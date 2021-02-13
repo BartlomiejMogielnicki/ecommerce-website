@@ -4,12 +4,22 @@ import auth from 'middleware/auth'
 
 const purchase = async (req: NextApiRequest, res: NextApiResponse) => {
   const { db } = await connectToDB()
-  const { username, token, cart } = req.body
+  const { username, token, cart, userData } = req.body
 
   const orderDate = new Date().toLocaleString('en-GB')
   const orderStatus = 'In progress'
 
+  const newOrder = {
+    orderDate,
+    orderStatus,
+    cart,
+    userData,
+    username,
+  }
+
   try {
+    await db.collection('orders').insertOne(newOrder)
+
     const user = await db
       .collection('users')
       .findOneAndUpdate(

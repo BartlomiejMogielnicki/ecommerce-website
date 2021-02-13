@@ -22,13 +22,9 @@ const Cart:FC = () => {
     const userDataValues = Object.values(userData)
     if (userDataValues.every((item) => item !== '')) {
       setIsUserProfileFormComplete(true)
+      purchase(cart, userData)
     }
-
     setIsPurchaseModalShow(true)
-
-    if (isUserProfileFormComplete) {
-      purchase(cart)
-    }
   }
 
   return (

@@ -42,7 +42,7 @@ interface ContextProps {
   addToCart: (title: string, category: string, price: number, image: string) => void,
   deleteFromCart: (title: string) => void,
   changeQuantity: (title: string, operation: string) => void,
-  purchase: (cart: CartObject[]) => void,
+  purchase: (cart: CartObject[], userData: UserProfile) => void,
   logout: () => void,
   login: (username: string, password: string) => void,
   signin: (username: string, email: string, password: string) => void,
@@ -296,7 +296,7 @@ export const UserProvider = ({ children }) => {
     }
   }, [dispatch, user.authenticated])
 
-  const purchase = useCallback((cart: CartObject[]) => {
+  const purchase = useCallback((cart: CartObject[], userData: UserProfile) => {
     if (!user.authenticated) {
       dispatch({
         type: GUEST_PURCHASE,
@@ -308,7 +308,7 @@ export const UserProvider = ({ children }) => {
           'Content-Type': 'application/json',
         },
         method: 'POST',
-        body: JSON.stringify({ cart }),
+        body: JSON.stringify({ cart, userData }),
       }).then((response) => {
         if (response.ok) {
           return response.json();
