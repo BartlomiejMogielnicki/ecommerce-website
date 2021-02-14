@@ -37,6 +37,13 @@ const GUEST_DELETE_ITEM = 'GUEST_DELETE_ITEM'
 const GUEST_CHANGE_QUANTITY = 'GUEST_CHANGE_QUANTITY'
 const GUEST_PURCHASE = 'GUEST_PURCHASE'
 const UPDATE_ERROR = 'UPDATE_ERROR'
+const UPDATE_LOADER = 'UPDATE_LOADER'
+
+const LOADING_PURCHASE = 'LOADING_PURCHASE'
+
+const INVALID_CREDENTIALS = 'INVALID_CREDENTIALS'
+const UNKNOWN_ERROR = 'UNKNOWN_ERROR'
+const PURCHASE_ERROR = 'PURCHASE_ERROR'
 
 const reducer = (state, action) => {
   if (action.type === UPDATE_PROFILE) {
@@ -51,6 +58,7 @@ const reducer = (state, action) => {
       ...state,
       cart: action.payload.cart,
       history: action.payload.history,
+      loading: '',
     }
   }
 
@@ -58,6 +66,7 @@ const reducer = (state, action) => {
     return {
       ...state,
       cart: action.payload.cart,
+      loading: '',
     }
   }
 
@@ -151,10 +160,18 @@ const reducer = (state, action) => {
     }
   }
 
+  if (action.type === UPDATE_LOADER) {
+    return {
+      ...state,
+      loading: action.payload.loading,
+    }
+  }
+
   if (action.type === UPDATE_ERROR) {
     return {
       ...state,
       error: action.payload.error,
+      loading: '',
     }
   }
 
@@ -263,6 +280,13 @@ export const UserProvider = ({ children }) => {
   }, [dispatch, user.authenticated])
 
   const purchase = useCallback((cart: CartObject[], userData: UserProfile) => {
+    dispatch({
+      type: UPDATE_LOADER,
+      payload: {
+        loading: LOADING_PURCHASE,
+      },
+    })
+
     if (!user.authenticated) {
       fetch(`${URL}/api/cart/guest-purchase`, {
         headers: {
@@ -275,14 +299,21 @@ export const UserProvider = ({ children }) => {
         if (response.ok) {
           return response.json();
         }
-        throw new Error('Something went wrong');
+        throw new Error(UNKNOWN_ERROR);
       }).then(() => dispatch({
         type: UPDATE_CART,
         payload: {
           cart: [],
           history: [],
         },
-      })).catch((error) => console.log(error))
+      })).catch((error) => {
+        dispatch({
+          type: UPDATE_ERROR,
+          payload: {
+            error: error.message,
+          },
+        })
+      })
     } else {
       fetch(`${URL}/api/cart/purchase`, {
         headers: {
@@ -295,14 +326,21 @@ export const UserProvider = ({ children }) => {
         if (response.ok) {
           return response.json();
         }
-        throw new Error('Something went wrong');
+        throw new Error(UNKNOWN_ERROR);
       }).then((data) => dispatch({
         type: UPDATE_CART,
         payload: {
           cart: data.cart,
           history: data.history,
         },
-      })).catch((error) => console.log(error))
+      })).catch((error) => {
+        dispatch({
+          type: UPDATE_ERROR,
+          payload: {
+            error: error.message,
+          },
+        })
+      })
     }
   }, [dispatch, user.authenticated])
 
@@ -312,7 +350,7 @@ export const UserProvider = ({ children }) => {
         if (response.ok) {
           return response.json();
         }
-        throw new Error('UNKNOWN_ERROR');
+        throw new Error(UNKNOWN_ERROR);
       }).then(() => dispatch({
         type: LOG_OUT,
       })).catch((error) => {
@@ -338,9 +376,9 @@ export const UserProvider = ({ children }) => {
         return response.json();
       }
       if (!response.ok && response.status === 401) {
-        throw new Error('INVALID_CREDENTIALS');
+        throw new Error(INVALID_CREDENTIALS);
       }
-      throw new Error('UNKNOWN_ERROR');
+      throw new Error(UNKNOWN_ERROR);
     }).then((data) => dispatch({
       type: LOG_IN, payload: data,
     })).catch((error) => {
@@ -365,7 +403,7 @@ export const UserProvider = ({ children }) => {
       if (response.ok) {
         return response.json();
       }
-      throw new Error('UNKNOWN_ERROR');
+      throw new Error(UNKNOWN_ERROR);
     }).then((data) => dispatch({
       type: LOG_IN, payload: data,
     })).catch((error) => {

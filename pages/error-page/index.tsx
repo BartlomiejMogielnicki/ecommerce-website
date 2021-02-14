@@ -11,7 +11,7 @@ const ErrorPage: FC = () => {
 
   return (
     <div className={styles.container}>
-      <h2>Oooops... something went wrong...</h2>
+      <h2>Oooops... something went wrong.</h2>
       <h2>Please try again.</h2>
     </div>
   )

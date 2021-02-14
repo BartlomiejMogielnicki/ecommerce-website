@@ -3,6 +3,7 @@ import { UserContext } from 'context/UserContext'
 import Link from 'next/link'
 import PurchaseModal from 'components/atoms/PurchaseModal'
 import UserNav from 'components/atoms/UserNav'
+import LoadingSpinner from 'components/atoms/LoadingSpinner'
 
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -13,7 +14,7 @@ const Cart:FC = () => {
   const [isUserProfileFormComplete, setIsUserProfileFormComplete] = useState(false)
   const [isPurchaseModalShown, setIsPurchaseModalShow] = useState(false)
   const {
-    user: { cart, userData }, deleteFromCart, changeQuantity, purchase,
+    user: { cart, userData, loading }, deleteFromCart, changeQuantity, purchase,
   } = useContext(UserContext)
 
   const summaryCost = cart.map((item) => item.price * item.quantity).reduce((a, b) => a + b, 0).toFixed(2)
@@ -75,7 +76,13 @@ const Cart:FC = () => {
       <div className={styles.buy}>
         <button className={styles.buyButton} type="button" onClick={handlePurchase} disabled={cart.length === 0}>Buy</button>
       </div>
-      {isPurchaseModalShown && <PurchaseModal permission={isUserProfileFormComplete} clicked={() => setIsPurchaseModalShow(false)} />}
+      {loading === 'LOADING_PURCHASE' ? (
+        <div className={styles.loadingSpinner}>
+          <LoadingSpinner />
+        </div>
+      )
+        : null}
+      {isPurchaseModalShown && !loading && <PurchaseModal permission={isUserProfileFormComplete} clicked={() => setIsPurchaseModalShow(false)} />}
     </div>
   )
 }
