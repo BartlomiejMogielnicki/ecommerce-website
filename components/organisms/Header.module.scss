@@ -89,6 +89,11 @@
       font-size: 1.1rem;
       line-height: 30px;
     }
+
+    .loadingSpinner {
+      position: absolute;
+      left: -50px;
+    }
   }
 
   .user {

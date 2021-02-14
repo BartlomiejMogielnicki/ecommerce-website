@@ -24,6 +24,7 @@ const initialState = {
     building: '',
   },
   error: '',
+  loading: '',
 }
 
 export const UserContext = createContext<Partial<ContextProps>>({})
@@ -40,10 +41,10 @@ const UPDATE_ERROR = 'UPDATE_ERROR'
 const UPDATE_LOADER = 'UPDATE_LOADER'
 
 const LOADING_PURCHASE = 'LOADING_PURCHASE'
+const LOADING_ADD_TO_CART = 'LOADING_ADD_TO_CART'
 
 const INVALID_CREDENTIALS = 'INVALID_CREDENTIALS'
 const UNKNOWN_ERROR = 'UNKNOWN_ERROR'
-const PURCHASE_ERROR = 'PURCHASE_ERROR'
 
 const reducer = (state, action) => {
   if (action.type === UPDATE_PROFILE) {
@@ -193,6 +194,13 @@ export const UserProvider = ({ children }) => {
           },
         })
       } else {
+        dispatch({
+          type: UPDATE_LOADER,
+          payload: {
+            loading: LOADING_ADD_TO_CART,
+          },
+        })
+
         fetch(`${URL}/api/cart/add-product`, {
           headers: {
             Accept: 'application/json',
@@ -208,13 +216,20 @@ export const UserProvider = ({ children }) => {
           if (response.ok) {
             return response.json();
           }
-          throw new Error('Something went wrong');
+          throw new Error(UNKNOWN_ERROR);
         }).then((data) => dispatch({
           type: UPDATE_CART,
           payload: {
             cart: data.cart,
           },
-        })).catch((error) => console.log(error))
+        })).catch((error) => {
+          dispatch({
+            type: UPDATE_ERROR,
+            payload: {
+              error: error.message,
+            },
+          })
+        })
       }
     }, [dispatch, user.authenticated],
   )

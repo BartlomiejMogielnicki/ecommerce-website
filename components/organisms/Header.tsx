@@ -10,6 +10,7 @@ import { useRouter } from 'next/router';
 import { UserContext } from 'context/UserContext'
 
 import Nav from 'components/atoms/Nav';
+import LoadingSpinner from 'components/atoms/LoadingSpinner'
 import styles from './Header.module.scss';
 
 interface Props {
@@ -78,6 +79,11 @@ const Header:FC<Props> = ({ clicked, showMenu }) => {
                 <div className={styles.itemsNum}>
                   {user.cart.length}
                 </div>
+                {user.loading === 'LOADING_ADD_TO_CART' ? (
+                  <div className={styles.loadingSpinner}>
+                    <LoadingSpinner />
+                  </div>
+                ) : null}
               </div>
             </a>
           </Link>
