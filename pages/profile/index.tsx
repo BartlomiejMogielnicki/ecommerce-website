@@ -2,6 +2,8 @@ import { FC, useContext } from 'react'
 import { UserContext } from 'context/UserContext'
 import UserNav from 'components/atoms/UserNav'
 import UserProfileForm from 'components/atoms/UserProfileForm'
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import styles from './profile.module.scss'
 
@@ -19,7 +21,10 @@ const History:FC = () => {
       ) : (
         <>
           <h2>Guest user profile</h2>
-          <p className={styles.advice}>Create an account and log in to save your user data for next purchases and keep track of your purchase history</p>
+          <p className={styles.advice}>
+            <FontAwesomeIcon icon={faInfoCircle} className={styles.infoSign} />
+            Create an account and log in to save your user data for next purchases and keep track of your purchase history
+          </p>
           <UserProfileForm />
         </>
       )}

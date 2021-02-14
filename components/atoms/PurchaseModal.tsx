@@ -1,5 +1,5 @@
 import { FC, useEffect, useContext } from 'react'
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faTimes, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { UserContext } from 'context/UserContext'
 import Link from 'next/link'
@@ -30,7 +30,13 @@ const PurchaseModal:FC<Props> = ({ clicked, permission }) => {
         {permission ? <h3>Thank you for purchase!</h3> : (
           <>
             <h3>Please fill in the user profile</h3>
-            {!authenticated && <p>Create an account and log in to save your user data for next purchases and keep track of your purchase history</p>}
+            {!authenticated && (
+            <p>
+              <FontAwesomeIcon icon={faInfoCircle} />
+              {' '}
+              Create an account and log in to save your user data for next purchases and keep track of your purchase history
+            </p>
+            )}
             <button className={styles.navButton} type="button">
               <Link href="/profile">
                 <a>User Profile</a>
