@@ -3,7 +3,7 @@ import Link from 'next/link';
 import ContactDetails from 'components/atoms/ContactDetails'
 import styles from './Footer.module.scss'
 
-const shortCuts = [
+const shortcuts = [
   {
     title: 'Popular',
     links: [
@@ -87,7 +87,7 @@ const Footer:FC = () => {
   return (
     <div className={styles.container}>
       <div className={styles.shortcutsContainer}>
-        {shortCuts.map((item) => (
+        {shortcuts.map((item) => (
           <ul key={item.title} className={styles.shortcutsColumn}>
             <h4>{item.title}</h4>
             {item.links.map((link) => (

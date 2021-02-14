@@ -2,54 +2,9 @@ import {
   useReducer, createContext, useCallback,
 } from 'react'
 
+import { ContextProps, CartObject, UserProfile } from 'types'
+
 const URL = 'http://localhost:3000';
-
-interface CartObject {
-    title: string,
-    category: string,
-    price: number,
-    image: string,
-    quantity: number
-}
-
-interface HistoryObject {
-  orderDate: string,
-  orderStatus: string,
-  cart: CartObject[]
-}
-
-interface UserProfile {
-  firstName?: string,
-  lastName?: string,
-  email: string,
-  phone?: string,
-  country?: string,
-  voivodeship?: string,
-  city?: string,
-  zipCode?: string,
-  street?: string,
-  building?: string,
-}
-
-interface ContextProps {
-  user: {
-    authenticated: boolean,
-    userName: string,
-    cart: CartObject[],
-    history: HistoryObject[]
-    userData: UserProfile
-  },
-  addToCart: (title: string, category: string, price: number, image: string) => void,
-  deleteFromCart: (title: string) => void,
-  changeQuantity: (title: string, operation: string) => void,
-  purchase: (cart: CartObject[], userData: UserProfile) => void,
-  logout: () => void,
-  login: (username: string, password: string) => void,
-  signin: (username: string, email: string, password: string) => void,
-  cookieLogin: () => void
-  updateProfile: (userData: UserProfile) => void
-  updateGuestProfile: (userData: UserProfile) => void
-}
 
 const initialState = {
   authenticated: false,
@@ -298,7 +253,7 @@ export const UserProvider = ({ children }) => {
 
   const purchase = useCallback((cart: CartObject[], userData: UserProfile) => {
     if (!user.authenticated) {
-      fetch(`${URL}/api/cart/guestPurchase`, {
+      fetch(`${URL}/api/cart/guest-purchase`, {
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
@@ -389,7 +344,7 @@ export const UserProvider = ({ children }) => {
   }, [dispatch])
 
   const cookieLogin = useCallback(() => {
-    fetch(`${URL}/api/cookieLogin`)
+    fetch(`${URL}/api/cookie-login`)
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -401,7 +356,7 @@ export const UserProvider = ({ children }) => {
   }, [dispatch])
 
   const updateProfile = useCallback((userData) => {
-    fetch(`${URL}/api/updateProfile`, {
+    fetch(`${URL}/api/update-profile`, {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',

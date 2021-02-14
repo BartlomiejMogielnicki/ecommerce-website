@@ -8,7 +8,7 @@ import { UserContext } from 'context/UserContext'
 import styles from './UserNav.module.scss';
 
 const UserNav:FC = () => {
-  const { logout } = useContext(UserContext)
+  const { user: { authenticated }, logout } = useContext(UserContext)
 
   return (
     <ul className={styles.list}>
@@ -42,14 +42,28 @@ const UserNav:FC = () => {
           </a>
         </Link>
       </li>
-      <li className={styles.item}>
-        <button type="button" onClick={logout} className={styles.logoutButton}>
-          <div className={styles.itemIcon}>
-            <FontAwesomeIcon icon={faPowerOff} />
-          </div>
-          <p className={styles.itemText}>Log Out</p>
-        </button>
-      </li>
+      {authenticated ? (
+        <li className={styles.item}>
+          <button type="button" onClick={logout} className={styles.logoutButton}>
+            <div className={styles.itemIcon}>
+              <FontAwesomeIcon icon={faPowerOff} />
+            </div>
+            <p className={styles.itemText}>Log Out</p>
+          </button>
+        </li>
+      ) : (
+        <li className={styles.item}>
+          <button type="button" className={styles.logoutButton}>
+            <Link href="/log-in">
+              <a className={styles.itemIcon}>
+                <FontAwesomeIcon icon={faPowerOff} />
+                <p className={styles.itemText}>Log In</p>
+              </a>
+            </Link>
+          </button>
+        </li>
+      )}
+
     </ul>
   );
 }

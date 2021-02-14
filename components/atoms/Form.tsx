@@ -22,7 +22,7 @@ const Form:FC<Props> = ({ type }) => {
 
   const { login, signin } = useContext(UserContext)
 
-  const passwordErrorMessage = type === SIGNIN ? 'Password min. length is 6 characters' : 'Invalid Username'
+  const passwordErrorMessage = type === SIGNIN ? 'Password min. length is 6 characters' : 'Invalid password'
 
   const handleSubmit = (e) => {
     e.preventDefault()
