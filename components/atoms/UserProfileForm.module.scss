@@ -3,7 +3,7 @@
   max-width: 600px;
   display: flex;
   flex-direction: column;
-
+  position: relative;
   &.small {
     height: 300px;
   }
@@ -58,7 +58,7 @@
 
   .submitBtn {
     margin-top: 5px;
-    margin-bottom: 20px;
+    margin-bottom: 70px;
     padding: 7px 15px;
     align-self: center;
     font-size: 1rem;
@@ -71,5 +71,12 @@
       background-color: #00adef;
       color: white;
     }
+  }
+
+  .loadingSpinner {
+    position: absolute;
+    bottom: 30px;
+    right: 50%;
+    transform: translateX(-5px);
   }
 }

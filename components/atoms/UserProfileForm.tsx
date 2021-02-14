@@ -2,6 +2,7 @@ import {
   FC, useContext, useState, useEffect,
 } from 'react'
 import { UserContext } from 'context/UserContext'
+import LoadingSpinner from 'components/atoms/LoadingSpinner'
 import styles from './UserProfileForm.module.scss'
 
 const UserProfileForm:FC = () => {
@@ -27,7 +28,7 @@ const UserProfileForm:FC = () => {
   const [isStreetError, toggleStreetError] = useState(false)
   const [isBuildingError, toggleBuildingError] = useState(false)
 
-  const { user: { authenticated, userData }, updateProfile, updateGuestProfile } = useContext(UserContext)
+  const { user: { authenticated, userData, loading }, updateProfile, updateGuestProfile } = useContext(UserContext)
 
   useEffect(() => {
     if (userData) {
@@ -218,6 +219,11 @@ const UserProfileForm:FC = () => {
         </div>
       </div>
       <button className={styles.submitBtn} type="submit">Update</button>
+      {loading === 'LOADING_UPDATE_PROFILE' ? (
+        <div className={styles.loadingSpinner}>
+          <LoadingSpinner />
+        </div>
+      ) : null}
     </form>
   )
 }

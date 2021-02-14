@@ -42,6 +42,7 @@ const UPDATE_LOADER = 'UPDATE_LOADER'
 
 const LOADING_PURCHASE = 'LOADING_PURCHASE'
 const LOADING_ADD_TO_CART = 'LOADING_ADD_TO_CART'
+const LOADING_UPDATE_PROFILE = 'LOADING_UPDATE_PROFILE'
 
 const INVALID_CREDENTIALS = 'INVALID_CREDENTIALS'
 const UNKNOWN_ERROR = 'UNKNOWN_ERROR'
@@ -51,6 +52,7 @@ const reducer = (state, action) => {
     return {
       ...state,
       userData: action.payload.userData,
+      loading: '',
     }
   }
 
@@ -254,13 +256,20 @@ export const UserProvider = ({ children }) => {
         if (response.ok) {
           return response.json();
         }
-        throw new Error('Something went wrong');
+        throw new Error(UNKNOWN_ERROR);
       }).then((data) => dispatch({
         type: UPDATE_CART,
         payload: {
           cart: data.cart,
         },
-      })).catch((error) => console.log(error))
+      })).catch((error) => {
+        dispatch({
+          type: UPDATE_ERROR,
+          payload: {
+            error: error.message,
+          },
+        })
+      })
     }
   }, [dispatch, user.authenticated])
 
@@ -284,13 +293,20 @@ export const UserProvider = ({ children }) => {
         if (response.ok) {
           return response.json();
         }
-        throw new Error('Something went wrong');
+        throw new Error(UNKNOWN_ERROR);
       }).then((data) => dispatch({
         type: UPDATE_CART,
         payload: {
           cart: data.cart,
         },
-      })).catch((error) => console.log(error))
+      })).catch((error) => {
+        dispatch({
+          type: UPDATE_ERROR,
+          payload: {
+            error: error.message,
+          },
+        })
+      })
     }
   }, [dispatch, user.authenticated])
 
@@ -444,6 +460,13 @@ export const UserProvider = ({ children }) => {
   }, [dispatch])
 
   const updateProfile = useCallback((userData) => {
+    dispatch({
+      type: UPDATE_LOADER,
+      payload: {
+        loading: LOADING_UPDATE_PROFILE,
+      },
+    })
+
     fetch(`${URL}/api/update-profile`, {
       headers: {
         Accept: 'application/json',
@@ -456,10 +479,17 @@ export const UserProvider = ({ children }) => {
         if (response.ok) {
           return response.json();
         }
-        throw new Error('Something went wrong');
+        throw new Error(UNKNOWN_ERROR);
       }).then((data) => dispatch({
         type: UPDATE_PROFILE, payload: data,
-      })).catch((error) => console.log(error))
+      })).catch((error) => {
+        dispatch({
+          type: UPDATE_ERROR,
+          payload: {
+            error: error.message,
+          },
+        })
+      })
   }, [dispatch])
 
   const updateGuestProfile = useCallback((userData) => {
