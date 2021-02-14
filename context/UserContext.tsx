@@ -43,6 +43,7 @@ const UPDATE_LOADER = 'UPDATE_LOADER'
 const LOADING_PURCHASE = 'LOADING_PURCHASE'
 const LOADING_ADD_TO_CART = 'LOADING_ADD_TO_CART'
 const LOADING_UPDATE_PROFILE = 'LOADING_UPDATE_PROFILE'
+const LOADING_LOGIN = 'LOADING_LOGIN'
 
 const INVALID_CREDENTIALS = 'INVALID_CREDENTIALS'
 const UNKNOWN_ERROR = 'UNKNOWN_ERROR'
@@ -103,6 +104,7 @@ const reducer = (state, action) => {
       history: action.payload.user.history,
       userData: action.payload.user.userData,
       error: '',
+      loading: '',
     }
   }
 
@@ -395,6 +397,13 @@ export const UserProvider = ({ children }) => {
   }, [dispatch])
 
   const login = useCallback((username: string, password: string) => {
+    dispatch({
+      type: UPDATE_LOADER,
+      payload: {
+        loading: LOADING_LOGIN,
+      },
+    })
+
     fetch(`${URL}/api/login`, {
       headers: {
         Accept: 'application/json',
@@ -423,6 +432,13 @@ export const UserProvider = ({ children }) => {
   }, [dispatch])
 
   const signin = useCallback((username: string, email: string, password: string) => {
+    dispatch({
+      type: UPDATE_LOADER,
+      payload: {
+        loading: LOADING_LOGIN,
+      },
+    })
+
     fetch(`${URL}/api/signin`, {
       headers: {
         Accept: 'application/json',
