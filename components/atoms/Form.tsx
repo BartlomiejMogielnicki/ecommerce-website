@@ -1,4 +1,6 @@
-import { FC, useContext, useState } from 'react'
+import {
+  FC, useContext, useState, useEffect,
+} from 'react'
 import { UserContext } from 'context/UserContext'
 import styles from './Form.module.scss'
 
@@ -20,9 +22,16 @@ const Form:FC<Props> = ({ type }) => {
   const [isPasswordError, togglePasswordError] = useState(false)
   const [isPassword2Error, togglePassword2Error] = useState(false)
 
-  const { login, signin } = useContext(UserContext)
+  const { user: { error }, login, signin } = useContext(UserContext)
 
   const passwordErrorMessage = type === SIGNIN ? 'Password min. length is 6 characters' : 'Invalid password'
+
+  useEffect(() => {
+    if (error === 'INVALID_CREDENTIALS') {
+      toggleUsernameError(true)
+      togglePasswordError(true)
+    }
+  }, [error])
 
   const handleSubmit = (e) => {
     e.preventDefault()

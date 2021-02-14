@@ -55,6 +55,7 @@ export interface ContextProps {
     cart: CartObject[]
     history: HistoryObject[]
     userData: UserProfile
+    error: string
   }
   addToCart: (title: string, category: string, price: number, image: string) => void
   deleteFromCart: (title: string) => void

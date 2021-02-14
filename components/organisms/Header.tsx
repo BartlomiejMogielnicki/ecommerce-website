@@ -26,6 +26,12 @@ const Header:FC<Props> = ({ clicked, showMenu }) => {
   const router = useRouter()
 
   useEffect(() => {
+    if (user.error === 'UNKNOWN_ERROR') {
+      router.push('/error-page')
+    }
+  }, [user.error, router])
+
+  useEffect(() => {
     if (!user.authenticated) {
       cookieLogin()
     }

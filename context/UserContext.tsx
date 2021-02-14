@@ -23,6 +23,7 @@ const initialState = {
     street: '',
     building: '',
   },
+  error: '',
 }
 
 export const UserContext = createContext<Partial<ContextProps>>({})
@@ -35,6 +36,7 @@ const GUEST_ADD_TO_CART = 'GUEST_ADD_TO_CART'
 const GUEST_DELETE_ITEM = 'GUEST_DELETE_ITEM'
 const GUEST_CHANGE_QUANTITY = 'GUEST_CHANGE_QUANTITY'
 const GUEST_PURCHASE = 'GUEST_PURCHASE'
+const UPDATE_ERROR = 'UPDATE_ERROR'
 
 const reducer = (state, action) => {
   if (action.type === UPDATE_PROFILE) {
@@ -87,6 +89,7 @@ const reducer = (state, action) => {
       cart: action.payload.user.cart,
       history: action.payload.user.history,
       userData: action.payload.user.userData,
+      error: '',
     }
   }
 
@@ -144,6 +147,13 @@ const reducer = (state, action) => {
     return {
       ...state,
       cart: [],
+    }
+  }
+
+  if (action.type === UPDATE_ERROR) {
+    return {
+      ...state,
+      error: action.payload.error,
     }
   }
 
@@ -319,10 +329,20 @@ export const UserProvider = ({ children }) => {
       if (response.ok) {
         return response.json();
       }
-      throw new Error('Something went wrong');
+      if (!response.ok && response.status === 404) {
+        throw new Error('INVALID_CREDENTIALS');
+      }
+      throw new Error('UNKNOWN_ERROR');
     }).then((data) => dispatch({
       type: LOG_IN, payload: data,
-    })).catch((error) => console.log(error))
+    })).catch((error) => {
+      dispatch({
+        type: UPDATE_ERROR,
+        payload: {
+          error: error.message,
+        },
+      })
+    })
   }, [dispatch])
 
   const signin = useCallback((username: string, email: string, password: string) => {
