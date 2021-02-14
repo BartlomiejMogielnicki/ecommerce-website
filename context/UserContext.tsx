@@ -79,6 +79,7 @@ const reducer = (state, action) => {
         street: '',
         building: '',
       },
+      error: '',
     }
   }
 
@@ -311,10 +312,17 @@ export const UserProvider = ({ children }) => {
         if (response.ok) {
           return response.json();
         }
-        throw new Error('Something went wrong');
+        throw new Error('UNKNOWN_ERROR');
       }).then(() => dispatch({
         type: LOG_OUT,
-      })).catch((error) => console.log(error))
+      })).catch((error) => {
+        dispatch({
+          type: UPDATE_ERROR,
+          payload: {
+            error: error.message,
+          },
+        })
+      })
   }, [dispatch])
 
   const login = useCallback((username: string, password: string) => {
@@ -329,7 +337,7 @@ export const UserProvider = ({ children }) => {
       if (response.ok) {
         return response.json();
       }
-      if (!response.ok && response.status === 404) {
+      if (!response.ok && response.status === 401) {
         throw new Error('INVALID_CREDENTIALS');
       }
       throw new Error('UNKNOWN_ERROR');
@@ -357,10 +365,17 @@ export const UserProvider = ({ children }) => {
       if (response.ok) {
         return response.json();
       }
-      throw new Error('Something went wrong');
+      throw new Error('UNKNOWN_ERROR');
     }).then((data) => dispatch({
       type: LOG_IN, payload: data,
-    })).catch((error) => console.log(error))
+    })).catch((error) => {
+      dispatch({
+        type: UPDATE_ERROR,
+        payload: {
+          error: error.message,
+        },
+      })
+    })
   }, [dispatch])
 
   const cookieLogin = useCallback(() => {
@@ -401,8 +416,17 @@ export const UserProvider = ({ children }) => {
     })
   }, [dispatch])
 
+  const resetError = useCallback(() => {
+    dispatch({
+      type: UPDATE_ERROR,
+      payload: {
+        error: '',
+      },
+    })
+  }, [dispatch])
+
   const value = {
-    user, addToCart, deleteFromCart, changeQuantity, purchase, logout, login, signin, cookieLogin, updateProfile, updateGuestProfile,
+    user, addToCart, deleteFromCart, changeQuantity, purchase, logout, login, signin, cookieLogin, updateProfile, updateGuestProfile, resetError,
   }
 
   return (

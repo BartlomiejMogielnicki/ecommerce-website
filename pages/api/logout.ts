@@ -14,6 +14,6 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
     )
     res.status(200).send({})
   } catch (error) {
-    res.status(400).send({})
+    res.status(500).send({})
   }
 }

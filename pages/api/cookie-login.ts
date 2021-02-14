@@ -25,10 +25,10 @@ export default async function cookieLogin(req: NextApiRequest, res: NextApiRespo
           },
         })
       } else {
-        res.status(404).send({})
+        res.status(401).send({})
       }
     } catch (error) {
-      res.status(400).send({})
+      res.status(500).send({})
     }
   }
 }

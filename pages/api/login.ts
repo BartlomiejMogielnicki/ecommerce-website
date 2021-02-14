@@ -15,7 +15,7 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
     if (user) {
       await compare(password, user.cryptedPassword, (err, result) => {
         if (err || !result) {
-          res.status(404).send({})
+          res.status(401).send({})
         }
       })
 
@@ -44,9 +44,9 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
         },
       })
     } else {
-      res.status(404).send({})
+      res.status(401).send({})
     }
   } catch (error) {
-    res.status(400).send({})
+    res.status(500).send({})
   }
 }

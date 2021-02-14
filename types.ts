@@ -67,4 +67,5 @@ export interface ContextProps {
   cookieLogin: () => void
   updateProfile: (userData: UserProfile) => void
   updateGuestProfile: (userData: UserProfile) => void
+  resetError: () => void
 }

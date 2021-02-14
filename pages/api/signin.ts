@@ -65,6 +65,6 @@ export default async function signin(req: NextApiRequest, res: NextApiResponse) 
       },
     })
   } catch (error) {
-    res.status(400).send({})
+    res.status(500).send({})
   }
 }
