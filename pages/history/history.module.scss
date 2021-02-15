@@ -1,3 +1,5 @@
+@import '/styles/config.scss';
+
 .container {
   margin: 0 auto;
   padding: 10px 20px;
@@ -8,6 +10,7 @@
 
   h2 {
     margin: 10px 0;
+    font-size: 1.6rem;
   }
 
   .historyList {
@@ -48,5 +51,17 @@
         }
       }
     }
+  }
+}
+
+@include mediaSmall {
+  .container {
+    font-size: 1.2rem;
+  }
+}
+
+@include mediaSmallest {
+  .container {
+    font-size: 0.9rem;
   }
 }

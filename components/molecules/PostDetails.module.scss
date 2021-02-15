@@ -8,6 +8,7 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  text-align: justify;
 
   h1 {
     margin-bottom: 20px;
@@ -63,5 +64,9 @@
     margin-top: 0;
     max-width: 90%;
     min-height: 600px;
+
+    .post {
+      margin-top: 50px;
+    }
   }
 }
