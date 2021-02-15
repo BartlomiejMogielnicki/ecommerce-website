@@ -390,7 +390,14 @@ export const UserProvider = ({ children }) => {
   }, [dispatch, user.authenticated])
 
   const logout = useCallback(() => {
-    fetch('/api/logout')
+    fetch('/api/logout', {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      method: 'POST',
+      body: JSON.stringify({}),
+    })
       .then((response) => {
         if (response.ok) {
           return response.json();
