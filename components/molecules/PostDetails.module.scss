@@ -2,7 +2,7 @@
 
 .container {
   max-width: 1200px;
-  min-height: 720px;
+  min-height: 500px;
   margin: 40px auto;
   display: flex;
   flex-direction: column;
@@ -12,6 +12,14 @@
   h1 {
     margin-bottom: 20px;
     text-align: center;
+  }
+
+  h2 {
+    margin: 20px 0;
+  }
+
+  h3 {
+    margin: 10px 0;
   }
 
   button {

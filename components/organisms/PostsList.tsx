@@ -13,7 +13,7 @@ const PostsList:FC<Props> = ({ posts }) => (
   <div className={styles.container}>
     {!posts && <LoadingSpinner />}
     {posts && posts.map((p) => (
-      <div className={styles.post} key={p.title}>
+      <article className={styles.post} key={p.title}>
         <h2>{p.title}</h2>
         <p>{p.description}</p>
         <button type="button">
@@ -21,7 +21,7 @@ const PostsList:FC<Props> = ({ posts }) => (
             <a>Read more</a>
           </Link>
         </button>
-      </div>
+      </article>
     ))}
   </div>
 )
