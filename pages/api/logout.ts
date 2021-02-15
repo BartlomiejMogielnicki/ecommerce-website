@@ -5,10 +5,11 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
   try {
     res.setHeader(
       'Set-Cookie',
-      cookie.serialize('auth', 'remove', {
+      cookie.serialize('auth', '', {
         httpOnly: true,
+        secure: process.env.NODE_ENV !== 'development',
         sameSite: 'strict',
-        maxAge: 0,
+        expires: new Date(0),
         path: '/',
       }),
     )

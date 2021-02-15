@@ -30,7 +30,7 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
           httpOnly: true,
           secure: process.env.NODE_ENV !== 'development',
           sameSite: 'strict',
-          maxAge: 3600 * 12,
+          maxAge: 3600,
           path: '/',
         }),
       )
