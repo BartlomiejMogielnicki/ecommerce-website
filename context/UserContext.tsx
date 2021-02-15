@@ -4,8 +4,6 @@ import {
 
 import { ContextProps, CartObject, UserProfile } from 'types'
 
-const URL = 'http://localhost:3000';
-
 const initialState = {
   authenticated: false,
   userName: '',
@@ -205,7 +203,7 @@ export const UserProvider = ({ children }) => {
           },
         })
 
-        fetch(`${URL}/api/cart/add-product`, {
+        fetch(`${process.env.NEXT_PUBLIC_API_HOST}/api/cart/add-product`, {
           headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
@@ -247,7 +245,7 @@ export const UserProvider = ({ children }) => {
         },
       })
     } else {
-      fetch(`${URL}/api/cart/delete-product`, {
+      fetch(`${process.env.NEXT_PUBLIC_API_HOST}/api/cart/delete-product`, {
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
@@ -284,7 +282,7 @@ export const UserProvider = ({ children }) => {
         },
       })
     } else {
-      fetch(`${URL}/api/cart/change-quantity`, {
+      fetch(`${process.env.NEXT_PUBLIC_API_HOST}/api/cart/change-quantity`, {
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
@@ -321,7 +319,7 @@ export const UserProvider = ({ children }) => {
     })
 
     if (!user.authenticated) {
-      fetch(`${URL}/api/cart/guest-purchase`, {
+      fetch(`${process.env.NEXT_PUBLIC_API_HOST}/api/cart/guest-purchase`, {
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
@@ -348,7 +346,7 @@ export const UserProvider = ({ children }) => {
         })
       })
     } else {
-      fetch(`${URL}/api/cart/purchase`, {
+      fetch(`${process.env.NEXT_PUBLIC_API_HOST}/api/cart/purchase`, {
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
@@ -378,7 +376,7 @@ export const UserProvider = ({ children }) => {
   }, [dispatch, user.authenticated])
 
   const logout = useCallback(() => {
-    fetch(`${URL}/api/logout`)
+    fetch(`${process.env.NEXT_PUBLIC_API_HOST}/api/logout`)
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -404,7 +402,7 @@ export const UserProvider = ({ children }) => {
       },
     })
 
-    fetch(`${URL}/api/login`, {
+    fetch(`${process.env.NEXT_PUBLIC_API_HOST}/api/login`, {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -439,7 +437,7 @@ export const UserProvider = ({ children }) => {
       },
     })
 
-    fetch(`${URL}/api/signin`, {
+    fetch(`${process.env.NEXT_PUBLIC_API_HOST}/api/signin`, {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -464,7 +462,7 @@ export const UserProvider = ({ children }) => {
   }, [dispatch])
 
   const cookieLogin = useCallback(() => {
-    fetch(`${URL}/api/cookie-login`)
+    fetch(`${process.env.NEXT_PUBLIC_API_HOST}/api/cookie-login`)
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -483,7 +481,7 @@ export const UserProvider = ({ children }) => {
       },
     })
 
-    fetch(`${URL}/api/update-profile`, {
+    fetch(`${process.env.NEXT_PUBLIC_API_HOST}/api/update-profile`, {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
