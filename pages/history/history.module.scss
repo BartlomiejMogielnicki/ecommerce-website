@@ -56,7 +56,11 @@
 
 @include mediaSmall {
   .container {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
+
+    .historyList {
+      font-size: 1.2rem;
+    }
   }
 }
 

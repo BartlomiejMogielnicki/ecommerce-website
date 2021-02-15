@@ -134,6 +134,13 @@
   .productImagesModalContainer {
     .productImagesModal {
       width: 70%;
+
+      .activeImage {
+        img {
+          height: 50vh;
+          width: auto;
+        }
+      }
     }
   }
 }
