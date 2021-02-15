@@ -38,7 +38,7 @@ const GUEST_PURCHASE = 'GUEST_PURCHASE'
 const UPDATE_ERROR = 'UPDATE_ERROR'
 const UPDATE_LOADER = 'UPDATE_LOADER'
 
-const LOADING_PURCHASE = 'LOADING_PURCHASE'
+const LOADING_CART = 'LOADING_CART'
 const LOADING_ADD_TO_CART = 'LOADING_ADD_TO_CART'
 const LOADING_UPDATE_PROFILE = 'LOADING_UPDATE_PROFILE'
 const LOADING_LOGIN = 'LOADING_LOGIN'
@@ -245,6 +245,13 @@ export const UserProvider = ({ children }) => {
         },
       })
     } else {
+      dispatch({
+        type: UPDATE_LOADER,
+        payload: {
+          loading: LOADING_CART,
+        },
+      })
+
       fetch('/api/cart/delete-product', {
         headers: {
           Accept: 'application/json',
@@ -282,6 +289,13 @@ export const UserProvider = ({ children }) => {
         },
       })
     } else {
+      dispatch({
+        type: UPDATE_LOADER,
+        payload: {
+          loading: LOADING_CART,
+        },
+      })
+
       fetch('/api/cart/change-quantity', {
         headers: {
           Accept: 'application/json',
@@ -314,7 +328,7 @@ export const UserProvider = ({ children }) => {
     dispatch({
       type: UPDATE_LOADER,
       payload: {
-        loading: LOADING_PURCHASE,
+        loading: LOADING_CART,
       },
     })
 
@@ -376,7 +390,7 @@ export const UserProvider = ({ children }) => {
   }, [dispatch, user.authenticated])
 
   const logout = useCallback(() => {
-    fetch(`${process.env.NEXT_PUBLIC_API_HOST}/api/logout`)
+    fetch('/api/logout')
       .then((response) => {
         if (response.ok) {
           return response.json();

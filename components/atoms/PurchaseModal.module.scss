@@ -1,3 +1,5 @@
+@import '/styles/config.scss';
+
 .wrapper {
   position: fixed;
   top: 0;
@@ -76,5 +78,27 @@
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.9);
     z-index: 500;
+  }
+}
+
+@include mediaSmall {
+  .wrapper {
+    .purchaseInfo {
+      p {
+        margin-top: 10px;
+        padding: 0 10px;
+        font-size: 1rem;
+      }
+
+      .navButton {
+        width: 110px;
+        height: 35px;
+        bottom: 15px;
+
+        a {
+          font-size: 1rem;
+        }
+      }
+    }
   }
 }

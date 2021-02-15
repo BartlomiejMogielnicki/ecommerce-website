@@ -18,7 +18,7 @@
     .cartItem {
       padding: 10px 0;
       display: grid;
-      grid-template-columns: 150px 1fr 150px 200px 50px;
+      grid-template-columns: 100px 1fr 150px 120px 50px;
       grid-template-rows: 1fr;
       justify-items: center;
       align-items: center;
@@ -102,15 +102,13 @@
     .buyButton {
       width: 120px;
       font-size: 1.5rem;
-      margin-bottom: 50px;
     }
   }
 
   .loadingSpinner {
     position: absolute;
-    bottom: 40px;
-    right: 50%;
-    transform: translateX(-5px);
+    bottom: 45px;
+    right: 60px;
   }
 }
 
@@ -120,10 +118,11 @@
 
     .cartList {
       .cartItem {
-        grid-template-columns: 100px 1fr 150px 150px 50px;
+        grid-template-columns: 100px 1fr 150px 120px 50px;
 
         .cartItemTitle {
           align-items: center;
+          font-size: 1.2rem;
 
           button {
             margin-left: 5px;
@@ -164,59 +163,49 @@
 
     .cartList {
       .cartItem {
-        grid-template-columns: 1fr;
-        grid-template-rows: 50px 100px 50px 50px;
+        grid-template-columns: 100px 1fr 150px 100px;
+        grid-template-rows: 45px 45px;
         position: relative;
         grid-template-areas:
-          'title'
-          'image'
-          'quantity'
-          'price';
-
-        &:first-of-type {
-          border-top: 1px solid #aaa;
-        }
-
-        &:last-of-type {
-          border-bottom: 1px solid #aaa;
-        }
+          'image title title delete'
+          'image quantity quantity price';
 
         img {
           grid-area: image;
         }
 
         .cartItemTitle {
+          display: flex;
           align-items: center;
           grid-area: title;
-          font-size: 1.3rem;
+          font-size: 1.2rem;
 
           button {
-            margin-left: 5px;
-            width: 65px;
-            font-size: 1rem;
+            width: 55px;
+            font-size: 0.9rem;
           }
         }
 
         .cartItemQuantity {
           width: 150px;
           grid-area: quantity;
-          font-size: 1.3rem;
+          font-size: 1.2rem;
         }
 
         .cartItemPrice {
           grid-area: price;
+          font-size: 1.2rem;
         }
 
         .buttonDelete {
-          position: absolute;
-          bottom: 67px;
-          right: 10px;
           grid-area: delete;
         }
       }
     }
 
     button {
+      width: 30px;
+      height: 30px;
       &:hover {
         background-color: #00adef;
         color: white;
@@ -258,34 +247,24 @@
 
     .cartList {
       .cartItem {
-        grid-template-columns: 1fr;
-        grid-template-rows: 50px 100px 50px 50px;
+        grid-template-columns: 70px 1fr 150px 80px;
+        grid-template-rows: 45px 45px;
         position: relative;
         grid-template-areas:
-          'title'
-          'image'
-          'quantity'
-          'price';
-
-        &:first-of-type {
-          border-top: 1px solid #aaa;
-        }
-
-        &:last-of-type {
-          border-bottom: 1px solid #aaa;
-        }
+          'image title title delete'
+          'image quantity quantity price';
 
         img {
           grid-area: image;
         }
 
         .cartItemTitle {
+          display: flex;
           align-items: center;
           grid-area: title;
-          font-size: 1.1rem;
+          font-size: 1rem;
 
           button {
-            margin-left: 5px;
             width: 55px;
             font-size: 0.9rem;
           }
@@ -294,23 +273,25 @@
         .cartItemQuantity {
           width: 150px;
           grid-area: quantity;
-          font-size: 1.1rem;
+          font-size: 1.2rem;
         }
 
         .cartItemPrice {
           grid-area: price;
+          font-size: 1.2rem;
         }
 
         .buttonDelete {
-          position: absolute;
-          bottom: 67px;
-          right: 10px;
           grid-area: delete;
         }
       }
     }
 
     button {
+      width: 30px;
+      height: 30px;
+      display: flex;
+      flex-direction: column;
       &:hover {
         background-color: #00adef;
         color: white;
@@ -335,6 +316,48 @@
       .buyButton {
         margin-right: 0;
       }
+    }
+  }
+}
+
+@include mediaSmallest {
+  .container {
+    .cartList {
+      .cartItem {
+        grid-template-columns: 60px 1fr 150px 80px;
+        grid-template-rows: 45px 45px;
+        position: relative;
+        grid-template-areas:
+          'image title title delete'
+          'image quantity quantity price';
+
+        img {
+          height: 65px;
+          grid-area: image;
+        }
+
+        .cartItemTitle {
+          button {
+            display: none;
+          }
+        }
+
+        .cartItemQuantity {
+          width: 120px;
+          font-size: 1rem;
+        }
+
+        .cartItemPrice {
+          font-size: 1rem;
+        }
+      }
+    }
+
+    button {
+      width: 28px;
+      height: 28px;
+      display: flex;
+      flex-direction: column;
     }
   }
 }

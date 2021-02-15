@@ -76,7 +76,7 @@ const Cart:FC = () => {
       <div className={styles.buy}>
         <button className={styles.buyButton} type="button" onClick={handlePurchase} disabled={cart.length === 0}>Buy</button>
       </div>
-      {loading === 'LOADING_PURCHASE' ? (
+      {loading === 'LOADING_CART' ? (
         <div className={styles.loadingSpinner}>
           <LoadingSpinner />
         </div>
