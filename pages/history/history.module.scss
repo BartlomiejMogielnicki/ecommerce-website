@@ -10,7 +10,6 @@
 
   h2 {
     margin: 10px 0;
-    font-size: 1.6rem;
   }
 
   .historyList {
@@ -57,6 +56,10 @@
 @include mediaSmall {
   .container {
     font-size: 1.4rem;
+
+    h2 {
+      font-size: 1.6rem;
+    }
 
     .historyList {
       font-size: 1.2rem;

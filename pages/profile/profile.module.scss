@@ -22,6 +22,14 @@
   }
 }
 
+@include mediaSmall {
+  .container {
+    h2 {
+      font-size: 1.6rem;
+    }
+  }
+}
+
 @include mediaSmallest {
   .container {
     font-size: 1.2rem;
