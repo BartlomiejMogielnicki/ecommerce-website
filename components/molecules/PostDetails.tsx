@@ -12,7 +12,7 @@ const PostDetails:FC<Props> = ({ post }) => (
   <div className={styles.container}>
     <div className={styles.post}>
       <h1>{post.title}</h1>
-      <ReactMarkdown>
+      <ReactMarkdown className={styles.postContentContainer}>
         {post.content}
       </ReactMarkdown>
     </div>

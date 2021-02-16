@@ -10,17 +10,34 @@
   align-items: center;
   text-align: justify;
 
+  .postContentContainer {
+    padding: 10px;
+    text-align: center;
+
+    img {
+      margin-top: 20px;
+      width: 100%;
+      max-width: 90vw;
+    }
+
+    h2,
+    h3 {
+      margin: 20px 0;
+      text-align: left;
+    }
+
+    h3 {
+      margin: 10px 0;
+    }
+
+    p {
+      text-align: justify;
+    }
+  }
+
   h1 {
     margin-bottom: 20px;
     text-align: center;
-  }
-
-  h2 {
-    margin: 20px 0;
-  }
-
-  h3 {
-    margin: 10px 0;
   }
 
   button {
