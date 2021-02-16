@@ -22,7 +22,30 @@
     height: 100%;
     width: 100%;
     opacity: 0;
-    animation: none;
+    animation: load 0.8s linear infinite both;
+
+    &.firstDot {
+      background-color: #00adef;
+      grid-area: firstDot;
+    }
+
+    &.secondDot {
+      background-color: #005baa;
+      grid-area: secondDot;
+      animation-delay: 0.6s;
+    }
+
+    &.thirdDot {
+      background-color: #005baa;
+      grid-area: thirdDot;
+      animation-delay: 0.2s;
+    }
+
+    &.fourthDot {
+      background-color: #00adef;
+      grid-area: fourthDot;
+      animation-delay: 0.4s;
+    }
   }
 
   @keyframes load {
@@ -41,33 +64,6 @@
     100% {
       opacity: 1;
     }
-  }
-
-  .firstDot {
-    background-color: #00adef;
-    grid-area: firstDot;
-    animation: load 0.8s linear infinite both;
-  }
-
-  .secondDot {
-    background-color: #005baa;
-    grid-area: secondDot;
-    animation: load 0.8s linear infinite both;
-    animation-delay: 0.6s;
-  }
-
-  .thirdDot {
-    background-color: #005baa;
-    grid-area: thirdDot;
-    animation: load 0.8s linear infinite both;
-    animation-delay: 0.2s;
-  }
-
-  .fourthDot {
-    background-color: #00adef;
-    grid-area: fourthDot;
-    animation: load 0.8s linear infinite both;
-    animation-delay: 0.4s;
   }
 }
 
