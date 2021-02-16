@@ -37,32 +37,32 @@ https://ecommerce-nextjs-website.vercel.app/
 
 ### Home Page
 
-![Home Page](./public/img/screens/home-page.jpg)
+![Home Page](./public/screens/home-page.jpg)
 
 ### Products Page
 
-![Products Page](./public/img/screens/products-page.jpg)
+![Products Page](./public/screens/products-page.jpg)
 
 ### Single Product Page
 
-![Single Product Page](./public/img/screens/product-details-page.jpg)
+![Single Product Page](./public/screens/product-details-page.jpg)
 
 ### Home Page
 
-![Home Page](./public/img/screens/blog-page.jpg)
+![Home Page](./public/screens/blog-page.jpg)
 
 ### Single Post Page
 
-![Single Post Page](./public/img/screens/post-page.jpg)
+![Single Post Page](./public/screens/post-page.jpg)
 
 ### Contact Page
 
-![Contact Page](./public/img/screens/contact-page.jpg)
+![Contact Page](./public/screens/contact-page.jpg)
 
 ### Log In Page
 
-![Log In Page](./public/img/screens/login-page.jpg)
+![Log In Page](./public/screens/login-page.jpg)
 
 ### Cart Page
 
-![Cart Page](./public/img/screens/cart-page.jpg)
+![Cart Page](./public/screens/cart-page.jpg)

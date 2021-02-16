@@ -1,6 +1,8 @@
 import {
   FC, useContext, useState, useEffect,
 } from 'react'
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { UserContext } from 'context/UserContext'
 import LoadingSpinner from 'components/atoms/LoadingSpinner'
 import styles from './UserProfileForm.module.scss'
@@ -27,6 +29,8 @@ const UserProfileForm:FC = () => {
   const [isZipCodeError, toggleZipCodeError] = useState(false)
   const [isStreetError, toggleStreetError] = useState(false)
   const [isBuildingError, toggleBuildingError] = useState(false)
+
+  const [isGuestProfileUpdated, setIsGuestProfileUpdated] = useState(false)
 
   const { user: { authenticated, userData, loading }, updateProfile, updateGuestProfile } = useContext(UserContext)
 
@@ -132,8 +136,10 @@ const UserProfileForm:FC = () => {
 
     if (authenticated) {
       updateProfile(userProfile)
+      setIsGuestProfileUpdated(true)
     } else {
       updateGuestProfile(userProfile)
+      setIsGuestProfileUpdated(true)
     }
   }
 
@@ -218,7 +224,14 @@ const UserProfileForm:FC = () => {
           {isBuildingError && <small className={styles.errorMessage}>Invalid building/apartment</small>}
         </div>
       </div>
-      <button className={styles.submitBtn} type="submit">Update</button>
+      <div className={styles.submitBtnContainer}>
+        <button className={styles.submitBtn} type="submit">Update</button>
+        {isGuestProfileUpdated && (
+        <div className={styles.checkMark}>
+          <FontAwesomeIcon icon={faCheck} />
+        </div>
+        )}
+      </div>
       {loading === 'LOADING_UPDATE_PROFILE' ? (
         <div className={styles.loadingSpinner}>
           <LoadingSpinner />
