@@ -49,7 +49,7 @@ const Cart:FC = () => {
               </button>
             </div>
             <div className={styles.cartItemQuantity}>
-              <button type="button" disabled={item.quantity === 0} onClick={() => changeQuantity(item.title, 'dec')}>-</button>
+              <button type="button" disabled={item.quantity === 1} onClick={() => changeQuantity(item.title, 'dec')}>-</button>
               <p>
                 {item.quantity}
                 {' pcs'}
