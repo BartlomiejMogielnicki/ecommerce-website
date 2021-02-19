@@ -21,10 +21,19 @@ interface Props {
 const Header:FC<Props> = ({ clicked, showMenu }) => {
   const { user, logout, cookieLogin } = useContext(UserContext)
   const [isCartFixed, setIsCartFixed] = useState(false)
+  const [blink, setBlink] = useState(false)
 
   const cartRef = useRef(null)
 
   const router = useRouter()
+
+  useEffect(() => {
+    setBlink(true)
+    const clearBlink = setTimeout(() => {
+      setBlink(false)
+    }, 300)
+    return () => clearTimeout(clearBlink)
+  }, [user.cart.length])
 
   useEffect(() => {
     if (user.error === 'UNKNOWN_ERROR') {
@@ -74,9 +83,9 @@ const Header:FC<Props> = ({ clicked, showMenu }) => {
         <div className={styles.topColCart}>
           <Link href="/cart">
             <a>
-              <div className={`${styles.cart} ${isCartFixed ? styles.fixed : null} ${router.pathname === '/cart' && styles.hidden}`} ref={cartRef}>
+              <div className={`${styles.cart} ${isCartFixed ? styles.fixed : null} ${router.pathname === '/cart' && styles.hidden} ${blink ? styles.blink : null}`} ref={cartRef}>
                 <FontAwesomeIcon icon={faShoppingCart} />
-                <div className={styles.itemsNum}>
+                <div className={`${styles.itemsNum} ${blink ? styles.blink : null}`}>
                   {user.cart.length}
                 </div>
                 {user.loading === 'LOADING_ADD_TO_CART' ? (

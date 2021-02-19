@@ -16,7 +16,6 @@ https://ecommerce-nextjs-website.vercel.app/
 - Cookie 0.4.1
 - Jsonwebtoken 8.5.1
 - Sass 1.30.0
-
 - Strapi - edit database content (e.g. add new products or blog posts)
 - AWS S3 - image storage
 - Vercel - hosting
