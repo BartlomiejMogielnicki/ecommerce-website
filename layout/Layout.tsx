@@ -1,6 +1,7 @@
 import { FC, useEffect, useState } from 'react'
 import Header from 'components/organisms/Header'
 import Footer from 'components/atoms/Footer'
+import Head from 'next/head'
 
 const moveContentStyles = {
   transition: '.3s',
@@ -28,6 +29,12 @@ const Layout: FC = ({ children }) => {
 
   return (
     <>
+      <Head>
+        <title>GoFakeShop action cameras shop</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta name="description" content="Action cameras shop website. Buy the best action cameras. Read articles about the best action cameras. Contact for advice about best action cameras." />
+        <meta name="keywords" content="gopro, action cameras, cameras, hero, video, photo, media" />
+      </Head>
       <header>
         <Header clicked={() => setShowMenu(!showMenu)} showMenu={showMenu} />
       </header>
