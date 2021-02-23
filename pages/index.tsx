@@ -16,7 +16,7 @@ const Home: FC<Props> = ({ bestsellers, recentPosts }) => (
   <HomeContent bestsellers={bestsellers} recentPosts={recentPosts} />
 )
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const { db } = await connectToDB();
   const fetchedProducts = await getProducts(db);
   const bestsellers = fetchedProducts.filter((product) => (
