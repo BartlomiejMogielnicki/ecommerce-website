@@ -30,19 +30,7 @@ const Blog: FC<Props> = ({ posts }) => {
   );
 };
 
-export async function getStaticPaths() {
-  const { db } = await connectToDB();
-  const fetchedPosts = await getPosts(db);
-
-  return {
-    paths: fetchedPosts.map((p) => ({
-      params: { param: [p.title.split(' ').join('-').toLowerCase()] },
-    })),
-    fallback: true,
-  };
-}
-
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const { db } = await connectToDB();
   const fetchedPosts = await getPosts(db);
   const posts = fetchedPosts.map((p) => ({
