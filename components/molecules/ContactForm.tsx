@@ -11,7 +11,6 @@ const ContactForm:FC = () => {
   const [isMessageError, setIsMessageError] = useState(false)
 
   const handleSubmit = (e) => {
-    e.preventDefault()
     let isValidate = true;
 
     if (!name) {
@@ -37,8 +36,8 @@ const ContactForm:FC = () => {
       setIsMessageError(false)
     }
 
-    if (isValidate) {
-      console.log('Submitted!')
+    if (!isValidate) {
+      e.preventDefault()
     }
   }
 
@@ -47,11 +46,7 @@ const ContactForm:FC = () => {
       className={styles.contactForm}
       name="Gofakeshop contact form"
       onSubmit={handleSubmit}
-      method="POST"
-      netlify-honeypot="bot-field"
-      data-netlify="true"
     >
-      <input type="hidden" name="form-name" value="contact" />
       <div className={styles.section}>
         <label className={styles.sectionLabel} htmlFor="name">
           Name

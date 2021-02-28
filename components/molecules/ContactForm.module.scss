@@ -2,6 +2,7 @@
   margin: 30px auto;
   height: 490px;
   width: 400px;
+  max-width: 90%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -21,6 +22,7 @@
 
     .sectionInput,
     .sectionTextarea {
+      margin-top: 5px;
       width: 100%;
       padding: 10px;
       border-radius: 5px;
