@@ -1,4 +1,5 @@
 import { FC, useState } from 'react'
+import styles from './ContactForm.module.scss'
 
 const ContactForm:FC = () => {
   const [name, setName] = useState('')
@@ -12,6 +13,7 @@ const ContactForm:FC = () => {
 
   return (
     <form
+      className={styles.contactForm}
       name="Gofakeshop contact form"
       onSubmit={handleSubmit}
       method="POST"
@@ -19,10 +21,11 @@ const ContactForm:FC = () => {
       data-netlify="true"
     >
       <input type="hidden" name="form-name" value="contact" />
-      <div>
-        <label htmlFor="name">
+      <div className={styles.section}>
+        <label className={styles.sectionLabel} htmlFor="name">
           Name
           <input
+            className={styles.sectionInput}
             type="text"
             name="name"
             id="name"
@@ -32,12 +35,13 @@ const ContactForm:FC = () => {
             value={name}
           />
         </label>
-        <small>Invalid name</small>
+        <small className={styles.error}>Invalid name</small>
       </div>
-      <div>
-        <label htmlFor="email">
+      <div className={styles.section}>
+        <label className={styles.sectionLabel} htmlFor="email">
           E-mail
           <input
+            className={styles.sectionInput}
             type="text"
             name="email"
             id="email"
@@ -46,12 +50,13 @@ const ContactForm:FC = () => {
             value={email}
           />
         </label>
-        <small>Invalid e-mail</small>
+        <small className={styles.error}>Invalid e-mail</small>
       </div>
-      <div>
-        <label htmlFor="text">
+      <div className={styles.section}>
+        <label className={styles.sectionLabel} htmlFor="text">
           Message
           <textarea
+            className={styles.sectionTextarea}
             name="text"
             id="text"
             placeholder="Enter your message..."
@@ -59,9 +64,9 @@ const ContactForm:FC = () => {
             value={message}
           />
         </label>
-        <small>Invalid message</small>
+        <small className={styles.error}>Invalid message</small>
       </div>
-      <button type="submit">Submit</button>
+      <button className={styles.submitBtn} type="submit">Submit</button>
     </form>
   )
 }
