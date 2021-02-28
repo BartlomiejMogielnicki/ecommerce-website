@@ -1,6 +1,6 @@
 .contactForm {
   margin: 30px auto;
-  height: 400px;
+  height: 490px;
   width: 400px;
   display: flex;
   flex-direction: column;
@@ -9,7 +9,9 @@
 
   .section {
     margin-top: 10px;
+    height: 200px;
     width: 100%;
+    position: relative;
     font-size: 1.3rem;
 
     .sectionLabel {
@@ -24,25 +26,30 @@
       border-radius: 5px;
       border: 1px solid #000;
       font-size: 0.7em;
+
+      &.sectionInputError {
+        border: 1px solid red;
+      }
     }
 
     .sectionTextarea {
-      height: 100px;
-      resize: vertical;
+      height: 150px;
+      resize: none;
     }
 
     .error {
-      display: block;
       height: 20px;
+      position: absolute;
+      right: 50%;
+      transform: translateX(50%);
       color: red;
       font-size: 0.7em;
-      opacity: 1;
     }
   }
 
   .submitBtn {
     padding: 5px;
-    margin-top: 20px;
+    margin-top: 40px;
     width: 100px;
     color: #00adef;
     border: 2px solid #00adef;
