@@ -39,13 +39,22 @@
       resize: none;
     }
 
-    .error {
+    .error,
+    .success {
       height: 20px;
       position: absolute;
       right: 50%;
       transform: translateX(50%);
-      color: red;
       font-size: 0.7em;
+    }
+
+    .error {
+      color: red;
+    }
+
+    .success {
+      width: 100%;
+      color: green;
     }
   }
 

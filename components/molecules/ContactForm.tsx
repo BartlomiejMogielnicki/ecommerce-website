@@ -5,12 +5,14 @@ const ContactForm:FC = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
+  const [isSuccessMessage, setIsSuccessMessage] = useState(false)
 
   const [isNameError, setIsNameError] = useState(false)
   const [isEmailError, setIsEmailError] = useState(false)
   const [isMessageError, setIsMessageError] = useState(false)
 
   const handleSubmit = (e) => {
+    e.preventDefault()
     let isValidate = true;
 
     if (!name) {
@@ -36,8 +38,13 @@ const ContactForm:FC = () => {
       setIsMessageError(false)
     }
 
-    if (!isValidate) {
-      e.preventDefault()
+    if (isValidate) {
+      setIsSuccessMessage(true)
+      setName('')
+      setEmail('')
+      setMessage('')
+    } else {
+      setIsSuccessMessage(false)
     }
   }
 
@@ -91,6 +98,7 @@ const ContactForm:FC = () => {
           />
         </label>
         {isMessageError && <small className={styles.error}>Invalid message</small>}
+        {isSuccessMessage && <small className={styles.success}>Message sent. We will reply soon.</small>}
       </div>
       <button className={styles.submitBtn} type="submit">Submit</button>
     </form>
